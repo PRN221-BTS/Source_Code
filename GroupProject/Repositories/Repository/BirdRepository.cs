@@ -10,10 +10,14 @@ namespace Repositories.Repoository
 {
     public class BirdRepository : IBirdRepository
     {
+        BirdTransportationSystemContext _transportationSystemContext = new BirdTransportationSystemContext();
         public Task<bool> AddAsync(Bird bird)
         {
             throw new NotImplementedException();
         }
+
+        public Bird FindById(int id) => _transportationSystemContext.Birds.FirstOrDefault(x => x.BirdId == id);
+        
 
         public Task<IEnumerable<Bird>> GetAllAsync()
         {

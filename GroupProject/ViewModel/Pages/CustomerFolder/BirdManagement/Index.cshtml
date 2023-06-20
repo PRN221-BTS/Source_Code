@@ -1,0 +1,50 @@
+﻿@page
+@model ViewModel.Pages.CustomerFolder.BirdManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bird[0].BirdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bird[0].BirdType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bird[0].Weight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Bird) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirdType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BirdId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BirdId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BirdId">Delete</a>|
+                <a asp-page="./Cart" asp-page-handler="buynow" asp-route-id="@item.BirdId">Buy Now</a>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

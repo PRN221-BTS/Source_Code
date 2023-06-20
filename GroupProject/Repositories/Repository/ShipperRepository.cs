@@ -10,6 +10,8 @@ namespace Repositories.Repoository
 {
     public class ShipperRepository : IShipperRepository
     {
+
+        private static BirdTransportationSystemContext _context = new BirdTransportationSystemContext();
         public Task<bool> AddAsync(Shipper shipper)
         {
             throw new NotImplementedException();
@@ -25,10 +27,8 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
-        public bool Login(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
+        public Shipper Login(string email, string password) => _context.Shippers.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+       
 
         public bool Register(Shipper shipper)
         {

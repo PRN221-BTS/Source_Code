@@ -1,0 +1,38 @@
+﻿@page
+@model ViewModel.Pages.CustomerFolder.ProfileModel
+@{
+}
+<h1>Customer Page</h1>
+<h1>My Profile</h1>
+<a asp-page="/CustomerFolder/BirdManagement/Index">Bird Management</a>
+<a asp-page="/Customer/BirdManagement/Index">Order Management</a>
+<form>
+    <div class="col-3 ">
+        <label asp-for="customer.CustomerId"></label>
+        <br />
+        <input type="text" asp-for="customer.CustomerId" placeholder="@Model.customer.CustomerId" width="auto" height="auto">
+    </div>
+    <div class="col-3 ">
+        <label asp-for="customer.CustomerName"></label>
+        <br />
+        <input type="text" asp-for="customer.CustomerName" placeholder="@Model.customer.CustomerName" width="auto" height="auto">
+    </div>
+    <div class="col-3">
+        <label asp-for="customer.Email"></label>
+        <br />
+        <input type="text" asp-for="customer.Email" placeholder="@Model.customer.Email">
+    </div>
+    <div class="col-3">
+        <label asp-for="customer.Password"></label>
+        <br />
+        <input type="text" asp-for="customer.Password" placeholder="@Model.customer.Password">
+    </div>
+    <div class="col-3">
+        <label asp-for="customer.Phone"></label>
+        <br />
+        <input type="text" asp-for="customer.Phone" placeholder="@Model.customer.Phone">
+    </div>
+    <div class="col-3">
+        <input type="submit" class="btn btn-primary" value="UpdateUser" />
+    </div>
+</form>

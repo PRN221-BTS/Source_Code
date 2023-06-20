@@ -10,7 +10,7 @@ namespace Repositories.IRepository
     public interface IShipperRepository
     {
         bool Register(Shipper shipper);
-        bool Login(string email, string password);
+        Shipper Login(string email, string password);
         Task<bool> AddAsync(Shipper shipper);
         Task<IEnumerable<Shipper>> GetAllAsync();
         Task<Shipper?> GetByIdAsync(int id);

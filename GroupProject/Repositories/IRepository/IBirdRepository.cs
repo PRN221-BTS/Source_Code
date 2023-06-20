@@ -14,5 +14,7 @@ namespace Repositories.IRepository
         Task<Bird?> GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Bird bird);
+
+        Bird FindById(int id);
     }
 }

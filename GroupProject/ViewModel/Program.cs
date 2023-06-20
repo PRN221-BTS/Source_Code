@@ -1,8 +1,19 @@
+using Model.DAOs;
+using Repositories.IRepository;
+using Repositories.Repoository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddTransient<ICustomerRepository,CustomerRepository>();
+builder.Services.AddSingleton<IBirdRepository, BirdRepository>();
+builder.Services.AddSingleton<IShipperRepository,ShipperRepository>();
+builder.Services.AddSingleton<IOrderRepository,OrderRepository>();
+builder.Services.AddSingleton<BirdTransportationSystemContext, BirdTransportationSystemContext>();
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,5 +32,5 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
+app.UseSession();
 app.Run();
