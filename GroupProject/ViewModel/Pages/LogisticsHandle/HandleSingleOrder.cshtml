@@ -1,0 +1,169 @@
+﻿@page
+@model ViewModel.Pages.LogisticsHandle.HandleSingleOrderModel
+@{
+}
+<div class="row">
+
+    <div class="col-6">
+        <h5>Order's Information</h5>
+        <div class="m-0 border-0 row g-3">
+            <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Order ID</label>
+                <input type="number" class="form-control" id="inputEmail5" value="@Model.order.OrderId" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Receiving Address</label>
+                <input type="text" class="form-control" id="inputEmail4" value="@Model.order.ReceivingAddress" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Sending Adreess</label>
+                <input type="text" class="form-control" id="inputEmail6" value="@Model.order.SendingAddress" disabled>
+            </div>
+        </div>
+
+        <h4> Add Shipper to Route</h4>
+        <form method="post" >
+            @*<label for="exampleDataList" class="form-label">Datalist example</label>*@
+            <input class="form-control" list="datalistOptions" id="exampleDataList11" name="warehouseKeyWord" placeholder="Type to search..."/>
+
+        <datalist id="datalistOptions">
+                @foreach (var item in Model.warehouse)
+                {
+                    <option value="@item.WarehouseId" title="@item.Location"/>
+                }
+            </datalist>
+            <br />
+            <button asp-page-handler="InfoShipper" type="submit" class="btn btn-outline-info" title="Info">Info</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <p>Try scrolling the rest of the page to see this option in action.</p>
+                </div>
+            </div>  
+            <br />
+        </form>
+        @if (Model.shippers is not null)
+        {
+            @foreach (var item in Model.shippers)
+            {
+                <form method="post">
+                    <div class=" row g-3">
+                        <div class="col-md-4">
+                            <a>@item.ShipperId</a>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select" aria-label="Default select example" name="ShipperType">
+                                <option selected>Open this select menu</option>
+                                <option value="Receive">Receive</option>
+                                <option value="Send">Send</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" asp-page-handler="AddShipper" asp-route-id="@item.ShipperId">V</button>
+                        </div>
+                    </div>
+                </form>
+            }
+        }
+
+        <br />
+        <h4>Receiving Shipper</h4>
+        <table>
+            <form method="post" asp-page="handlesingleorder">
+            <tr>
+                <th>Shipper Name</th>
+                <th>Warehouse Location</th>
+                <th>Phone</th>
+                <th>Delete</th>
+            </tr>
+            <tr aligin="center">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="center">
+                    <a asp-page="cart" asp-page-handler="delete" asp-route-id="" aria-label="Close"></a>
+                </td>
+            </tr>
+            </form>
+        </table>
+        <br />
+        <h4>Sending Shipper</h4>
+        <table>
+            <form method="post" asp-page="handlesingleorder">
+            <tr>
+                <th>Shipper Name</th>
+                <th>Warehouse Location</th>
+                <th>Phone</th>
+                <th>Delete</th>
+            </tr>
+            <tr aligin="center">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="center">
+                    <a asp-page="cart" asp-page-handler="delete" asp-route-id="" aria-label="Close"></a>
+                </td>
+            </tr>
+            </form>
+        </table>
+        <br />
+        <h4>Add Warehouse to Route</h4>
+
+        <form class="row g-3">
+            <div class="col-auto">
+                <label for="staticEmail2" class="visually-hidden">Warehouse</label>
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" list="datalistOptions" id="exampleDataList" name="warehouseKeyWord" placeholder="Type to search...">
+                <datalist id="datalistOptions">
+                    @foreach (var item in Model.warehouse)
+                    {
+                        <option value="@item.WarehouseName">@item.WarehouseManager</option>
+                    }
+                </datalist>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class=" bi bi-check btn btn-outline-info"></button>
+            </div>
+        </form>
+        @*     <label for="exampleDataList" class="form-label">Warehouse List</label>
+        <input class="form-control" list="datalistOptions" id="exampleDataList" name="warehouseKeyWord" placeholder="Type to search...">
+        <datalist id="datalistOptions">
+        @foreach (var item in Model.warehouse)
+        {
+        <option value="@item.WarehouseName">@item.WarehouseManager</option>
+        }
+        </datalist>
+        <button type="submit" class="btn btn-outline-info">Add</button>*@
+        <br />
+        <h4>Warehouse in Route</h4>
+        <table>
+            <form method="post" asp-page="handlesingleorder">
+            <tr>
+                <th>Warehouse  Name</th>
+                <th>Warehouse Location</th>
+                <th>Warehouse Manager Name</th>
+                <th>Warehouse Email</th>
+                <th>Warehouse PhoneNumber</th>
+            </tr>
+            <tr aligin="center">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="center">
+                    <a asp-page="cart" asp-page-handler="delete" asp-route-id="" aria-label="Close"></a>
+                </td>
+            </tr>
+            </form>
+        </table>
+
+    </div>
+    <div class="col-6">
+    </div>
+</div>

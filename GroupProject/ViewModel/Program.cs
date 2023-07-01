@@ -1,4 +1,5 @@
 using Model.DAOs;
+using Repositories.HandleViewFormat;
 using Repositories.IRepository;
 using Repositories.Repoository;
 
@@ -6,7 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<ShipperViewFormat>();
 builder.Services.AddTransient<ICustomerRepository,CustomerRepository>();
+builder.Services.AddScoped<RouteViewFormat>();
+builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+builder.Services.AddTransient<IWarehouseManagerRepository, WarehouseManagerRepository>();
+builder.Services.AddSingleton<IWarehouseRepository, WarehouseRepository>();
 builder.Services.AddSingleton<IBirdRepository, BirdRepository>();
 builder.Services.AddSingleton<IShipperRepository,ShipperRepository>();
 builder.Services.AddSingleton<IOrderRepository,OrderRepository>();

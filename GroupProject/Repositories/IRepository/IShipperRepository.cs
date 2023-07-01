@@ -16,5 +16,15 @@ namespace Repositories.IRepository
         Task<Shipper?> GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Shipper shipper);
+
+        Warehouse  GetWarehouseById(int id);
+
+        Shipper GetShipperById(int id);
+
+        List<Shipper> GetShippersByWarehouseID(int WarehouseID);
+
+        List<Shipper> GetShippersByWarehouseName(string WarehouseName);
+
+        
     }
 }

@@ -14,15 +14,14 @@ namespace Repositories.Repoository
         private static BirdTransportationSystemContext _context = new BirdTransportationSystemContext();
 
       
-        public Task<bool> AddAsync(Customer customer)
+        public async Task<bool> AddAsync(Customer customer)
         {
-            throw new NotImplementedException();
+          _context.Customers.Add(customer);
+             _context.SaveChanges();
+            return true;
         }
 
-        public Task<IEnumerable<Customer>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<Customer>> GetAllAsync() => _context.Customers.ToList();   
 
         public Task<Customer?> GetByIdAsync(int id)
         {
@@ -36,17 +35,25 @@ namespace Repositories.Repoository
 
         public bool Register(Customer customer)
         {
-            throw new NotImplementedException();
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            var customer = _context.Customers.FirstOrDefault(x => x.CustomerId ==  id);
+            _context.Customers.Remove(customer);
+            _context.SaveChanges() ;
+            return true;
         }
 
         public bool Update(Customer customer)
         {
-            throw new NotImplementedException();
+            _context = new BirdTransportationSystemContext();
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return true;
         }
 
         public  bool LoginByAdminAccount(string email,string password)
@@ -65,7 +72,22 @@ namespace Repositories.Repoository
             return false;
         }
 
-        public Customer GetCustomerById(int id) => _context.Customers.FirstOrDefault(x => x.CustomerId ==  id);  
-        
+        public Customer GetCustomerById(int id) => _context.Customers.FirstOrDefault(x => x.CustomerId ==  id);
+
+        public bool LoginByLogicticsAccount(string email, string password)
+        {
+            string txt = @"C:\CSharp_Learning\Ki7\PRN221\YogaProject_Final\Source_Code\GroupProject\ViewModel\appsettings.json";
+            //string txt = @"..\GroupProject\ViewModel\appsettings.json";
+            string jsonString = File.ReadAllText(txt);
+            var jo = JsonObject.Parse(jsonString);
+            var adminEmail = jo["LogisticsAccount"]["Email"].ToString();
+            var adminPassword = jo["LogisticsAccount"]["Password"].ToString();
+            if (adminEmail == email && adminPassword == password)
+            {
+
+                return true;
+            }
+            return false;
+        }
     }
 }

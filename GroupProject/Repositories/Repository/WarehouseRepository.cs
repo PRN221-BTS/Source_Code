@@ -10,15 +10,13 @@ namespace Repositories.Repoository
 {
     public class WarehouseRepository : IWarehouseRepository
     {
+        private static BirdTransportationSystemContext  _context = new BirdTransportationSystemContext();
         public Task<bool> AddAsync(Warehouse customer)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Warehouse>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Warehouse> GetAllAsync()=> _context.Warehouses.ToList();    
 
         public Task<Warehouse?> GetByIdAsync(int id)
         {

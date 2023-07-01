@@ -1,0 +1,31 @@
+﻿@page
+@model ViewModel.Pages.LogisticsHandle.OrderBatchManagementModel
+@{
+}
+<table class="table">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">OrderID</th>
+        <th scope="col">Receiving Address</th>
+        <th scope="col">Sending Address</th>
+            <th scope="col">Note</th>
+            <th scope="col">Action</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model.order)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>@item.OrderId</td>
+                <td>@item.ReceivingAddress</td>
+                <td>@item.SendingAddress</td>
+                <td>@item.Note</td>
+                <td>
+                <a asp-page="/LogisticsHandle/HandleSingleOrder" asp-route-id="@item.OrderId">Add Batch</a>
+                </td>
+            </tr>
+        }
+</tbody>
+</table>

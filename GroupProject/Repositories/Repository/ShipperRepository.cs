@@ -27,6 +27,18 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
+        public Shipper GetShipperById(int id) => _context.Shippers.FirstOrDefault(x => x.ShipperId == id);
+
+        public List<Shipper> GetShippersByWarehouseID(int WarehouseID) => _context.Shippers.Where(x => x.WarehouseId == WarehouseID).ToList();
+
+        public List<Shipper> GetShippersByWarehouseName(string WarehouseName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Warehouse GetWarehouseById(int id) => _context.Warehouses.FirstOrDefault(x => x.WarehouseId == id);
+        
+
         public Shipper Login(string email, string password) => _context.Shippers.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
        
 
@@ -44,5 +56,6 @@ namespace Repositories.Repoository
         {
             throw new NotImplementedException();
         }
+
     }
 }

@@ -1,0 +1,68 @@
+﻿@page
+@model ViewModel.Pages.Manager.ShipperManager.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Shipper</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Shipper.ShipperId" class="control-label"></label>
+                <input asp-for="Shipper.ShipperId" class="form-control" />
+                <span asp-validation-for="Shipper.ShipperId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.ShipperName" class="control-label"></label>
+                <input asp-for="Shipper.ShipperName" class="form-control" />
+                <span asp-validation-for="Shipper.ShipperName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.Income" class="control-label"></label>
+                <input asp-for="Shipper.Income" class="form-control" />
+                <span asp-validation-for="Shipper.Income" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.Password" class="control-label"></label>
+                <input asp-for="Shipper.Password" class="form-control" />
+                <span asp-validation-for="Shipper.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.VehicleType" class="control-label"></label>
+                <input asp-for="Shipper.VehicleType" class="form-control" />
+                <span asp-validation-for="Shipper.VehicleType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.Email" class="control-label"></label>
+                <input asp-for="Shipper.Email" class="form-control" />
+                <span asp-validation-for="Shipper.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.PhoneNumber" class="control-label"></label>
+                <input asp-for="Shipper.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Shipper.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shipper.WarehouseId" class="control-label"></label>
+                <select asp-for="Shipper.WarehouseId" class ="form-control" asp-items="ViewBag.WarehouseId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

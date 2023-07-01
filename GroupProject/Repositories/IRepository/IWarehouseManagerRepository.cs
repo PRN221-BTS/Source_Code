@@ -9,10 +9,13 @@ namespace Repositories.IRepository
 {
     public interface IWarehouseManagerRepository
     {
-        Task<bool> AddAsync(WarehouseManager customer);
+        Task<bool> AddAsync(WarehouseManager warehouseManager);
         Task<IEnumerable<WarehouseManager>> GetAllAsync();
         Task<WarehouseManager?> GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(WarehouseManager customer);
+
+        WarehouseManager getWarehouseManagementByWarehouseID(int id);
+
     }
 }

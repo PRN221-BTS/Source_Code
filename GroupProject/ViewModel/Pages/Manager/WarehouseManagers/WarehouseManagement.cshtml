@@ -1,0 +1,30 @@
+﻿@page
+@model ViewModel.Pages.Manager.WarehouseManagers.WarehouseManagementModel
+@{
+}
+<form>
+
+    <div class="col-3">
+        <label asp-for="warehouseManager.WarehouseManagerId"></label>
+        <br />
+        <input type="text" asp-for="warehouseManager.WarehouseManagerId" placeholder="@Model.warehouseManager.WarehouseManagerId" width="auto" height="auto">
+
+    </div>
+    <div class="col-3">
+        <label asp-for="warehouseManager.WarehouseManagerName"></label>
+        <br />
+        <input type="text" asp-for="warehouseManager.WarehouseManagerName" placeholder="@Model.warehouseManager.WarehouseManagerName" width="auto" height="auto">
+
+    </div>
+    <div class="col-3">
+        <label asp-for="warehouseManager.Email"></label>
+        <br />
+        <input type="text" asp-for="warehouseManager.Email" placeholder="@Model.warehouseManager.Email" width="auto" height="auto">
+
+    </div>
+    <div class="col-3">
+        <label asp-for="warehouseManager.PhoneNumber"></label>
+        <br />
+        <input type="text" asp-for="warehouseManager.PhoneNumber" placeholder="@Model.warehouseManager.PhoneNumber" width="auto" height="auto">
+    </div>
+</form>

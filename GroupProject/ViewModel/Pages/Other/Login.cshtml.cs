@@ -52,15 +52,21 @@ namespace ViewModel.Pages.Other
             if (_shipperRepository.Login(loginForm.Email, loginForm.Password) is not null)
             {
 
-                user = _shipperRepository.Login(loginForm.Email, loginForm.Password);
-                
-                return RedirectToPage("/Shipper/Profile");
+                Shipper shipper = _shipperRepository.Login(loginForm.Email, loginForm.Password);
+                HttpContext.Session.SetString("UserID", shipper.ShipperId.ToString());
+                return RedirectToPage("/Shippers/Profile");
             }
 
             if (_customerRepository.LoginByAdminAccount(loginForm.Email, loginForm.Password))
             {
                 return RedirectToPage("/Manager/MainScreen");
             }
+
+            if(_customerRepository.LoginByLogicticsAccount(loginForm.Email,loginForm.Password))
+            {
+                return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
+            }
+
 
             return Page();
         }

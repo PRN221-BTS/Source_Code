@@ -1,0 +1,69 @@
+﻿@page
+@model ViewModel.Pages.Manager.WarehouseManagers.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Warehouse</h4>
+<hr />
+<div class="row">
+    <form method="post">
+    <div class="col-md-4">
+           <h4>Warehouse's information</h4>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Warehouse.WarehouseId" class="control-label"></label>
+                <input asp-for="Warehouse.WarehouseId" class="form-control" />
+                <span asp-validation-for="Warehouse.WarehouseId" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Warehouse.WarehouseName" class="control-label"></label>
+                <input asp-for="Warehouse.WarehouseName" class="form-control" />
+                <span asp-validation-for="Warehouse.WarehouseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Warehouse.Location" class="control-label"></label>
+                <input asp-for="Warehouse.Location" class="form-control" />
+                <span asp-validation-for="Warehouse.Location" class="text-danger"></span>
+            </div>
+        <h4>WarehouseManagement's information</h4>
+            <div class="form-group">
+                <label asp-for="warehouseManager.WarehouseManagerId" class="control-label"></label>
+                <input asp-for="warehouseManager.WarehouseManagerId" class="form-control" />
+                <span asp-validation-for="warehouseManager.WarehouseManagerId" class="text-danger"></span>
+            </div>
+        @*<form method="post">*@
+           
+            <div class="form-group">
+                <label asp-for="warehouseManager.WarehouseManagerName" class="control-label"></label>
+                <input asp-for="warehouseManager.WarehouseManagerName" class="form-control" />
+                <span asp-validation-for="warehouseManager.WarehouseManagerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="warehouseManager.Email" class="control-label"></label>
+                <input asp-for="warehouseManager.Email" class="form-control" />
+                <span asp-validation-for="warehouseManager.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="warehouseManager.PhoneNumber" class="control-label"></label>
+                <input asp-for="warehouseManager.PhoneNumber" class="form-control" />
+                <span asp-validation-for="warehouseManager.PhoneNumber" class="text-danger"></span>
+            </div>
+          <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

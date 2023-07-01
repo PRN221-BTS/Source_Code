@@ -1,4 +1,5 @@
-﻿using Model.DAOs;
+﻿using Microsoft.EntityFrameworkCore;
+using Model.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ namespace Repositories.Repoository
 {
     public class OrderRepository : IOrderRepository
     {
+        private static BirdTransportationSystemContext _context;
+        public OrderRepository(BirdTransportationSystemContext context)
+        {
+            _context = context;
+        }
         public Task<bool> AddAsync(Order order)
         {
             throw new NotImplementedException();
@@ -20,10 +26,8 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
-        public Task<Order?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Order GetByIdAsync(int id) => _context.Orders.FirstOrDefault(x=> x.OrderId == id);
+      
 
         public bool Remove(int id)
         {
@@ -34,5 +38,6 @@ namespace Repositories.Repoository
         {
             throw new NotImplementedException();
         }
+        public List<Order> UnProcessingOrder() => _context.Orders.Where(x => x.Status == "Unprocessing").ToList();
     }
 }

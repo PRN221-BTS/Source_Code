@@ -12,7 +12,7 @@ namespace Repositories.IRepository
         bool Register(Customer customer); 
         Customer Login(string email, string password);
         Task<bool> AddAsync(Customer customer);
-        Task<IEnumerable<Customer>> GetAllAsync();
+        Task<List<Customer>> GetAllAsync();
         Task<Customer?> GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Customer customer);
@@ -20,6 +20,8 @@ namespace Repositories.IRepository
         public bool LoginByAdminAccount(string email, string password);
 
         Customer GetCustomerById(int id);
+
+        public bool LoginByLogicticsAccount(string email, string password);
 
     }
 }

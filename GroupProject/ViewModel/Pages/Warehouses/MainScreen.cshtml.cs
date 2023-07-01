@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ViewModel.Pages.Shipper
+namespace ViewModel.Pages.Warehouses
 {
-    public class ProfileModel : PageModel
+    public class MainScreenModel : PageModel
     {
         public void OnGet()
         {

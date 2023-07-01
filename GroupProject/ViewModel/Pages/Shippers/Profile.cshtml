@@ -1,0 +1,66 @@
+﻿@page
+@model ViewModel.Pages.Shippers.ProfileModel
+@{
+}
+<h1>Shipper page</h1>
+
+
+<div class="row">
+ 
+    <div class="col-md-4">
+        <div class="mb-3">
+            <h2>Shipper information</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.ShipperId" id="disabledTextInput" class="form-label"></label>
+            <br />
+            <input value="@Model.shipper.ShipperId" class="form-control" disabled/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.ShipperName" class="form-label"></label>
+            <br />
+            <input type="text" value="@Model.shipper.ShipperName" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.Income" class="form-label"></label>
+            <br />
+            <input type="number" value="@Model.shipper.Income" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.Password" class="form-label"></label>
+            <br />
+            <input type="number" value="@Model.shipper.Password" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.VehicleType" class="form-label"></label>
+            <br />
+            <input type="text" value="@Model.shipper.VehicleType" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.Email" class="form-label"></label>
+            <br />
+            <input type="text" value="@Model.shipper.Email" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="shipper.PhoneNumber" class="form-label"></label>
+            <br />
+            <input type="text" value="@Model.shipper.PhoneNumber" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="mb-3">
+            <h2>Warehouse Manager</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="warehouse.WarehouseName" class="form-label"></label>
+            <br />
+            <input type="text" value="@Model.warehouse.WarehouseName" disabled/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="warehouse.Location" class="form-label"></label>
+            <br />
+            <input type="text" value="@Model.warehouse.Location" disabled />
+        </div>
+    </div>
+</div>
+<a asp-page="/Shippers/RouteManager"  asp-route-id="@Model.shipper.ShipperId">View Orders</a>

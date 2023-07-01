@@ -10,7 +10,7 @@ namespace Repositories.IRepository
     public interface IWarehouseRepository
     {
         Task<bool> AddAsync(Warehouse customer);
-        Task<IEnumerable<Warehouse>> GetAllAsync();
+        List<Warehouse> GetAllAsync();
         Task<Warehouse?> GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Warehouse customer);
