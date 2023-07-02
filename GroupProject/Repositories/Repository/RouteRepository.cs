@@ -1,4 +1,4 @@
-﻿using Model.DAOs;
+﻿using ModelsV2.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -10,10 +10,19 @@ namespace Repositories.Repoository
 {
     public class RouteRepository : IRouteRepository
     {
+        private static BirdTransportationSystemContext _context = new BirdTransportationSystemContext();
         public Task<bool> AddAsync(Payment payment)
         {
             throw new NotImplementedException();
         }
+
+        public bool AddNewRoute(Route route)
+        {
+            _context.Routes.Add(route);
+            _context.SaveChanges();
+            return true;
+        }
+
 
         public Task<IEnumerable<Payment>> GetAllAsync()
         {
@@ -34,5 +43,7 @@ namespace Repositories.Repoository
         {
             throw new NotImplementedException();
         }
+
+        public int GetLastValueObject() => _context.Routes.OrderByDescending(x => x.RouteId).FirstOrDefault().RouteId +1 ;
     }
 }

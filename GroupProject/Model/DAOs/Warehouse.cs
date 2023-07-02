@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Model.DAOs;
@@ -14,8 +15,8 @@ public partial class Warehouse
     public string? Location { get; set; }
 
     public virtual ICollection<Shipper> Shippers { get; set; } = new List<Shipper>();
-
     public virtual ICollection<TrackingOrder> TrackingOrders { get; set; } = new List<TrackingOrder>();
-
     public virtual WarehouseManager? WarehouseManager { get; set; }
+
+   
 }

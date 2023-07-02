@@ -1,7 +1,8 @@
-using Model.DAOs;
+using ModelsV2.DAOs;
 using Repositories.HandleViewFormat;
 using Repositories.IRepository;
 using Repositories.Repoository;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

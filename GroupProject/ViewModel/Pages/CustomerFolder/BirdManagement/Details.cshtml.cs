@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Model.DAOs;
+using ModelsV2.DAOs;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class DetailsModel : PageModel
     {
-        private readonly Model.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
 
-        public DetailsModel(Model.DAOs.BirdTransportationSystemContext context)
+        public DetailsModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
         {
             _context = context;
         }

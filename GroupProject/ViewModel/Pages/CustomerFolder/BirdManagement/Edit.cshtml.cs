@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Model.DAOs;
+using ModelsV2.DAOs;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class EditModel : PageModel
     {
-        private readonly Model.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
 
-        public EditModel(Model.DAOs.BirdTransportationSystemContext context)
+        public EditModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
         {
             _context = context;
         }

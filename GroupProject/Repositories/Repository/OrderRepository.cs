@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Model.DAOs;
+using ModelsV2.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -38,6 +38,6 @@ namespace Repositories.Repoository
         {
             throw new NotImplementedException();
         }
-        public List<Order> UnProcessingOrder() => _context.Orders.Where(x => x.Status == "Unprocessing").ToList();
+        public List<Order> UnProcessingOrder() => _context.Orders.Where(x => x.Status == "UnProcessing").ToList();
     }
 }

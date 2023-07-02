@@ -1,4 +1,4 @@
-﻿using Model.DAOs;
+﻿using ModelsV2.DAOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +11,12 @@ namespace Repositories.IRepository
     {
         Task<bool> AddAsync(Warehouse customer);
         List<Warehouse> GetAllAsync();
-        Task<Warehouse?> GetByIdAsync(int id);
+        public Warehouse? GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Warehouse customer);
+
+        int GetLastObjectInTrackingOrder();
+
+        bool AddTrackingOrder(TrackingOrder order);
     }
 }

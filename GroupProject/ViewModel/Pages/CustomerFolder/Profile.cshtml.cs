@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Model.DAOs;
+using ModelsV2.DAOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder

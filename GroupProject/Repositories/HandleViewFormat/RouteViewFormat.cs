@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Model.DAOs;
-using Model.DTOs;
+using ModelsV2.DAOs;
+using ModelsV2.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

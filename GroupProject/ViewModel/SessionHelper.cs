@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ViewModel
 {
@@ -7,6 +8,7 @@ namespace ViewModel
         public static void SetObjectAsJson(this ISession session, string key, object value)
         {
 
+      
             session.SetString(key, JsonSerializer.Serialize(value));
         }
 

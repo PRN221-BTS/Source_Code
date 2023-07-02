@@ -26,15 +26,15 @@
             @*<label for="exampleDataList" class="form-label">Datalist example</label>*@
             <input class="form-control" list="datalistOptions" id="exampleDataList11" name="warehouseKeyWord" placeholder="Type to search..."/>
 
-        <datalist id="datalistOptions">
+@*        <datalist id="datalistOptions">
                 @foreach (var item in Model.warehouse)
                 {
                     <option value="@item.WarehouseId" title="@item.Location"/>
                 }
-            </datalist>
+            </datalist>*@
             <br />
             <button asp-page-handler="InfoShipper" type="submit" class="btn btn-outline-info" title="Info">Info</button>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">View Shipper below Warehouse</button>
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -43,10 +43,31 @@
                 </div>
                 <div class="offcanvas-body">
                     <p>Try scrolling the rest of the page to see this option in action.</p>
+                    @foreach(var item in Model.warehouse)
+                    {
+                      
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo{@item.WarehouseId}">
+                                   @item.WarehouseName
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    @foreach (var item1 in item.Shippers)
+                                    {
+                                        <div> @item1.Email  </div>
+                                    }
+                                    <div>com suon hoc mon</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>  
             <br />
         </form>
+        <br />
         @if (Model.shippers is not null)
         {
             @foreach (var item in Model.shippers)
@@ -54,7 +75,7 @@
                 <form method="post">
                     <div class=" row g-3">
                         <div class="col-md-4">
-                            <a>@item.ShipperId</a>
+                            <input class="form-control"  name="shipperId" value="@item.ShipperId" disabled/>
                         </div>
                         <div class="col-md-4">
                             <select class="form-select" aria-label="Default select example" name="ShipperType">
@@ -64,10 +85,15 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" asp-page-handler="AddShipper" asp-route-id="@item.ShipperId">V</button>
+                            <button type="submit" asp-page-handler="AddShipper" asp-route-id="@item.ShipperId">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </form>
+
             }
         }
 
@@ -76,19 +102,30 @@
         <table>
             <form method="post" asp-page="handlesingleorder">
             <tr>
+                <th>Shipper ID</th>
                 <th>Shipper Name</th>
-                <th>Warehouse Location</th>
                 <th>Phone</th>
                 <th>Delete</th>
             </tr>
-            <tr aligin="center">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td align="center">
-                    <a asp-page="cart" asp-page-handler="delete" asp-route-id="" aria-label="Close"></a>
-                </td>
-            </tr>
+            @if (Model.receivingShipperList is not null)
+                {
+                    @foreach (var item in Model.receivingShipperList)
+                    {
+                    <tr aligin="center">
+                        <td>@item.ShipperId</td>
+                        <td>@item.ShipperName</td>
+                        <td>@item.PhoneNumber</td>
+                        <td align="center">
+                            <a asp-page="cart" asp-page-handler="delete" asp-route-id="" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                }
+          
             </form>
         </table>
         <br />
@@ -101,46 +138,62 @@
                 <th>Phone</th>
                 <th>Delete</th>
             </tr>
-            <tr aligin="center">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td align="center">
-                    <a asp-page="cart" asp-page-handler="delete" asp-route-id="" aria-label="Close"></a>
-                </td>
-            </tr>
+                @if (Model.sendingShipperList is not null)
+                {
+                    @foreach (var item in Model.sendingShipperList)
+                    {
+                    <tr aligin="center">
+                        <td>@item.ShipperId</td>
+                        <td>@item.ShipperName</td>
+                        <td>@item.PhoneNumber</td>
+                        <td align="center">
+                            <a asp-page="cart" asp-page-handler="delete" asp-route-id="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                }
             </form>
         </table>
         <br />
         <h4>Add Warehouse to Route</h4>
-
-        <form class="row g-3">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions1" aria-controls="offcanvasWithBothOptions1">Enable both scrolling & backdrop</button>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions1" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p>Try scrolling the rest of the page to see this option in action.</p>
+                @foreach (var item in Model.warehouse)
+                {
+                    @item.WarehouseName
+                }
+            </div>
+        </div>
+       
+        <form class="row g-3" method="post">
             <div class="col-auto">
                 <label for="staticEmail2" class="visually-hidden">Warehouse</label>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+                <input type="number"  class="form-control-plaintext" id="staticEmail2"  name="WarehouseId">
             </div>
             <div class="col-auto">
-                <input class="form-control" list="datalistOptions" id="exampleDataList" name="warehouseKeyWord" placeholder="Type to search...">
-                <datalist id="datalistOptions">
-                    @foreach (var item in Model.warehouse)
-                    {
-                        <option value="@item.WarehouseName">@item.WarehouseManager</option>
-                    }
-                </datalist>
+                <label for="staticEmail2" class="visually-hidden">Sequence Number </label>
+                <input type="number" class="form-control-plaintext" id="staticEmail2" name="sequenceNumberWarehouse">
             </div>
             <div class="col-auto">
-                <button type="submit" class=" bi bi-check btn btn-outline-info"></button>
+                <span>@TempData["ErrorInSequenceNumber"]</span>
+                <button type="submit" class=" bi bi-check btn btn-outline-info" asp-page-handler="AddWarehouseToRoute">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                    </svg>
+                </button>
             </div>
         </form>
-        @*     <label for="exampleDataList" class="form-label">Warehouse List</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" name="warehouseKeyWord" placeholder="Type to search...">
-        <datalist id="datalistOptions">
-        @foreach (var item in Model.warehouse)
-        {
-        <option value="@item.WarehouseName">@item.WarehouseManager</option>
-        }
-        </datalist>
-        <button type="submit" class="btn btn-outline-info">Add</button>*@
+
         <br />
         <h4>Warehouse in Route</h4>
         <table>
@@ -152,17 +205,27 @@
                 <th>Warehouse Email</th>
                 <th>Warehouse PhoneNumber</th>
             </tr>
-            <tr aligin="center">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td align="center">
-                    <a asp-page="cart" asp-page-handler="delete" asp-route-id="" aria-label="Close"></a>
-                </td>
-            </tr>
+                @if (Model.warehouseCartList is not null)
+                {
+                    @foreach (var item in Model.warehouseCartList)
+                    {
+                    <tr aligin="center">
+                        <td>@item.SequenceNumber</td>
+                        <td>@item.WarehouseName</td>
+                        <td>@item.WarehouseLocation</td>
+                        <td align="center">
+                            <a asp-page="cart" asp-page-handler="delete" asp-route-id="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                }
             </form>
         </table>
-
+        <a asp-page="handlesingleorder" asp-page-handler="AddRoute">Order</a>
     </div>
     <div class="col-6">
     </div>
