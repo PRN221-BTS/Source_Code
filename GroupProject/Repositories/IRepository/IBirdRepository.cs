@@ -1,4 +1,4 @@
-﻿using ModelsV2.DAOs;
+﻿using ModelsV4.DAOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,16 @@ namespace Repositories.IRepository
 {
     public interface IBirdRepository
     {
-        Task<bool> AddAsync(Bird bird);
-        Task<IEnumerable<Bird>> GetAllAsync();
-        Task<Bird?> GetByIdAsync(int id);
+        bool AddAsync(Bird bird);
+        List<Bird> GetAllAsync();
+        Bird? GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Bird bird);
 
         Bird FindById(int id);
+
+        List<Bird> GetByCustomerID(int CustomerID);
+
+        public int GetLastID();
     }
 }

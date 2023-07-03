@@ -6,6 +6,44 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div>
-    
-</div>
+<h1> Register Page</h1>
+<form method="post">
+    <div>
+        <label asp-for="register.CustomerName"></label>
+        <br />
+        <input asp-for="register.CustomerName" type="text" />
+        <br/>
+        <span asp-validation-for="register.CustomerName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="register.CustomerEmail"></label>
+        <br />
+        <input asp-for="register.CustomerEmail" type="text" />
+        <br />
+        <span asp-validation-for="register.CustomerEmail" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="register.Password"></label>
+        <br />
+        <input asp-for="register.Password" type="password" />
+        <br />
+        <span asp-validation-for="register.Password" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="register.ConfirmPassword"></label>
+        <br />
+        <input asp-for="register.ConfirmPassword" type="password" />
+        <br />
+        <span asp-validation-for="register.ConfirmPassword" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="register.Phone"></label>
+        <br />
+        <input asp-for="register.Phone" type="text" />
+        <br />
+        <span asp-validation-for="register.Phone" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit"  asp-page-handler="CustomerRegister"/>
+    </div>
+</form>

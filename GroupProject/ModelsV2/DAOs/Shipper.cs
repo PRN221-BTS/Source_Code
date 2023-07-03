@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ModelsV2.DAOs;
+namespace ModelsV21.DAOs;
 
 public partial class Shipper
 {

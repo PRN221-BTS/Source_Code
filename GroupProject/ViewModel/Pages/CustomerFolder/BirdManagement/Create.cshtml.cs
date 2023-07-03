@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
+using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class CreateModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private static IBirdRepository _birdRepo;
 
-        public CreateModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public CreateModel(IBirdRepository birdRepo)
         {
-            _context = context;
+          _birdRepo = birdRepo; 
         }
 
         public IActionResult OnGet()
@@ -30,13 +31,13 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Birds == null || Bird == null)
+          if (!ModelState.IsValid || Bird == null)
             {
                 return Page();
             }
-
-            _context.Birds.Add(Bird);
-            await _context.SaveChangesAsync();
+            Bird.BirdId = _birdRepo.GetLastID()+1; 
+            Bird.CustomerId = int.Parse(HttpContext.Session.GetString("UserID"));
+            _birdRepo.AddAsync(Bird);
 
             return RedirectToPage("./Index");
         }

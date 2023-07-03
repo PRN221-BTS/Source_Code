@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ModelsV2.DAOs;
+namespace ModelsV21.DAOs;
 
 public partial class Order
 {
     public int OrderId { get; set; }
 
     public int? CustomerId { get; set; }
-
-    public int? RouteId { get; set; }
 
     public string? ReceivingAddress { get; set; }
 
@@ -25,9 +23,9 @@ public partial class Order
 
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
-    public virtual Payment? Payment { get; set; }
+    public virtual ICollection<OrderInRoute> OrderInRoutes { get; set; } = new List<OrderInRoute>();
 
-    public virtual Route? Route { get; set; }
+    public virtual Payment? Payment { get; set; }
 
     public virtual ICollection<TrackingOrder> TrackingOrders { get; set; } = new List<TrackingOrder>();
 }

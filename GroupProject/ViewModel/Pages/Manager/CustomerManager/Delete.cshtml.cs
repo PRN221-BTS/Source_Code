@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Manager.CustomerManager
 {
     public class DeleteModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV4.DAOs.BirdTransportationSystemContext _context;
 
         private static ICustomerRepository _customerRepo;
-        public DeleteModel(ModelsV2.DAOs.BirdTransportationSystemContext context,ICustomerRepository customerRepo)
+        public DeleteModel(ModelsV4.DAOs.BirdTransportationSystemContext context,ICustomerRepository customerRepo)
         {
             _context = context;
             _customerRepo = customerRepo;

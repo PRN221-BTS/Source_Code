@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
 
 namespace ViewModel.Pages.Manager.ShipperManager
 {
     public class CreateModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV4.DAOs.BirdTransportationSystemContext _context;
 
-        public CreateModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public CreateModel(ModelsV4.DAOs.BirdTransportationSystemContext context)
         {
             _context = context;
         }

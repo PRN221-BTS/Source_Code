@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ModelsV2.DAOs;
+namespace ModelsV21.DAOs;
 
 public partial class Route
 {
@@ -15,7 +15,7 @@ public partial class Route
 
     public int? ShipperId { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public virtual ICollection<OrderInRoute> OrderInRoutes { get; set; } = new List<OrderInRoute>();
 
     public virtual Shipper? Shipper { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using ModelsV2.DAOs;
+﻿using ModelsV4.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -89,5 +89,7 @@ namespace Repositories.Repoository
             }
             return false;
         }
+
+        public int GetLastID()=> (int)_context.Customers.OrderByDescending(x => x.CustomerId).FirstOrDefault()?.CustomerId;  
     }
 }

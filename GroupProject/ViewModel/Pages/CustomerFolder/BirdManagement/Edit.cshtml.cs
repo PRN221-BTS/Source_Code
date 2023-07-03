@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
+using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class EditModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private static IBirdRepository _birdRepo;
 
-        public EditModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public EditModel(IBirdRepository birdRepo)
         {
-            _context = context;
+            _birdRepo = birdRepo;
         }
 
         [BindProperty]
@@ -24,12 +25,9 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Birds == null)
-            {
-                return NotFound();
-            }
+            
 
-            var bird =  await _context.Birds.FirstOrDefaultAsync(m => m.BirdId == id);
+            var bird =  _birdRepo.GetByIdAsync((int)id);
             if (bird == null)
             {
                 return NotFound();
@@ -42,35 +40,36 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
-            _context.Attach(Bird).State = EntityState.Modified;
+            //_context.Attach(Bird).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BirdExists(Bird.BirdId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!BirdExists(Bird.BirdId))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+            _birdRepo.Update(Bird);
 
             return RedirectToPage("./Index");
         }
 
-        private bool BirdExists(int id)
-        {
-          return (_context.Birds?.Any(e => e.BirdId == id)).GetValueOrDefault();
-        }
+        //private bool BirdExists(int id)
+        //{
+        //  return (_context.Birds?.Any(e => e.BirdId == id)).GetValueOrDefault();
+        //}
     }
 }

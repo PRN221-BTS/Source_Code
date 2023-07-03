@@ -5,27 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
+using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class IndexModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private static IBirdRepository _birdRepo;
 
-        public IndexModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public IndexModel(IBirdRepository birdRepository)
         {
-            _context = context;
+            _birdRepo = birdRepository;
         }
+        [BindProperty]
+        public List<Bird> Bird { get;set; } = default!;
 
-        public IList<Bird> Bird { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public void  OnGet()
         {
-            if (_context.Birds != null)
-            {
-                Bird = await _context.Birds.ToListAsync();
-            }
+            Bird = _birdRepo.GetByCustomerID(int.Parse(HttpContext.Session.GetString("UserID")));
+
         }
     }
 }

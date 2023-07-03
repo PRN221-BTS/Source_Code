@@ -1,4 +1,4 @@
-﻿using ModelsV2.DAOs;
+﻿using ModelsV4.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -11,32 +11,39 @@ namespace Repositories.Repoository
     public class BirdRepository : IBirdRepository
     {
         BirdTransportationSystemContext _transportationSystemContext = new BirdTransportationSystemContext();
-        public Task<bool> AddAsync(Bird bird)
+
+        public bool AddAsync(Bird bird)
         {
-            throw new NotImplementedException();
+            _transportationSystemContext.Add(bird);
+            _transportationSystemContext.SaveChanges();
+            return true;
         }
 
         public Bird FindById(int id) => _transportationSystemContext.Birds.FirstOrDefault(x => x.BirdId == id);
-        
 
-        public Task<IEnumerable<Bird>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Bird> GetAllAsync() => _transportationSystemContext.Birds.ToList();
+     
 
-        public Task<Bird?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Bird> GetByCustomerID(int CustomerID) => _transportationSystemContext.Birds.Where(x => x.CustomerId == CustomerID).ToList();
+  
+
+        public Bird? GetByIdAsync(int id) => _transportationSystemContext.Birds.FirstOrDefault( x=> x.BirdId.Equals(id));
+
+        public int GetLastID() => _transportationSystemContext.Birds.OrderByDescending( x => x.BirdId).FirstOrDefault().BirdId;
+      
 
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            _transportationSystemContext.Remove(FindById(id));
+            _transportationSystemContext.SaveChanges();
+            return true;
         }
 
         public bool Update(Bird bird)
         {
-            throw new NotImplementedException();
+            _transportationSystemContext = new BirdTransportationSystemContext();
+            _transportationSystemContext.Update(bird);
+            return true;
         }
     }
 }

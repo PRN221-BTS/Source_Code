@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
 
 namespace ViewModel.Pages.Manager.WarehouseManagers
 {
     public class IndexModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV4.DAOs.BirdTransportationSystemContext _context;
 
-        public IndexModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public IndexModel(ModelsV4.DAOs.BirdTransportationSystemContext context)
         {
             _context = context;
         }

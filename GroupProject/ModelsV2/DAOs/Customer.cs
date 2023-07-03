@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ModelsV2.DAOs;
+namespace ModelsV21.DAOs;
 
 public partial class Customer
 {
@@ -14,6 +14,8 @@ public partial class Customer
     public string? Email { get; set; }
 
     public string? Password { get; set; }
+
+    public virtual ICollection<Bird> Birds { get; set; } = new List<Bird>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

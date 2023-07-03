@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
+using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class DeleteModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private static IBirdRepository _birdRepo;
 
-        public DeleteModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public DeleteModel(IBirdRepository birdRepo)
         {
-            _context = context;
+            _birdRepo = birdRepo;
         }
 
         [BindProperty]
@@ -23,12 +24,12 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Birds == null)
+            if (id == null || _birdRepo.GetByIdAsync((int)id) == null)
             {
                 return NotFound();
             }
 
-            var bird = await _context.Birds.FirstOrDefaultAsync(m => m.BirdId == id);
+            var bird = _birdRepo.GetByIdAsync((int)id);
 
             if (bird == null)
             {
@@ -43,18 +44,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Birds == null)
-            {
-                return NotFound();
-            }
-            var bird = await _context.Birds.FindAsync(id);
-
-            if (bird != null)
-            {
-                Bird = bird;
-                _context.Birds.Remove(Bird);
-                await _context.SaveChangesAsync();
-            }
+            _birdRepo.Remove((int)id);
 
             return RedirectToPage("./Index");
         }

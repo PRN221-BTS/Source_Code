@@ -28,6 +28,7 @@
             <span class="text-danger" asp-validation-for="loginForm.Password"></span>
         </div>
         <div class="form-group row">
+            <span>@TempData["ErrorInLogin"]</span>
             <div class="col-2">
                 <input type="submit" class="btn btn-primary" value="Login" />
             </div>
@@ -36,4 +37,5 @@
         </div>
     </form>
 </div>
-<div> Don't have account yet </div>
+
+<a asp-page="/Other/Register">Don't have account yet</a>

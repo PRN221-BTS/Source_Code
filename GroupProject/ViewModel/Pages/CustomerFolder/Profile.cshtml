@@ -4,7 +4,7 @@
 }
 <h1>Customer Page</h1>
 <h1>My Profile</h1>
-<a asp-page="/CustomerFolder/BirdManagement/Index">Bird Management</a>
+<a asp-page="/CustomerFolder/BirdManagement/Index" asp-route-id="@Model.customer.CustomerId">Bird Management</a>
 <a asp-page="/Customer/BirdManagement/Index">Order Management</a>
 <form>
     <div class="col-3 ">

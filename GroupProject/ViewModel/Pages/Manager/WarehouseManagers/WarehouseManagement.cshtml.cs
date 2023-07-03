@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Manager.WarehouseManagers

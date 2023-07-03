@@ -1,4 +1,4 @@
-﻿using ModelsV2.DAOs;
+﻿using ModelsV4.DAOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,7 @@ namespace Repositories.IRepository
         Customer GetCustomerById(int id);
 
         public bool LoginByLogicticsAccount(string email, string password);
+        public int GetLastID();
 
     }
 }

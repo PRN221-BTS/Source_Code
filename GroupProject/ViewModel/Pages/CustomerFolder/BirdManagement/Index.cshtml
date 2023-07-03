@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Bird[0].BirdId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Bird[0].BirdName)
             </th>
             <th>
@@ -22,29 +25,39 @@
             <th>
                 @Html.DisplayNameFor(model => model.Bird[0].Weight)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bird[0].BirdQuantity)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Bird) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirdName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirdType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.BirdId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BirdId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BirdId">Delete</a>|
-                <a asp-page="./Cart" asp-page-handler="buynow" asp-route-id="@item.BirdId">Buy Now</a>
-                
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Bird)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirdId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirdType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirdQuantity)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.BirdId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.BirdId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.BirdId">Delete</a>|
+                    <a asp-page="./Cart" asp-page-handler="buynow" asp-route-id="@item.BirdId">Delivery Now</a>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

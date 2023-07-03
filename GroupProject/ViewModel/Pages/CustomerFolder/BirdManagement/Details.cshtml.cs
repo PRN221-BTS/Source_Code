@@ -5,37 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ModelsV2.DAOs;
+using ModelsV4.DAOs;
+using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement
 {
     public class DetailsModel : PageModel
     {
-        private readonly ModelsV2.DAOs.BirdTransportationSystemContext _context;
+        private static IBirdRepository _birdRepo;
+        private readonly ModelsV4.DAOs.BirdTransportationSystemContext _context;
 
-        public DetailsModel(ModelsV2.DAOs.BirdTransportationSystemContext context)
+        public DetailsModel(ModelsV4.DAOs.BirdTransportationSystemContext context,IBirdRepository birdRepo)
         {
-            _context = context;
+            _birdRepo = birdRepo;
         }
 
       public Bird Bird { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Birds == null)
-            {
-                return NotFound();
-            }
-
-            var bird = await _context.Birds.FirstOrDefaultAsync(m => m.BirdId == id);
-            if (bird == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Bird = bird;
-            }
+            Bird = _birdRepo.FindById((int)id);
             return Page();
         }
     }
