@@ -17,41 +17,46 @@ namespace Repositories.HandleViewFormat
         {
             _context = context;
         }
-       public List<ReceivingOrder> receivingOrders(int id) { 
-       
-            var result = _context.Orders.
-                        Include(x => x.Route).
-                        Where(x => x.Route.ShipperId == id).
-                        Select(x => new ReceivingOrder
-                        {
-                            Distance = (decimal)x.Route.Distance,
-                            Note = x.Note,
-                            Price = (decimal)x.Route.Price,
-                            ReceivingAddress = x.ReceivingAddress,
-                            RouteID = x.Route.RouteId,
-                            Type = x.Route.Type
-
-                        }).ToList();
-            return result;
-        
-        }
-
-   public     List<SendingOrder> sendingOrders(int id)
+        public List<ReceivingOrder> receivingOrders(int id)
         {
 
-            var result = _context.Orders.
-                        Include(x => x.Route).
-                        Where(x => x.Route.ShipperId == id).
-                        Select(x => new SendingOrder
-                        {
-                            Distance = (decimal)x.Route.Distance,
-                            Note = x.Note,
-                            Price = (decimal)x.Route.Price,
-                            SendingAddress = x.SendingAddress,
-                            RouteID = x.Route.RouteId,
-                            Type = x.Route.Type
 
-                        }).ToList();
+            var result = (from order in _context.Orders
+                         join orderRoute in _context.OrderInRoutes on order.OrderId equals orderRoute.OrderId
+                         join route in _context.Routes on orderRoute.RouteId equals route.RouteId
+                         where route.ShipperId == id
+                         select new ReceivingOrder {
+
+                             Distance = (decimal)route.Distance,
+                             Note = order.Note,
+                             Price = (decimal)route.Price,
+                             ReceivingAddress = order.ReceivingAddress,
+                             Type = route.Type,
+                             RouteID = route.RouteId
+                         }).ToList();
+       
+
+            return result;
+
+        }
+
+        public List<SendingOrder> sendingOrders(int id)
+        {
+
+            var result = (from order in _context.Orders
+                          join orderRoute in _context.OrderInRoutes on order.OrderId equals orderRoute.OrderId
+                          join route in _context.Routes on orderRoute.RouteId equals route.RouteId
+                          where route.ShipperId == id
+                          select new SendingOrder
+                          {
+
+                              Distance = (decimal)route.Distance,
+                              Note = order.Note,
+                              Price = (decimal)route.Price,
+                              SendingAddress = order.SendingAddress,
+                              Type = route.Type,
+                              RouteID = route.RouteId
+                          }).ToList();
             return result;
 
         }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ModelsV4.DAOs;
 using ModelsV4.DTOs;
 using Repositories.IRepository;
 
@@ -10,7 +11,8 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
     {
         private static IOrderRepository _orderRepo;
         private static IBirdRepository _birdRepo;
-
+        [BindProperty]
+        public Order order { get;set; }
         public List<Item> cart { get; set; }
 
         public decimal Total { get; set; }
@@ -95,8 +97,12 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
         public IActionResult OnGetDelivery(int total)
         {
 
-
             return RedirectToPage("/CustomerFolder/BirdManagement/OrderProcess");
+        }
+       
+        public IActionResult OnPostAddOrder()
+        {
+            return RedirectToPage();
         }
 
 

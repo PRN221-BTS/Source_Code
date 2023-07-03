@@ -15,30 +15,56 @@
         <th>Quantity<input type="submit" value="Update" /></th>
         <th>Sub Total</th>
     </tr>
-    @foreach (var item in Model.cart)
-    {
-        <tr aligin="center">
-            <td align="center">
-                <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.bird.BirdId">X</a>
-            </td>
-            <td>@item.bird.BirdId</td>
-            <td>@item.bird.BirdName</td>
-            <td>$@item.bird.BirdType</td>
-            <td><input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 50px;" /></td>
-            <td>$@(item.Quantity)</td>
-        </tr>
-    }
-    <tr>
-        <td colspan="6" align="right"> Total</td>
+            @if (Model.cart is not null)
+            {
+                @foreach (var item in Model.cart)
+                {
+                    <tr aligin="center">
+                        <td align="center">
+                            <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.bird.BirdId">X</a>
+                        </td>
+                        <td>@item.bird.BirdId</td>
+                        <td>@item.bird.BirdName</td>
+                        <td>$@item.bird.BirdType</td>
+                        <td><input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 50px;" /></td>
+                        <td>$@(
+                       item.Quantity
+                                 )</td>
+                    </tr>
+                }
+            }
+            <tr>
+                    <td colspan="6" align="right"> Total</td>
         <td align="center">@Model.Total</td>
     </tr>
-
+    
 </form>
     </table>
 </div>
 <div class=" col-6">
-   <form>
-    
+    <form asp-page="cart" method="post" >
+        <div>
+            <label asp-for="order.ReceivingAddress"></label>
+            <br />
+            <input asp-for="order.ReceivingAddress" type="text" />
+            <br />
+            <span asp-validation-for="order.ReceivingAddress" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="order.SendingAddress"></label>
+            <br />
+            <input asp-for="order.SendingAddress" type="text" />
+            <br />
+            <span asp-validation-for="order.SendingAddress" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="order.Note"></label>
+            <br />
+            <input asp-for="order.Note" type="text" />
+            <br />
+            <span asp-validation-for="order.Note" class="text-danger"></span>
+        </div>
+    <button type="submit" asp-page-handler="AddOrder">Create Order</button>
     </form>
 </div>
-<a asp-page="cart" asp-page-handler="order">Order</a>
+<a asp-page="cart" >Order</a>
