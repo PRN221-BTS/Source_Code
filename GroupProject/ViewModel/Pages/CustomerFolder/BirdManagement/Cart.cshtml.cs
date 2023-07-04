@@ -113,14 +113,12 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             Order newOrder = new Order
             {
                 OrderId = _orderDetailRepo.GetLastOrder() + 1,
-                CustomerId = int.Parse(HttpContext.Session.GetString("UserID")),
+                CustomerId = int.Parse(HttpContext.Session.GetString("UserID") ?? "0"),
                 Note = order.Note,
                 PaymentId = 1,
                 ReceivingAddress = order.ReceivingAddress,
                 SendingAddress = order.SendingAddress,
                 Status = TrackingState.UnProcessing.ToString(),
-                
-
 
             };
             _orderRepo.AddAsync(newOrder);

@@ -15,11 +15,11 @@ builder.Services.AddTransient<ICustomerRepository,CustomerRepository>();
 builder.Services.AddScoped<RouteViewFormat>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 builder.Services.AddTransient<IWarehouseManagerRepository, WarehouseManagerRepository>();
-builder.Services.AddSingleton<IWarehouseRepository, WarehouseRepository>();
-builder.Services.AddSingleton<IBirdRepository, BirdRepository>();
-builder.Services.AddSingleton<IShipperRepository,ShipperRepository>();
-builder.Services.AddSingleton<IOrderRepository,OrderRepository>();
-builder.Services.AddSingleton<BirdTransportationSystemContext, BirdTransportationSystemContext>();
+builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+builder.Services.AddScoped<IBirdRepository, BirdRepository>();
+builder.Services.AddScoped<IShipperRepository,ShipperRepository>();
+builder.Services.AddScoped<IOrderRepository,OrderRepository>();
+builder.Services.AddScoped<BirdTransportationSystemContext, BirdTransportationSystemContext>();
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });

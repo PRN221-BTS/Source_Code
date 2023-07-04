@@ -1,4 +1,5 @@
-﻿using ModelsV4.DAOs;
+﻿using Microsoft.Extensions.Configuration;
+using ModelsV4.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,11 @@ namespace Repositories.Repoository
     public class CustomerRepository : ICustomerRepository
     {
         private static BirdTransportationSystemContext _context = new BirdTransportationSystemContext();
-
+        private readonly IConfiguration _configuration;
+        public CustomerRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
       
         public async Task<bool> AddAsync(Customer customer)
         {
@@ -58,15 +63,10 @@ namespace Repositories.Repoository
 
         public  bool LoginByAdminAccount(string email,string password)
         {
-             string txt = @"C:\CSharp_Learning\Ki7\PRN221\YogaProject_Final\Source_Code\GroupProject\ViewModel\appsettings.json";
-            //string txt = @"..\GroupProject\ViewModel\appsettings.json";
-            string jsonString = File.ReadAllText(txt);
-            var jo = JsonObject.Parse(jsonString);
-            var adminEmail = jo["LoginAdmin"]["Email"].ToString();
-            var adminPassword = jo["LoginAdmin"]["Password"].ToString();
+            var adminEmail = _configuration["LoginAdmin:Email"].ToString();
+            var adminPassword = _configuration["LoginAdmin:Password"].ToString();
             if (adminEmail == email && adminPassword == password)
             {
-
                 return true;
             }
             return false;
@@ -76,15 +76,10 @@ namespace Repositories.Repoository
 
         public bool LoginByLogicticsAccount(string email, string password)
         {
-            string txt = @"C:\CSharp_Learning\Ki7\PRN221\YogaProject_Final\Source_Code\GroupProject\ViewModel\appsettings.json";
-            //string txt = @"..\GroupProject\ViewModel\appsettings.json";
-            string jsonString = File.ReadAllText(txt);
-            var jo = JsonObject.Parse(jsonString);
-            var adminEmail = jo["LogisticsAccount"]["Email"].ToString();
-            var adminPassword = jo["LogisticsAccount"]["Password"].ToString();
+            var adminEmail = _configuration["LogisticsAccount:Email"].ToString();
+            var adminPassword = _configuration["LogisticsAccount:Password"].ToString();
             if (adminEmail == email && adminPassword == password)
             {
-
                 return true;
             }
             return false;

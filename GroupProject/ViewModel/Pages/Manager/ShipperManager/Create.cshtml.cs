@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ModelsV4.DAOs;
 
 namespace ViewModel.Pages.Manager.ShipperManager
@@ -20,20 +21,28 @@ namespace ViewModel.Pages.Manager.ShipperManager
 
         public IActionResult OnGet()
         {
-        ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseId");
+            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseId");
             return Page();
         }
 
         [BindProperty]
         public Shipper Shipper { get; set; } = default!;
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Shippers == null || Shipper == null)
+            if (!ModelState.IsValid || _context.Shippers == null || Shipper == null)
             {
                 return Page();
+            }
+
+            var checkExistedShipper = await _context.Shippers.FindAsync(Shipper.ShipperId);
+
+            while (checkExistedShipper != null)
+            {
+                Shipper.ShipperId++;
+                checkExistedShipper = await _context.Shippers.FindAsync(Shipper.ShipperId);
             }
 
             _context.Shippers.Add(Shipper);

@@ -4,43 +4,72 @@
 }
 <h3>Cart</h3>
 
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    
+    th, td {
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    th {
+        font-size: 18px;
+    }
+</style>
+
+
 <div class=" col-6">
 <table border="1">
 <form method="post" asp-page="cart" asp-page-handler="update">
-    <tr>
-        <th>Action</th>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Quantity<input type="submit" value="Update" /></th>
-        <th>Sub Total</th>
-    </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="header">Action</th>
+                <th class="header">Id</th>
+                <th class="header">Name</th>
+                <th class="header">Type</th>
+                <th class="header">Quantity</th>
+                <th class="header">Sub Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
             @if (Model.cart is not null)
             {
                 @foreach (var item in Model.cart)
                 {
-                    <tr aligin="center">
-                        <td align="center">
-                            <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.bird.BirdId">X</a>
+                    <tr>
+                        <td>
+                            <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.bird.BirdId" class="btn btn-danger">X</a>
                         </td>
                         <td>@item.bird.BirdId</td>
                         <td>@item.bird.BirdName</td>
-                        <td>$@item.bird.BirdType</td>
-                        <td><input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 50px;" /></td>
-                        <td>$@(
-                       item.Quantity
-                                 )</td>
+                        <td>@item.bird.BirdType</td>
+                        <td style="text-align: center">
+                            <input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 75px; text-align: center" class="form-control" />
+                        </td>
+                        <td>$@(item.Quantity)</td>
                     </tr>
                 }
             }
             <tr>
-                    <td colspan="6" align="right"> Total</td>
-        <td align="center">@Model.Total</td>
-    </tr>
-    
-</form>
+                <td colspan="6" align="right">Total</td>
+                <td align="center">@Model.Total</td>
+            </tr>
+        </tbody>
     </table>
+
+    <div class="text-right">
+        <input type="submit" value="Update" class="btn btn-primary" />
+    </div>
+</form>
+</table>
 </div>
+</br>
 <div class=" col-6">
     <form asp-page="cart" method="post" >
         <div>
