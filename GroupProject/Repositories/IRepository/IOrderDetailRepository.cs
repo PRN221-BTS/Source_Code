@@ -9,10 +9,18 @@ namespace Repositories.IRepository
 {
     public interface IOrderDetailRepository
     {
-        Task<bool> AddAsync(OrderDetail orderDetail);
-        Task<IEnumerable<OrderDetail>> GetAllAsync();
-        Task<OrderDetail?> GetByIdAsync(int id);
+        bool AddNewOrder(Order order);
+        List<Order> GetAllOrderByCusotmetID(int id);
+        List<OrderDetail> GetOrderDetailByOrderId(int id);
         bool Remove(int id);
-        bool Update(OrderDetail orderDetail);
+        bool UpdateOrder(Order order);
+
+        int GetLastOrder();
+
+        public Order GetOrderById(int id);
+
+        public int GetLastOrderDetailId();
+
+        public bool CancelOrderbyOrderID(int id);
     }
 }

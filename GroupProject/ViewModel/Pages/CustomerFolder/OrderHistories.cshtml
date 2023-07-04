@@ -2,3 +2,52 @@
 @model ViewModel.Pages.CustomerFolder.OrderHistoriesModel
 @{
 }
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.orders[0].OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orders[0].ReceivingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orders[0].SendingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orders[0].Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orders[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.orders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SendingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                    <td>
+                        <a asp-page="./CancelOrder" asp-route-id="@item.OrderId">Cancel Order</a> |
+                        <a asp-page="./OrderDetailHistories" asp-route-id="@item.OrderId">Details</a> |
+                        <a asp-page="./TrackingOrders" asp-route-id="@item.OrderId">Tracking Order</a>
+                    </td>
+            </tr>   
+        }
+    </tbody>
+</table>

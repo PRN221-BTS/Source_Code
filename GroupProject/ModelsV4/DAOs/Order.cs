@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Build.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace ModelsV4.DAOs;
@@ -9,10 +10,13 @@ public partial class Order
 
     public int? CustomerId { get; set; }
 
+    [Required]
     public string? ReceivingAddress { get; set; }
 
+    [Required]
     public string? SendingAddress { get; set; }
 
+    [Required]
     public string? Note { get; set; }
 
     public string? Status { get; set; }

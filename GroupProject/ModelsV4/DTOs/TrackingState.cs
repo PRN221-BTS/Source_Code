@@ -13,7 +13,10 @@ namespace ModelsV4.DTOs
         // using for another sequence number
         InRoute,
         //using state with the order in warehousee
-        InWarehouse
+        InWarehouse,
+        UnProcessing,
+        Pending,
+        Canceling
 
 
     }

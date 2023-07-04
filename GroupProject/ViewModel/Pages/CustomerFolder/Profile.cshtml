@@ -5,7 +5,7 @@
 <h1>Customer Page</h1>
 <h1>My Profile</h1>
 <a asp-page="/CustomerFolder/BirdManagement/Index" asp-route-id="@Model.customer.CustomerId">Bird Management</a>
-<a asp-page="/Customer/BirdManagement/Index">Order Management</a>
+<a asp-page="/CustomerFolder/OrderHistories">Order Management</a>
 <form>
     <div class="col-3 ">
         <label asp-for="customer.CustomerId"></label>
@@ -36,3 +36,28 @@
         <input type="submit" class="btn btn-primary" value="UpdateUser" />
     </div>
 </form>
+<div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 200px; width: 20px; display: inline-block;">
+    <div class="progress-bar bg-danger" style="height: 100%;"></div>
+</div>
+<br />
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100"  aria-valuemin="0" aria-valuemax="100" style="height: 200px; width: 20px; display: inline-block;">
+    <div class="progress-bar" style="width: 100%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 200px; width: 20px; display: inline-block;">
+    <div class="progress-bar" style="width: 100%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar" style="width: 0%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 200px; width: 10px; display: inline-block;background-color : forestgreen">
+    <div class="progress-bar bg-success" style="width: 100%;" ></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar bg-info" style="width: 50%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar bg-warning" style="width: 75%"></div>
+</div>
+<div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar bg-danger" style="width: 100%"></div>
+</div>

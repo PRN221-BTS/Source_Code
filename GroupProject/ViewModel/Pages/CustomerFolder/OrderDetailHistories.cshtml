@@ -1,0 +1,48 @@
+﻿@page
+@model ViewModel.Pages.CustomerFolder.OrderDetailHistoriesModel
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.orderDetail[0].OrderDetailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderDetail[0].Bird.BirdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderDetail[0].BirdCage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderDetail[0].Certificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderDetail[0].DeliveryStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.orderDetail)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDetailId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bird.BirdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirdCage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Certificate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryStatus)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
