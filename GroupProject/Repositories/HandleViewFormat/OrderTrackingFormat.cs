@@ -24,7 +24,9 @@ namespace Repositories.HandleViewFormat
                              ShipperEmail = shipper.Email,
                              ShipperName = shipper.ShipperName,
                              ShipperPhone = shipper.PhoneNumber,
-                             ShipperVehicle = shipper.VehicleType
+                             ShipperVehicle = shipper.VehicleType,
+                             RouteStatus = orderinRoute.Status
+                             
 
                          }).FirstOrDefault();
             return (ReceivingShipperInfo)result;
@@ -44,7 +46,8 @@ namespace Repositories.HandleViewFormat
                              ShipperEmail = shipper.Email,
                              ShipperName = shipper.ShipperName,
                              ShipperPhone = shipper.PhoneNumber,
-                             ShipperVehicle = shipper.VehicleType
+                             ShipperVehicle = shipper.VehicleType,
+                             RouteStatus =  orderinRoute.Status
 
                          }).AsQueryable().FirstOrDefault();
             return result;
@@ -60,7 +63,9 @@ namespace Repositories.HandleViewFormat
                          {
                              WarehouseName = warehouse.WarehouseName,
                              WarhouseLocation = warehouse.Location,
-                             SequenceNumber = (int)trackingorder.SequenceNumber
+                             SequenceNumber = (int)trackingorder.SequenceNumber,
+                             WarehouseStatus = trackingorder.TrackingStatus
+                             
                          }).OrderBy(x => x.SequenceNumber).ToList();
 
             return result;  

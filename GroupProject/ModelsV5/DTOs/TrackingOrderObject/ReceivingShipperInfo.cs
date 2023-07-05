@@ -9,6 +9,7 @@ namespace ModelsV5.DTOs.TrackingOrderObject
     public class ReceivingShipperInfo
     {
         public string ReceivingAddress { get; set; }
+        public string ColorProperty { get; set; }
         public string  ShipperName { get; set; }
 
         public string ShipperEmail { get; set;}
@@ -17,6 +18,8 @@ namespace ModelsV5.DTOs.TrackingOrderObject
 
         public string ShipperVehicle { get; set;}
 
-       
+        public string RouteStatus { get; set; }
+
+
     }
 }
