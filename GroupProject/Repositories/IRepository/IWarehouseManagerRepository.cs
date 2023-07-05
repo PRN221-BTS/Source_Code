@@ -11,11 +11,13 @@ namespace Repositories.IRepository
     {
         Task<bool> AddAsync(WarehouseManager warehouseManager);
         Task<IEnumerable<WarehouseManager>> GetAllAsync();
-        Task<WarehouseManager?> GetByIdAsync(int id);
+        WarehouseManager GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(WarehouseManager customer);
 
         WarehouseManager getWarehouseManagementByWarehouseID(int id);
+
+        public bool LoginWithRoleWarehouseManager(string email,string password);
 
     }
 }

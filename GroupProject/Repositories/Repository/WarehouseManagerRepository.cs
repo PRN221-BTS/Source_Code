@@ -23,12 +23,13 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
-        public Task<WarehouseManager?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public WarehouseManager GetByIdAsync(int id) => _context.WarehouseManagers.FirstOrDefault(x => x.WarehouseManagerId == id);
+  
 
         public WarehouseManager getWarehouseManagementByWarehouseID(int id) => _context.WarehouseManagers.FirstOrDefault(x => x.WarehouseManagerId == id);
+
+        public bool LoginWithRoleWarehouseManager(string email, string password) => _context.WarehouseManagers.Where(x =>x.Email == email && x.Password == password).Any(); 
+     
 
         public bool Remove(int id)
         {
