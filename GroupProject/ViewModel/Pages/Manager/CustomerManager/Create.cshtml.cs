@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using ModelsV4.DAOs;
+using ModelsV5.DAOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Manager.CustomerManager
 {
     public class CreateModel : PageModel
     {
-        private readonly ModelsV4.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV5.DAOs.BirdTransportationSystemContext _context;
 
         private static ICustomerRepository _customerRepository;
-        public CreateModel(ModelsV4.DAOs.BirdTransportationSystemContext context, ICustomerRepository customerRepository)
+        public CreateModel(ModelsV5.DAOs.BirdTransportationSystemContext context, ICustomerRepository customerRepository)
         {
             _context = context;
             _customerRepository = customerRepository;

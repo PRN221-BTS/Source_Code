@@ -1,5 +1,5 @@
-﻿using ModelsV4.DAOs;
-using ModelsV4.DTOs.TrackingOrderObject;
+﻿using ModelsV5.DAOs;
+using ModelsV5.DTOs.TrackingOrderObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +20,7 @@ namespace Repositories.HandleViewFormat
                          where order.OrderId == orderID && route.Type == "Receiving"
                          select new ReceivingShipperInfo
                          {
+                             ReceivingAddress = order.ReceivingAddress,
                              ShipperEmail = shipper.Email,
                              ShipperName = shipper.ShipperName,
                              ShipperPhone = shipper.PhoneNumber,
@@ -39,6 +40,7 @@ namespace Repositories.HandleViewFormat
                          where order.OrderId == orderID && route.Type == "Sending"
                          select new SendingShipperInfo
                          {
+                             SendingAddress = order.SendingAddress,
                              ShipperEmail = shipper.Email,
                              ShipperName = shipper.ShipperName,
                              ShipperPhone = shipper.PhoneNumber,

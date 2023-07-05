@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ModelsV4.DAOs;
+namespace ModelsV5.DAOs;
 
 public partial class BirdTransportationSystemContext : DbContext
 {
@@ -45,7 +45,7 @@ public partial class BirdTransportationSystemContext : DbContext
     {
         modelBuilder.Entity<Bird>(entity =>
         {
-            entity.HasKey(e => e.BirdId).HasName("PK__Bird__7694332E78ECD758");
+            entity.HasKey(e => e.BirdId).HasName("PK__Bird__7694332E034FC9DD");
 
             entity.ToTable("Bird");
 
@@ -68,7 +68,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64B867774CF3");
+            entity.HasKey(e => e.CustomerId).HasName("PK__Customer__A4AE64B8E677A49A");
 
             entity.ToTable("Customer");
 
@@ -91,7 +91,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BAF3C9426BA");
+            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BAFD46B0F94");
 
             entity.ToTable("Order");
 
@@ -124,7 +124,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D30CFB460B14");
+            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D30C3977F395");
 
             entity.ToTable("OrderDetail");
 
@@ -158,7 +158,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<OrderInRoute>(entity =>
         {
-            entity.HasKey(e => e.OrderInRouteId).HasName("PK__OrderInR__BC07D0C5E7D8F70B");
+            entity.HasKey(e => e.OrderInRouteId).HasName("PK__OrderInR__BC07D0C52AC5EFA4");
 
             entity.ToTable("OrderInRoute");
 
@@ -167,6 +167,9 @@ public partial class BirdTransportationSystemContext : DbContext
                 .HasColumnName("OrderInRouteID");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.RouteId).HasColumnName("RouteID");
+            entity.Property(e => e.Status)
+                .HasMaxLength(200)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderInRoutes)
                 .HasForeignKey(d => d.OrderId)
@@ -179,7 +182,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__9B556A58458CCF3B");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__9B556A5814F68861");
 
             entity.ToTable("Payment");
 
@@ -194,7 +197,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<Route>(entity =>
         {
-            entity.HasKey(e => e.RouteId).HasName("PK__Route__80979AAD2F5CD680");
+            entity.HasKey(e => e.RouteId).HasName("PK__Route__80979AAD0E79F239");
 
             entity.ToTable("Route");
 
@@ -215,7 +218,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<Shipper>(entity =>
         {
-            entity.HasKey(e => e.ShipperId).HasName("PK__Shipper__1F8AFFB975E2DAEA");
+            entity.HasKey(e => e.ShipperId).HasName("PK__Shipper__1F8AFFB9362AB949");
 
             entity.ToTable("Shipper");
 
@@ -247,7 +250,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<TrackingOrder>(entity =>
         {
-            entity.HasKey(e => e.TrackingOrderId).HasName("PK__Tracking__24D0CD62D5598075");
+            entity.HasKey(e => e.TrackingOrderId).HasName("PK__Tracking__24D0CD62EBBD4874");
 
             entity.ToTable("TrackingOrder");
 
@@ -273,7 +276,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<Warehouse>(entity =>
         {
-            entity.HasKey(e => e.WarehouseId).HasName("PK__Warehous__2608AFD9A9AB2250");
+            entity.HasKey(e => e.WarehouseId).HasName("PK__Warehous__2608AFD96D9B62D0");
 
             entity.ToTable("Warehouse");
 
@@ -295,7 +298,7 @@ public partial class BirdTransportationSystemContext : DbContext
 
         modelBuilder.Entity<WarehouseManager>(entity =>
         {
-            entity.HasKey(e => e.WarehouseManagerId).HasName("PK__Warehous__678D82662F8769DC");
+            entity.HasKey(e => e.WarehouseManagerId).HasName("PK__Warehous__678D8266A48DA825");
 
             entity.ToTable("WarehouseManager");
 
