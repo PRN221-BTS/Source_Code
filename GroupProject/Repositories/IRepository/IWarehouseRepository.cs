@@ -19,7 +19,7 @@ namespace Repositories.IRepository
 
         bool AddTrackingOrder(TrackingOrder order);
 
-        Warehouse getWarehouseInfoByWarehouseManagerID(int id)
+        Warehouse getWarehouseInfoByWarehouseManagerID(int id);
 
         
     }
