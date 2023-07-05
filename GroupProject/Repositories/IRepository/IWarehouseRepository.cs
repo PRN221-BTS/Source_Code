@@ -18,5 +18,9 @@ namespace Repositories.IRepository
         int GetLastObjectInTrackingOrder();
 
         bool AddTrackingOrder(TrackingOrder order);
+
+        Warehouse getWarehouseInfoByWarehouseManagerID(int id);
+
+        
     }
 }

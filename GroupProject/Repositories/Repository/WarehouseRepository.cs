@@ -38,7 +38,10 @@ namespace Repositories.Repoository
                 valueMax = 1;
             }
             return (int)valueMax;
-        }    
+        }
+
+        public Warehouse getWarehouseInfoByWarehouseManagerID(int id) => _context.Warehouses.FirstOrDefault(x => x.WarehouseManagerId == id);
+    
 
         public bool Remove(int id)
         {

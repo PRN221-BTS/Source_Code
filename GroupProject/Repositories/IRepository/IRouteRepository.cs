@@ -17,5 +17,7 @@ namespace Repositories.IRepository
         bool AddNewRoute(Route route);
 
         public int GetLastValueObject();
+
+        public bool UpdateRouteStatusToDoneById(int id);
     }
 }
