@@ -199,7 +199,7 @@ namespace ViewModel.Pages.LogisticsHandle
                     SequenceNumber = warehouseCartList[i].SequenceNumber,
                     ActualDeliveryDate = DateTime.UtcNow,
                     EstimateDeliveryDate = DateTime.UtcNow,
-                    OrderId = int.Parse(TempData["id"].ToString()),
+                    OrderId = int.Parse(TempData["i d"].ToString()),
                     TrackingStatus = TrackingState.Delivery.ToString(),
                     TrackingOrderId = _warehouseRepo.GetLastObjectInTrackingOrder(),
                     WarehouseId = warehouseCartList[i].WarehouseID,

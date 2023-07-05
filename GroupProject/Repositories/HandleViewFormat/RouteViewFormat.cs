@@ -24,7 +24,7 @@ namespace Repositories.HandleViewFormat
             var result = (from order in _context.Orders
                          join orderRoute in _context.OrderInRoutes on order.OrderId equals orderRoute.OrderId
                          join route in _context.Routes on orderRoute.RouteId equals route.RouteId
-                         where route.ShipperId == id
+                         where route.ShipperId == id &&  route.Type ==  "Receiving"
                          select new ReceivingOrder {
 
                              Distance = (decimal)route.Distance,
@@ -33,6 +33,8 @@ namespace Repositories.HandleViewFormat
                              ReceivingAddress = order.ReceivingAddress,
                              Type = route.Type,
                              RouteID = route.RouteId
+                             ,OrderInRoutes = orderRoute.OrderInRouteId
+
                          }).ToList();
        
 
@@ -46,7 +48,7 @@ namespace Repositories.HandleViewFormat
             var result = (from order in _context.Orders
                           join orderRoute in _context.OrderInRoutes on order.OrderId equals orderRoute.OrderId
                           join route in _context.Routes on orderRoute.RouteId equals route.RouteId
-                          where route.ShipperId == id
+                          where route.ShipperId == id && route.Type == "Sending"
                           select new SendingOrder
                           {
 
@@ -55,7 +57,8 @@ namespace Repositories.HandleViewFormat
                               Price = (decimal)route.Price,
                               SendingAddress = order.SendingAddress,
                               Type = route.Type,
-                              RouteID = route.RouteId
+                              RouteID = route.RouteId,
+                              OrderInRoutes = orderRoute.OrderInRouteId
                           }).ToList();
             return result;
 

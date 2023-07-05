@@ -11,8 +11,11 @@ namespace ViewModel.Pages.Shippers
         private static IRouteRepository _context;
 
         RouteViewFormat _viewFormat;
+
+        [BindProperty]
         public List<ReceivingOrder> receivingOrder { get; set; }
 
+        [BindProperty]
         public List<SendingOrder> sendingOrder { get; set; }
 
         public Route route { get; set; }
@@ -24,8 +27,21 @@ namespace ViewModel.Pages.Shippers
         }
         public void OnGet(int id)
         {
-            receivingOrder = _viewFormat.receivingOrders(id);
-            sendingOrder = _viewFormat.sendingOrders(id);
+
+            receivingOrder = _viewFormat.receivingOrders(int.Parse(HttpContext.Session.GetString("UserID")));
+            sendingOrder = _viewFormat.sendingOrders(int.Parse(HttpContext.Session.GetString("UserID")));
         }
+
+        public IActionResult OnGetUpdate(int id)
+        {
+           
+            _context.UpdateRouteStatusToDoneById(id);
+            receivingOrder = _viewFormat.receivingOrders(int.Parse(HttpContext.Session.GetString("UserID")));
+            sendingOrder = _viewFormat.sendingOrders(int.Parse(HttpContext.Session.GetString("UserID")));
+            return Page();
+        }
+
+
+
     }
 }
