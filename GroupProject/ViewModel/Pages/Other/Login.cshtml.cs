@@ -47,25 +47,29 @@ namespace ViewModel.Pages.Other
                 TempData["ErrorInLogin"] = null;
                 Customer customer = _customerRepository.Login(loginForm.Email, loginForm.Password);
                 HttpContext.Session.SetString("UserID", customer.CustomerId.ToString());
+                HttpContext.Session.SetString("Role", "Customer");
                 return RedirectToPage("/CustomerFolder/Profile");
             }
 
             if (_shipperRepository.Login(loginForm.Email, loginForm.Password) is not null)
             {
-                TempData["ErrorInLogin"] = null;
                 Shipper shipper = _shipperRepository.Login(loginForm.Email, loginForm.Password);
                 HttpContext.Session.SetString("UserID", shipper.ShipperId.ToString());
+                HttpContext.Session.SetString("Role", "Shipper");
+                TempData["ErrorInLogin"] = null;
                 return RedirectToPage("/Shippers/Profile");
             }
 
             if (_customerRepository.LoginByAdminAccount(loginForm.Email, loginForm.Password))
             {
+                HttpContext.Session.SetString("Role", "Admin");
                 TempData["ErrorInLogin"] = null;
                 return RedirectToPage("/Manager/MainScreen");
             }
 
             if(_customerRepository.LoginByLogicticsAccount(loginForm.Email,loginForm.Password))
             {
+                HttpContext.Session.SetString("Role", "Logistic");
                 TempData["ErrorInLogin"] = null;
                 return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
             }

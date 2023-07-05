@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using ModelsV4.DAOs;
 using Repositories.IRepository;
 
@@ -38,6 +39,14 @@ namespace ViewModel.Pages.Manager.CustomerManager
             {
                 return Page();
             }
+                
+            var existingCustomer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == Customer.Email);
+
+            if (existingCustomer != null)
+            {
+                ModelState.AddModelError(string.Empty, "Email already exists.");
+                return Page();
+            }
 
             var checkExistedCustomer = await _context.Customers.FindAsync(Customer.CustomerId);
             
@@ -46,9 +55,6 @@ namespace ViewModel.Pages.Manager.CustomerManager
                 Customer.CustomerId++;
                 checkExistedCustomer = await _context.Customers.FindAsync(Customer.CustomerId);
             }
-
-            //var checkEmail = await _context.Customers.FindAsync(Customer.Email);
-            //if (checkEmail != null) throw new Exception("Email existed");
 
             //await _customerRepository.AddAsync(Customer);
             _context.Customers.Add(Customer);

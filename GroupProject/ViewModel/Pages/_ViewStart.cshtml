@@ -1,3 +1,27 @@
 ﻿@{
     Layout = "_Layout";
+    var role = Context.Session.GetString("Role");
+    if (role == null)
+    {
+        Context.Response.Redirect("Other/Login");
+    }
+    else
+    {
+        if (role != "Admin" && Context.Request.Path.Value.Contains("Manager", StringComparison.InvariantCultureIgnoreCase) && Context.Request.Path.Value.Contains("Warehouses", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+        if (role != "Shipper" && Context.Request.Path.Value.Contains("Shippers", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+        if (role != "Customer" && Context.Request.Path.Value.Contains("CustomerFolder", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+        if (role != "Logistic" && Context.Request.Path.Value.Contains("LogisticsHandle", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+    }
 }
