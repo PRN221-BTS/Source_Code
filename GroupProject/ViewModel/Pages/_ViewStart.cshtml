@@ -3,25 +3,60 @@
     var role = Context.Session.GetString("Role");
     if (role == null)
     {
-        Context.Response.Redirect("Other/Login");
+        Context.Response.Redirect("");
     }
-    else
+    else if (role == "Admin")
     {
-        if (role != "Admin" && Context.Request.Path.Value.Contains("Manager", StringComparison.InvariantCultureIgnoreCase) && Context.Request.Path.Value.Contains("Warehouses", StringComparison.InvariantCultureIgnoreCase))
+        if (Context.Request.Path.Value.Contains("/Manager/CustomerManager", StringComparison.InvariantCultureIgnoreCase) ||
+            Context.Request.Path.Value.Contains("/Manager/ShipperManager", StringComparison.InvariantCultureIgnoreCase) ||
+            Context.Request.Path.Value.Contains("/Manager/WarehouseManagers", StringComparison.InvariantCultureIgnoreCase))
         {
             Context.Response.Redirect("/Error");
         }
-        if (role != "Shipper" && Context.Request.Path.Value.Contains("Shippers", StringComparison.InvariantCultureIgnoreCase))
+        else
         {
-            Context.Response.Redirect("/Error");
-        }
-        if (role != "Customer" && Context.Request.Path.Value.Contains("CustomerFolder", StringComparison.InvariantCultureIgnoreCase))
-        {
-            Context.Response.Redirect("/Error");
-        }
-        if (role != "Logistic" && Context.Request.Path.Value.Contains("LogisticsHandle", StringComparison.InvariantCultureIgnoreCase))
-        {
-            Context.Response.Redirect("/Error");
+            Context.Response.Redirect("/Manager/WarehouseManagement");
         }
     }
+    else if (role == "Shipper")
+    {
+        if (Context.Request.Path.Value.Contains("ShipperMMa", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+        else
+        {
+            // Shipper-specific logic goes here
+            // ...
+        }
+    }
+    else if (role == "Customer")
+    {
+        if (Context.Request.Path.Value.Contains("CustomerFolder", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+        else
+        {
+            // Customer-specific logic goes here
+            // ...
+        }
+    }
+    else if (role == "Logistic")
+    {
+        if (Context.Request.Path.Value.Contains("LogisticsHandle", StringComparison.InvariantCultureIgnoreCase))
+        {
+            Context.Response.Redirect("/Error");
+        }
+        else
+        {
+            // Logistic-specific logic goes here
+            // ...
+        }
+    }
+    else if (role == "Guest")
+    {
+        Context.Response.Redirect("/Other/Register");
+    }
+
 }

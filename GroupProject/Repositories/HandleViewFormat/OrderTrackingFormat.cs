@@ -1,5 +1,5 @@
-﻿using ModelsV4.DAOs;
-using ModelsV4.DTOs.TrackingOrderObject;
+﻿using ModelsV5.DAOs;
+using ModelsV5.DTOs.TrackingOrderObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +20,13 @@ namespace Repositories.HandleViewFormat
                          where order.OrderId == orderID && route.Type == "Receiving"
                          select new ReceivingShipperInfo
                          {
+                             ReceivingAddress = order.ReceivingAddress,
                              ShipperEmail = shipper.Email,
                              ShipperName = shipper.ShipperName,
                              ShipperPhone = shipper.PhoneNumber,
-                             ShipperVehicle = shipper.VehicleType
+                             ShipperVehicle = shipper.VehicleType,
+                             RouteStatus = orderinRoute.Status
+                             
 
                          }).FirstOrDefault();
             return (ReceivingShipperInfo)result;
@@ -39,10 +42,12 @@ namespace Repositories.HandleViewFormat
                          where order.OrderId == orderID && route.Type == "Sending"
                          select new SendingShipperInfo
                          {
+                             SendingAddress = order.SendingAddress,
                              ShipperEmail = shipper.Email,
                              ShipperName = shipper.ShipperName,
                              ShipperPhone = shipper.PhoneNumber,
-                             ShipperVehicle = shipper.VehicleType
+                             ShipperVehicle = shipper.VehicleType,
+                             RouteStatus =  orderinRoute.Status
 
                          }).AsQueryable().FirstOrDefault();
             return result;
@@ -58,7 +63,9 @@ namespace Repositories.HandleViewFormat
                          {
                              WarehouseName = warehouse.WarehouseName,
                              WarhouseLocation = warehouse.Location,
-                             SequenceNumber = (int)trackingorder.SequenceNumber
+                             SequenceNumber = (int)trackingorder.SequenceNumber,
+                             WarehouseStatus = trackingorder.TrackingStatus
+                             
                          }).OrderBy(x => x.SequenceNumber).ToList();
 
             return result;  

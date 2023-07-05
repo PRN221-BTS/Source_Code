@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using ModelsV4.DAOs;
-using ModelsV4.DTOs;
+using ModelsV5.DAOs;
+using ModelsV5.DTOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Other
@@ -35,6 +35,7 @@ namespace ViewModel.Pages.Other
 
         public void OnGet()
         {
+            HttpContext.Session.SetString("Role", "Guest");
         }
 
 
@@ -42,7 +43,8 @@ namespace ViewModel.Pages.Other
         {
 
             var user = new Object();
-            if( _customerRepository.Login(loginForm.Email, loginForm.Password) is not null)
+            
+            if ( _customerRepository.Login(loginForm.Email, loginForm.Password) is not null)
             {
                 TempData["ErrorInLogin"] = null;
                 Customer customer = _customerRepository.Login(loginForm.Email, loginForm.Password);

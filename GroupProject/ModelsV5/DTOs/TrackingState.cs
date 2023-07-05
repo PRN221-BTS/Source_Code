@@ -16,7 +16,12 @@ namespace ModelsV5.DTOs
         InWarehouse,
         UnProcessing,
         Pending,
-        Canceling
+        Canceling,
+//đã chuyển qua kho khác
+        Shipped,
+        Coming
+
+        
 
 
     }
