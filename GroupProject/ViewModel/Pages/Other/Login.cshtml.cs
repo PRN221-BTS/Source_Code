@@ -81,6 +81,7 @@ namespace ViewModel.Pages.Other
             {
                 WarehouseManager warehouseManager = _warehouseManagerRepository.Login(loginForm.Email, loginForm.Password);
                 HttpContext.Session.SetString("UserID", warehouseManager.WarehouseManagerId.ToString());
+                HttpContext.Session.SetString("WarehouseID", warehouseManager.WarehouseManagerId.ToString());
                 HttpContext.Session.SetString("Role", "WarehouseManager");
                 TempData["ErrorInLogin"] = null;
                 return RedirectToPage("/Warehouses/MainScreen");

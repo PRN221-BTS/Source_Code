@@ -2,3 +2,32 @@
 @model ViewModel.Pages.Warehouses.ViewOrderAtWarehouseModel
 @{
 }
+<h1>Orders at Warehouse</h1>
+@{
+    var warehouseId = Model.WarehouseId;
+    var warehouseName = Model.Warehouses.FirstOrDefault(w => w.WarehouseId == warehouseId)?.WarehouseName;
+}
+
+<p>Warehouse: @warehouseName (ID: @warehouseId)</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th scope="col">Receiving Address</th>
+            <th scope="col">Sending Address</th>
+            <th scope="col">Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.ReceivingAddress</td>
+                <td>@order.SendingAddress</td>
+                <td>@order.Note</td>
+            </tr>
+        }
+    </tbody>
+</table>
