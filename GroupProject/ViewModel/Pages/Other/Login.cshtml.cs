@@ -17,12 +17,13 @@ namespace ViewModel.Pages.Other
     {
         ICustomerRepository _customerRepository;
         IShipperRepository _shipperRepository;
+        IWarehouseManagerRepository _warehouseManagerRepository;
 
-        public Login(ICustomerRepository customerRepository, IShipperRepository shipperRepository)
+        public Login(ICustomerRepository customerRepository, IShipperRepository shipperRepository, IWarehouseManagerRepository warehouseManagerRepository)
         {
             _customerRepository = customerRepository;
             _shipperRepository = shipperRepository;
-
+            _warehouseManagerRepository = warehouseManagerRepository;
         }
         //   private readonly ILogger<Login> _logger;
 
@@ -74,6 +75,15 @@ namespace ViewModel.Pages.Other
                 HttpContext.Session.SetString("Role", "Logistic");
                 TempData["ErrorInLogin"] = null;
                 return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
+            }
+
+            if(_warehouseManagerRepository.LoginWithRoleWarehouseManager(loginForm.Email, loginForm.Password))
+            {
+                WarehouseManager warehouseManager = _warehouseManagerRepository.Login(loginForm.Email, loginForm.Password);
+                HttpContext.Session.SetString("UserID", warehouseManager.WarehouseManagerId.ToString());
+                HttpContext.Session.SetString("Role", "WarehouseManager");
+                TempData["ErrorInLogin"] = null;
+                return RedirectToPage("/Warehouses/MainScreen");
             }
 
             TempData["ErrorInLogin"] = "Please,Check your email and password ";

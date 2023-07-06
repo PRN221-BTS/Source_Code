@@ -1,62 +1,62 @@
 ﻿@{
     Layout = "_Layout";
-    var role = Context.Session.GetString("Role");
-    if (role == null)
-    {
-        Context.Response.Redirect("");
-    }
-    else if (role == "Admin")
-    {
-        if (Context.Request.Path.Value.Contains("/Manager/CustomerManager", StringComparison.InvariantCultureIgnoreCase) ||
-            Context.Request.Path.Value.Contains("/Manager/ShipperManager", StringComparison.InvariantCultureIgnoreCase) ||
-            Context.Request.Path.Value.Contains("/Manager/WarehouseManagers", StringComparison.InvariantCultureIgnoreCase))
-        {
-            Context.Response.Redirect("/Error");
-        }
-        else
-        {
-            Context.Response.Redirect("/Manager/WarehouseManagement");
-        }
-    }
-    else if (role == "Shipper")
-    {
-        if (Context.Request.Path.Value.Contains("ShipperMMa", StringComparison.InvariantCultureIgnoreCase))
-        {
-            Context.Response.Redirect("/Error");
-        }
-        else
-        {
-            // Shipper-specific logic goes here
-            // ...
-        }
-    }
-    else if (role == "Customer")
-    {
-        if (Context.Request.Path.Value.Contains("CustomerFolder", StringComparison.InvariantCultureIgnoreCase))
-        {
-            Context.Response.Redirect("/Error");
-        }
-        else
-        {
-            // Customer-specific logic goes here
-            // ...
-        }
-    }
-    else if (role == "Logistic")
-    {
-        if (Context.Request.Path.Value.Contains("LogisticsHandle", StringComparison.InvariantCultureIgnoreCase))
-        {
-            Context.Response.Redirect("/Error");
-        }
-        else
-        {
-            // Logistic-specific logic goes here
-            // ...
-        }
-    }
-    else if (role == "Guest")
-    {
-        Context.Response.Redirect("/Other/Register");
-    }
+    //var role = Context.Session.GetString("Role");
+    //if (role == null)
+    //{
+    //    Context.Response.Redirect("");
+    //}
+    //else if (role != "Admin")
+    //{
+    //    if (Context.Request.Path.Value.Contains("/Manager/CustomerManager", StringComparison.InvariantCultureIgnoreCase) ||
+    //        Context.Request.Path.Value.Contains("/Manager/ShipperManager", StringComparison.InvariantCultureIgnoreCase) ||
+    //        Context.Request.Path.Value.Contains("/Manager/WarehouseManagers", StringComparison.InvariantCultureIgnoreCase))
+    //    {
+    //        Context.Response.Redirect("/Error");
+    //    }
+    //    else
+    //    {
+    //        Context.Response.Redirect("/Manager/WarehouseManagement");
+    //    }
+    //}
+    //else if (role != "Shipper")
+    //{
+    //    if (Context.Request.Path.Value.Contains("ShipperMMa", StringComparison.InvariantCultureIgnoreCase))
+    //    {
+    //        Context.Response.Redirect("/Error");
+    //    }
+    //    else
+    //    {
+    //        // Shipper-specific logic goes here
+    //        // ...
+    //    }
+    //}
+    //else if (role != "Customer")
+    //{
+    //    if (Context.Request.Path.Value.Contains("CustomerFolder", StringComparison.InvariantCultureIgnoreCase))
+    //    {
+    //        Context.Response.Redirect("/Error");
+    //    }
+    //    else
+    //    {
+    //        // Customer-specific logic goes here
+    //        // ...
+    //    }
+    //}
+    //else if (role != "Logistic")
+    //{
+    //    if (Context.Request.Path.Value.Contains("LogisticsHandle", StringComparison.InvariantCultureIgnoreCase))
+    //    {
+    //        Context.Response.Redirect("/Error");
+    //    }
+    //    else
+    //    {
+    //        // Logistic-specific logic goes here
+    //        // ...
+    //    }
+    //}
+    //else if (role == "Guest")
+    //{
+    //    Context.Response.Redirect("/Other/Register");
+    //}
 
 }

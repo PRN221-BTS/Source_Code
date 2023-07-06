@@ -18,6 +18,6 @@ namespace Repositories.IRepository
         WarehouseManager getWarehouseManagementByWarehouseID(int id);
 
         public bool LoginWithRoleWarehouseManager(string email,string password);
-
+        WarehouseManager Login(string email, string password);
     }
 }

@@ -28,6 +28,8 @@ namespace Repositories.Repoository
 
         public WarehouseManager getWarehouseManagementByWarehouseID(int id) => _context.WarehouseManagers.FirstOrDefault(x => x.WarehouseManagerId == id);
 
+        public WarehouseManager Login(string email, string password) => _context.WarehouseManagers.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+
         public bool LoginWithRoleWarehouseManager(string email, string password) => _context.WarehouseManagers.Where(x =>x.Email == email && x.Password == password).Any(); 
      
 
