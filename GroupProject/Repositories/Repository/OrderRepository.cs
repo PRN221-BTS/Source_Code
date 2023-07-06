@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ModelsV5.DAOs;
+using ModelsV5.DTOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,7 @@ namespace Repositories.Repoository
         {
             _context = context;
         }
-        public Task<bool> AddAsync(Order order)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Task<IEnumerable<Order>> GetAllAsync()
         {
@@ -39,5 +37,31 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
         public List<Order> UnProcessingOrder() => _context.Orders.Where(x => x.Status == "UnProcessing").ToList();
+
+        public bool AddAsync(Order order)
+        {
+            _context.Add(order);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public int GetLastIDinOrderInRoutes() => _context.OrderInRoutes.OrderByDescending(x => x.OrderInRouteId).FirstOrDefault().OrderInRouteId;
+
+        public async Task<bool> AddOrderInRoute(OrderInRoute orderInRoute)
+        {
+            _context.OrderInRoutes.Add(orderInRoute);
+           await _context.SaveChangesAsync(); 
+            return true;
+        }
+
+        public bool UpdatetoProcessingState(int orderID)
+        {
+            _context = new BirdTransportationSystemContext();
+            Order order = GetByIdAsync(orderID);
+            order.Status = TrackingState.Processing.ToString();
+            _context.SaveChanges();
+            return true;
+
+        }
     }
 }

@@ -103,7 +103,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             return RedirectToPage("/CustomerFolder/BirdManagement/OrderProcess");
         }
        
-        public IActionResult OnPostAddOrder()
+        public async Task<IActionResult> OnPostAddOrder()
         {
             ModelState.ClearValidationState(nameof(Order));
             if (!TryValidateModel(order, nameof(Order)))
@@ -126,7 +126,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             for(int i = 0; i < cart.Count(); i++)
             {
-                Order newOrder1 = newOrder;
+               
                 OrderDetail newOrderDetails = new OrderDetail
                 {
                     BirdCage = "Big Bird Cage",
@@ -139,9 +139,11 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
                     OtherItems = "None"
 
                 };
+           await     _orderDetailRepo.AddNewOrderDetail(newOrderDetails);
+                
             }
 
-            return RedirectToPage();
+            return RedirectToPage("/CustomerFolder/OrderHistories");
         }
 
 

@@ -22,5 +22,7 @@ namespace Repositories.IRepository
         public int GetLastOrderDetailId();
 
         public bool CancelOrderbyOrderID(int id);
+
+        public Task<bool> AddNewOrderDetail(OrderDetail orderDetail);
     }
 }

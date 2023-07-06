@@ -17,10 +17,10 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
-        public bool AddTrackingOrder(TrackingOrder order)
+        public async Task<bool> AddTrackingOrder(TrackingOrder order)
         {
           _context.TrackingOrders.Add(order);
-            _context.SaveChanges();
+        await    _context.SaveChangesAsync();
             return true;
         }
 
@@ -31,7 +31,7 @@ namespace Repositories.Repoository
         public int GetLastObjectInTrackingOrder()
         {
 
-            int valueMax = _context.TrackingOrders.OrderByDescending(x => x.TrackingOrderId).FirstOrDefault()?.OrderId ?? 1;
+            int valueMax = _context.TrackingOrders.OrderByDescending(x => x.TrackingOrderId).FirstOrDefault()?.TrackingOrderId ?? 1;
 
             if(valueMax  == null)
             {

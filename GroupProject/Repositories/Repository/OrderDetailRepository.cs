@@ -61,6 +61,12 @@ namespace Repositories.Repoository
         }
 
         public int GetLastOrderDetailId() => _context.OrderDetails.OrderByDescending(x => x.OrderDetailId).FirstOrDefault().OrderDetailId;
-      
+
+        public  async Task<bool> AddNewOrderDetail(OrderDetail orderDetail)
+        {
+            _context.OrderDetails.Add(orderDetail);
+             await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

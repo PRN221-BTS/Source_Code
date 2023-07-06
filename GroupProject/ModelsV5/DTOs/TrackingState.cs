@@ -19,7 +19,8 @@ namespace ModelsV5.DTOs
         Canceling,
 //đã chuyển qua kho khác
         Shipped,
-        Coming
+        Coming,
+        Processing
 
         
 
