@@ -151,7 +151,7 @@ namespace ViewModel.Pages.LogisticsHandle
             return Page();
         }
 
-        public IActionResult OnGetAddRoute()
+        public async Task<IActionResult> OnGetAddRoute()
         {
             CallObjectFromJson();
             //With receiving and sending list just need one Shipper 
@@ -166,10 +166,19 @@ namespace ViewModel.Pages.LogisticsHandle
             Distance =500,
             Price = 500,
             RouteId = _routeRepository.GetLastValueObject(),
-            ShipperId = receivingShipperList.FirstOrDefault().ShipperId
+            ShipperId = receivingShipperList.FirstOrDefault().ShipperId,
+            Type = RouteState.Receiving.ToString(),
             
             };
-            AddNewRoute(receivingRoute);
+            OrderInRoute orderInRouteInReceivingRoute = new OrderInRoute
+            {
+                OrderInRouteId = _orderRepository.GetLastIDinOrderInRoutes() + 1,
+                OrderId = int.Parse(TempData["id"].ToString()),
+                RouteId = receivingRoute.RouteId
+                ,Status = OrderInRouteState.Pending.ToString()
+            };
+         await   AddNewRoute(receivingRoute);
+          await  _orderRepository.AddOrderInRoute(orderInRouteInReceivingRoute);
 
             //Sending object can use automapper
             Route sendingRoute = new Route
@@ -177,42 +186,60 @@ namespace ViewModel.Pages.LogisticsHandle
                 Distance = 500,
                 Price = 500,
                 RouteId = _routeRepository.GetLastValueObject(),
-                ShipperId = receivingShipperList.FirstOrDefault().ShipperId
+                ShipperId = receivingShipperList.FirstOrDefault().ShipperId,
+                Type = RouteState.Sending.ToString()
+               
 
             };
-            AddNewRoute(sendingRoute);
+            OrderInRoute orderInRouteInSendingRoute = new OrderInRoute
+            {
+                OrderInRouteId = _orderRepository.GetLastIDinOrderInRoutes() + 1,
+                OrderId = int.Parse(TempData["id"].ToString()),
+                RouteId = sendingRoute.RouteId
+               ,Status  = OrderInRouteState.Pending.ToString() 
+                
+            };
+          await  AddNewRoute(sendingRoute);
+         await   _orderRepository.AddOrderInRoute(orderInRouteInSendingRoute);
+
 
 
             for(int i = 0; i < warehouseCartList.Count;i++)
             {
                 if (warehouseCartList[i].SequenceNumber == 1)
                 {
-                    TrackingOrder trackingOrder = new TrackingOrder { 
-                    SequenceNumber = warehouseCartList[i].SequenceNumber,
-                    ActualDeliveryDate = DateTime.UtcNow,
-                    EstimateDeliveryDate = DateTime.UtcNow,
-                    OrderId = int.Parse(TempData["id"].ToString()),
-                    TrackingStatus = TrackingState.Delivery.ToString(),
-                    TrackingOrderId = _warehouseRepo.GetLastObjectInTrackingOrder(),
-                    WarehouseId = warehouseCartList[i].WarehouseID,
-                    
-                    };  
-                    _warehouseRepo.AddTrackingOrder(trackingOrder);
+                    TrackingOrder trackingOrder = new TrackingOrder
+                    {
+                        SequenceNumber = warehouseCartList[i].SequenceNumber,
+                        ActualDeliveryDate = DateTime.UtcNow,
+                        EstimateDeliveryDate = DateTime.UtcNow,
+                        OrderId = int.Parse(TempData["id"].ToString()),
+                        TrackingStatus = TrackingState.Delivery.ToString(),
+                        TrackingOrderId = _warehouseRepo.GetLastObjectInTrackingOrder() + 1,
+                        WarehouseId = warehouseCartList[i].WarehouseID,
+
+                    };
+                    await _warehouseRepo.AddTrackingOrder(trackingOrder);
                 }
-                TrackingOrder trackingOrderOther = new TrackingOrder
+                else
                 {
-                    SequenceNumber = warehouseCartList[i].SequenceNumber,
-                    ActualDeliveryDate = DateTime.UtcNow,
-                    EstimateDeliveryDate = DateTime.UtcNow,
-                    OrderId = int.Parse(TempData["id"].ToString()),
-                    TrackingStatus = TrackingState.Delivery.ToString(),
-                    TrackingOrderId = _warehouseRepo.GetLastObjectInTrackingOrder(),
-                    WarehouseId = warehouseCartList[i].WarehouseID,
 
-                };
-                _warehouseRepo.AddTrackingOrder(trackingOrderOther);
+                    TrackingOrder trackingOrderOther = new TrackingOrder
+                    {
+                        SequenceNumber = warehouseCartList[i].SequenceNumber,
+                        ActualDeliveryDate = DateTime.UtcNow,
+                        EstimateDeliveryDate = DateTime.UtcNow,
+                        OrderId = int.Parse(TempData["id"].ToString()),
+                        TrackingStatus = TrackingState.InRoute.ToString(),
+                        TrackingOrderId = _warehouseRepo.GetLastObjectInTrackingOrder() + 1,
+                        WarehouseId = warehouseCartList[i].WarehouseID,
 
+                    };
+                    await _warehouseRepo.AddTrackingOrder(trackingOrderOther);
+                }
             }
+
+            _orderRepository.UpdatetoProcessingState(int.Parse(TempData["id"].ToString()));
             return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
         }
         private  void CallObjectFromJson()
@@ -225,9 +252,9 @@ namespace ViewModel.Pages.LogisticsHandle
         }
 
 
-        private bool AddNewRoute(Route route)
+        private  async Task<bool> AddNewRoute(Route route)
         {
-            _routeRepository.AddNewRoute(route);
+        await    _routeRepository.AddNewRoute(route);
             return true;
         }
         //public IActionResult OnPostAddShipper() { }

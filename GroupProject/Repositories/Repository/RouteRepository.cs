@@ -11,16 +11,17 @@ namespace Repositories.Repoository
 {
     public class RouteRepository : IRouteRepository
     {
+     
         private static BirdTransportationSystemContext _context = new BirdTransportationSystemContext();
         public Task<bool> AddAsync(Payment payment)
         {
             throw new NotImplementedException();
         }
 
-        public bool AddNewRoute(Route route)
+        public async Task<bool> AddNewRoute(Route route)
         {
             _context.Routes.Add(route);
-            _context.SaveChanges();
+             await _context.SaveChangesAsync();
             return true;
         }
         public OrderInRoute GetOrderInRouteById(int id) => _context.OrderInRoutes.FirstOrDefault(x => x.OrderInRouteId == id);

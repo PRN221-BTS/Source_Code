@@ -14,7 +14,7 @@ namespace Repositories.IRepository
         Task<Payment?> GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(Payment payment);
-        bool AddNewRoute(Route route);
+        Task<bool> AddNewRoute(Route route);
 
         public int GetLastValueObject();
 

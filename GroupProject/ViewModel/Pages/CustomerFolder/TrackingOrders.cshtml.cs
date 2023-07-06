@@ -51,7 +51,7 @@ namespace ViewModel.Pages
                 if(item.WarehouseStatus == TrackingState.Coming.ToString()) {
                     item.ColorProperty = ComingProperties.ToString();
                 }
-                if(item.WarehouseStatus == TrackingState.InRoute.ToString())
+                if(item.WarehouseStatus == TrackingState.InRoute.ToString() || item.WarehouseStatus == TrackingState.Delivery.ToString())
                 {
                     item.ColorProperty = NotYetProperties.ToString();
                 }
