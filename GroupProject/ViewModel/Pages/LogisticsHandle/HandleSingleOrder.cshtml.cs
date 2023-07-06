@@ -50,13 +50,15 @@ namespace ViewModel.Pages.LogisticsHandle
         }
         public void OnGet(int id)
         {
-            CallObjectFromJson();
+         
             TempData["id"] = id;
             order = _orderRepository.GetByIdAsync(id);
             warehouse = _warehouseRepo.GetAllAsync();
-           
+            CallObjectFromJson();
+
+
         }
-       
+
         public IActionResult OnPostInfoShipper(string warehouseKeyWord) 
         {
             receivingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "ReceivingShippers");
@@ -67,6 +69,7 @@ namespace ViewModel.Pages.LogisticsHandle
 
         public IActionResult OnPostAddShipper(string id,string ShipperType)
         {
+        
             var shipper = _shipperRepo.GetShipperById(int.Parse(id));
             if(ShipperType == "Receive")
             {
@@ -98,6 +101,7 @@ namespace ViewModel.Pages.LogisticsHandle
             }
             receivingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "ReceivingShippers");
             sendingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "SendingShippers");
+            warehouse = _warehouseRepo.GetAllAsync();
             return Page();
         }
 
@@ -141,8 +145,9 @@ namespace ViewModel.Pages.LogisticsHandle
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "ListWarehouseinRoute", warehouseCartList.OrderBy(x => x.SequenceNumber));
             }
 
-
+            warehouse = _warehouseRepo.GetAllAsync();
             warehouseCartList = SessionHelper.GetObjectFromJson<List<WarehouseCart>>(HttpContext.Session, "ListWarehouseinRoute");
+            CallObjectFromJson();
             return Page();
         }
 
@@ -199,7 +204,7 @@ namespace ViewModel.Pages.LogisticsHandle
                     SequenceNumber = warehouseCartList[i].SequenceNumber,
                     ActualDeliveryDate = DateTime.UtcNow,
                     EstimateDeliveryDate = DateTime.UtcNow,
-                    OrderId = int.Parse(TempData["i d"].ToString()),
+                    OrderId = int.Parse(TempData["id"].ToString()),
                     TrackingStatus = TrackingState.Delivery.ToString(),
                     TrackingOrderId = _warehouseRepo.GetLastObjectInTrackingOrder(),
                     WarehouseId = warehouseCartList[i].WarehouseID,
@@ -212,9 +217,11 @@ namespace ViewModel.Pages.LogisticsHandle
         }
         private  void CallObjectFromJson()
         {
+ 
             receivingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "ReceivingShippers");
             sendingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "SendingShippers");
             warehouseCartList = SessionHelper.GetObjectFromJson<List<WarehouseCart>>(HttpContext.Session, "ListWarehouseinRoute");
+            warehouse = _warehouseRepo.GetAllAsync();
         }
 
 

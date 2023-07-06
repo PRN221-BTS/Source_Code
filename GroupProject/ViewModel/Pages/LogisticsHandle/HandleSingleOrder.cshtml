@@ -35,17 +35,14 @@
             <br />
             <button asp-page-handler="InfoShipper" type="submit" class="btn btn-outline-info" title="Info">Info</button>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">View Shipper below Warehouse</button>
-
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">List Shipper below Warehouse</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <p>Try scrolling the rest of the page to see this option in action.</p>
                     @foreach(var item in Model.warehouse)
                     {
-                      
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo{@item.WarehouseId}">
@@ -56,9 +53,11 @@
                                 <div class="accordion-body">
                                     @foreach (var item1 in item.Shippers)
                                     {
+                                        <div>@item1.ShipperId</div>
                                         <div> @item1.Email  </div>
+                                        <div>@item1.PhoneNumber</div>
+                                        <br />
                                     }
-                                    <div>com suon hoc mon</div>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +169,10 @@
                 <p>Try scrolling the rest of the page to see this option in action.</p>
                 @foreach (var item in Model.warehouse)
                 {
+                    @item.WarehouseId 
+                    
                     @item.WarehouseName
+                    <br/>
                 }
             </div>
         </div>
