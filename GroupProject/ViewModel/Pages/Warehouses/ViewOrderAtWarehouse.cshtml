@@ -16,18 +16,37 @@
             <th>Order ID</th>
             <th scope="col">Receiving Address</th>
             <th scope="col">Sending Address</th>
+            <th scope="col">Sequence Number</th>
             <th scope="col">Note</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var order in Model.Orders)
         {
-            <tr>
-                <td>@order.OrderId</td>
-                <td>@order.ReceivingAddress</td>
-                <td>@order.SendingAddress</td>
-                <td>@order.Note</td>
-            </tr>
+            foreach (var trackingOrder in order.TrackingOrders)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.ReceivingAddress</td>
+                    <td>@order.SendingAddress</td>
+                    <td>@trackingOrder.SequenceNumber</td>
+                    <td>@order.Note</td>
+                    <td>
+                        @if (trackingOrder.TrackingStatus == "Delivery")
+                        {
+                            <form method="post" asp-page-handler="MarkAsDelivered">
+                                <input type="hidden" name="trackingOrderId" value="@trackingOrder.TrackingOrderId" />
+                                <button type="submit">Mark as Delivered</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span>Done</span>
+                        }
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

@@ -20,6 +20,8 @@ namespace ViewModel.Pages.Warehouses
         public IList<TrackingOrder> TrackingOrders { get; set; }
         public IList<Order> Orders { get; set; }
         public int WarehouseId { get; set; }
+        public int SequenceNumber { get; set; }
+
         public void OnGet()
         {
             Warehouse warehouse = _warehouseRepository.getWarehouseInfoByWarehouseManagerID(int.Parse(HttpContext.Session.GetString("WarehouseID")));
@@ -33,6 +35,34 @@ namespace ViewModel.Pages.Warehouses
                 .Where(order => order.TrackingOrders.Any(trackingOrder => trackingOrder.WarehouseId == WarehouseId))
                 .Where(order => order.Status == "Processing")
                 .ToList();
+
+            foreach (var order in Orders)
+            {
+                // Get the tracking orders for the current order
+                var trackingOrders = _context.TrackingOrders
+                    .Where(trackingOrder => trackingOrder.OrderId == order.OrderId)
+                    .ToList();
+
+                for (int i = 0; i < trackingOrders.Count; i++)
+                {
+                    trackingOrders[i].SequenceNumber = i + 1;
+                }
+
+                order.TrackingOrders = trackingOrders;
+            }
+        }
+
+        public IActionResult OnPostMarkAsDelivered(int trackingOrderId)
+        {
+            var trackingOrder = _context.TrackingOrders.Find(trackingOrderId);
+
+            if (trackingOrder != null && trackingOrder.TrackingStatus == "Delivery")
+            {
+                trackingOrder.TrackingStatus = "Shipped";
+                _context.SaveChanges();
+            }
+
+            return RedirectToPage();
         }
     }
 }
