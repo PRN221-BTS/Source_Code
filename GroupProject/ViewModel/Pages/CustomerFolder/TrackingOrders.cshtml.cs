@@ -39,8 +39,7 @@ namespace ViewModel.Pages
 
         public void AddColorPropertyProcess()
         {
-  
-           receivingInfo.ColorProperty = receivingInfo.RouteStatus == OrderInRouteState.Done.ToString() ?  DoneProperties :NotYetProperties;
+            receivingInfo.ColorProperty = receivingInfo.RouteStatus == OrderInRouteState.Done.ToString() ?  DoneProperties :NotYetProperties;
             sendingInfo.ColorProperty = sendingInfo.RouteStatus == OrderInRouteState.Done.ToString() ? DoneProperties : NotYetProperties;
             foreach (var item in warehouseTrackingInfos)
             {

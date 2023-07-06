@@ -6,7 +6,7 @@
 
     <div class="col-md-4">
         <div class="mb-3">
-            <h2>Ware information</h2>
+            <h2>Information</h2>
         </div>
         <div class="mb-3">
             <label asp-for="warehouseManager.WarehouseManagerId" id="disabledTextInput" class="form-label"></label>
@@ -21,7 +21,7 @@
         <div class="mb-3">
             <label asp-for="warehouseManager.Email" class="form-label"></label>
             <br />
-            <input type="number" value="@Model.warehouseManager.Email" />
+            <input type="text" value="@Model.warehouseManager.Email" />
         </div>
         <div class="mb-3">
             <label asp-for="warehouseManager.Password" class="form-label"></label>
@@ -47,6 +47,14 @@
             <label asp-for="warehouse.Location" class="form-label"></label>
             <br />
             <input type="text" value="@Model.warehouse.Location" disabled />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="mb-3">
+            <h2>Order Manager</h2>
+        </div>
+        <div class="mb-3">
+
         </div>
     </div>
 </div>
