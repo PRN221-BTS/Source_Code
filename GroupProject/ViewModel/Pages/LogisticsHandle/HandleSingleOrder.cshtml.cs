@@ -175,7 +175,7 @@ namespace ViewModel.Pages.LogisticsHandle
                 OrderInRouteId = _orderRepository.GetLastIDinOrderInRoutes() + 1,
                 OrderId = int.Parse(TempData["id"].ToString()),
                 RouteId = receivingRoute.RouteId
-                ,Status = OrderInRouteState.Pending.ToString()
+                ,Status = OrderInRouteState.Coming.ToString()
             };
          await   AddNewRoute(receivingRoute);
           await  _orderRepository.AddOrderInRoute(orderInRouteInReceivingRoute);

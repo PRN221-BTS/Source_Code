@@ -24,7 +24,7 @@
         <h4> Add Shipper to Route</h4>
         <form method="post" >
             @*<label for="exampleDataList" class="form-label">Datalist example</label>*@
-            <input class="form-control" list="datalistOptions" id="exampleDataList11" name="warehouseKeyWord" placeholder="Type to search..."/>
+            <input class="form-control" list="datalistOptions" id="exampleDataList11" name="warehouseKeyWord" placeholder="Type Shipper ID" required/>
 
 @*        <datalist id="datalistOptions">
                 @foreach (var item in Model.warehouse)
@@ -33,7 +33,7 @@
                 }
             </datalist>*@
             <br />
-            <button asp-page-handler="InfoShipper" type="submit" class="btn btn-outline-info" title="Info">Info</button>
+            <button asp-page-handler="InfoShipper" type="submit" class="btn btn-outline-info" title="Info">Accept</button>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">View Shipper below Warehouse</button>
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -159,7 +159,7 @@
         </table>
         <br />
         <h4>Add Warehouse to Route</h4>
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions1" aria-controls="offcanvasWithBothOptions1">Enable both scrolling & backdrop</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions1" aria-controls="offcanvasWithBothOptions1">Warehouse List</button>
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions1" aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
@@ -180,11 +180,11 @@
         <form class="row g-3" method="post">
             <div class="col-auto">
                 <label for="staticEmail2" class="visually-hidden">Warehouse</label>
-                <input type="number"  class="form-control-plaintext" id="staticEmail2"  name="WarehouseId">
+                <input type="number"  class="form-control-plaintext" id="staticEmail2"  name="WarehouseId" placeholder="Warehouse ID" required>
             </div>
             <div class="col-auto">
                 <label for="staticEmail2" class="visually-hidden">Sequence Number </label>
-                <input type="number" class="form-control-plaintext" id="staticEmail2" name="sequenceNumberWarehouse">
+                <input type="number" class="form-control-plaintext" id="staticEmail2" name="sequenceNumberWarehouse" placeholder="Sequence Number" required>
             </div>
             <div class="col-auto">
                 <span>@TempData["ErrorInSequenceNumber"]</span>
@@ -201,11 +201,10 @@
         <table>
             <form method="post" asp-page="handlesingleorder">
             <tr>
+                <th>Sequence Number</th>
+                <th>Warehouse ID</th>
                 <th>Warehouse  Name</th>
                 <th>Warehouse Location</th>
-                <th>Warehouse Manager Name</th>
-                <th>Warehouse Email</th>
-                <th>Warehouse PhoneNumber</th>
             </tr>
                 @if (Model.warehouseCartList is not null)
                 {
@@ -213,6 +212,7 @@
                     {
                     <tr aligin="center">
                         <td>@item.SequenceNumber</td>
+                        <td>@item.WarehouseID</td>
                         <td>@item.WarehouseName</td>
                         <td>@item.WarehouseLocation</td>
                         <td align="center">

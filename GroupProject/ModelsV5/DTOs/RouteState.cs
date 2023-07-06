@@ -9,6 +9,7 @@ namespace ModelsV5.DTOs
     public   enum RouteState
     {
         Receiving,
-        Sending
+        Sending,
+        Coming
     }
 }
