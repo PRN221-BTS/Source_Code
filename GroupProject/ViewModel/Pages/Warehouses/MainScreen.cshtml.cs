@@ -8,8 +8,8 @@ namespace ViewModel.Pages.Warehouses
     public class MainScreenModel : PageModel
     {
 
-        private static IWarehouseManagerRepository _wareManagerhouseRepo;
-        private static IWarehouseRepository _warehouseRepository;
+        private IWarehouseManagerRepository _wareManagerhouseRepo;
+        private IWarehouseRepository _warehouseRepository;
         public MainScreenModel(IWarehouseManagerRepository warehouseMangerRepo,IWarehouseRepository warehouseRepo)
         {
             _wareManagerhouseRepo = warehouseMangerRepo;
@@ -22,8 +22,8 @@ namespace ViewModel.Pages.Warehouses
         public WarehouseManager warehouseManager { get; set; }
         public void OnGet()
         {
-            _warehouseRepository.getWarehouseInfoByWarehouseManagerID(int.Parse(HttpContext.Session.GetString("UserID")));
-            _wareManagerhouseRepo.GetByIdAsync(int.Parse(HttpContext.Session.GetString("UserID")));
+            warehouse = _warehouseRepository.getWarehouseInfoByWarehouseManagerID(int.Parse(HttpContext.Session.GetString("UserID")));
+            warehouseManager = _wareManagerhouseRepo.GetByIdAsync(int.Parse(HttpContext.Session.GetString("UserID")));
         }
     }
 }

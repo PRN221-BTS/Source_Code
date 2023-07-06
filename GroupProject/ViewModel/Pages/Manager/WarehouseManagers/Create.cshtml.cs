@@ -17,7 +17,7 @@ namespace ViewModel.Pages.Manager.WarehouseManagers
         private static IWarehouseManagerRepository _warehouseManager;
 
         [BindProperty]
-        public WarehouseManager warehouseManager { get; set; }
+        public WarehouseManager warehouseManager { get; set; } = new WarehouseManager();
         public CreateModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseManagerRepository warehouseManager)
         {
             _context = context;
@@ -32,8 +32,6 @@ namespace ViewModel.Pages.Manager.WarehouseManagers
 
         [BindProperty]
         public Warehouse Warehouse { get; set; } = default!;
-        public WarehouseManager WarehouseManager { get; set; } = default!;
-
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -43,17 +41,18 @@ namespace ViewModel.Pages.Manager.WarehouseManagers
                 return Page();
             }
 
-            var checkExistedWarehouse = await _context.Warehouses.FindAsync(Warehouse.WarehouseId);
+           var checkExistedWarehouse = await _context.Warehouses.FindAsync(Warehouse.WarehouseId);
             while (checkExistedWarehouse != null)
             {
                 Warehouse.WarehouseId++;
                 checkExistedWarehouse = await _context.Warehouses.FindAsync(Warehouse.WarehouseId);
             }
 
-            var warehouseManager = new WarehouseManager();
-
             Warehouse.WarehouseManagerId = Warehouse.WarehouseId;
             warehouseManager.WarehouseManagerId = Warehouse.WarehouseId;
+            warehouseManager.WarehouseManagerName = warehouseManager.WarehouseManagerName;
+            warehouseManager.PhoneNumber = warehouseManager.PhoneNumber;
+            warehouseManager.Password = warehouseManager.Password;
 
             _context.Warehouses.Add(Warehouse);
             await _warehouseManager.AddAsync(warehouseManager);

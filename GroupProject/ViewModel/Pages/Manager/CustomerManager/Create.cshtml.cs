@@ -38,6 +38,14 @@ namespace ViewModel.Pages.Manager.CustomerManager
             {
                 return Page();
             }
+                
+            var existingCustomer = _context.Customers.FirstOrDefault(c => c.Email == Customer.Email);
+
+            if (existingCustomer != null)
+            {
+                ModelState.AddModelError(string.Empty, "Email already exists.");
+                return Page();
+            }
 
             var checkExistedCustomer = await _context.Customers.FindAsync(Customer.CustomerId);
             
@@ -46,9 +54,6 @@ namespace ViewModel.Pages.Manager.CustomerManager
                 Customer.CustomerId++;
                 checkExistedCustomer = await _context.Customers.FindAsync(Customer.CustomerId);
             }
-
-            //var checkEmail = await _context.Customers.FindAsync(Customer.Email);
-            //if (checkEmail != null) throw new Exception("Email existed");
 
             //await _customerRepository.AddAsync(Customer);
             _context.Customers.Add(Customer);
