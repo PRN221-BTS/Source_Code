@@ -10,7 +10,7 @@
     <div class="col-3 ">
         <label asp-for="customer.CustomerId"></label>
         <br />
-        <input type="text" asp-for="customer.CustomerId" placeholder="@Model.customer.CustomerId" width="auto" height="auto">
+        <input type="text" asp-for="customer.CustomerId" placeholder="@Model.customer.CustomerId" width="auto" height="auto" disabled>
     </div>
     <div class="col-3 ">
         <label asp-for="customer.CustomerName"></label>
@@ -25,7 +25,7 @@
     <div class="col-3">
         <label asp-for="customer.Password"></label>
         <br />
-        <input type="text" asp-for="customer.Password" placeholder="@Model.customer.Password">
+        <input type="text" asp-for="customer.Password" placeholder="@Model.customer.Password" width="auto" >
     </div>
     <div class="col-3">
         <label asp-for="customer.Phone"></label>

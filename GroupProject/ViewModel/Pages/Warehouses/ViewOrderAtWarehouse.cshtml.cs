@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ModelsV5.DAOs;
+using ModelsV5.DTOs;
+using Repositories.HandleViewFormat;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Warehouses
@@ -10,17 +12,20 @@ namespace ViewModel.Pages.Warehouses
     {
         private readonly ModelsV5.DAOs.BirdTransportationSystemContext _context;
         private IWarehouseRepository _warehouseRepository;
+        private static WarehouseTrackingFormat _trackingFormat;
 
-        public ViewOrderAtWarehouseModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseRepository warehouseRepository)
+        public ViewOrderAtWarehouseModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseRepository warehouseRepository, WarehouseTrackingFormat trackingFormat)
         {
             _context = context;
             _warehouseRepository = warehouseRepository;
+            _trackingFormat = trackingFormat;
         }
         public IList<Warehouse> Warehouses { get; set; }
         public IList<TrackingOrder> TrackingOrders { get; set; }
         public IList<Order> Orders { get; set; }
         public int WarehouseId { get; set; }
         public int SequenceNumber { get; set; }
+        public List<OrderInWarehouse> orderInWarehouses { get; set; }
 
         public void OnGet()
         {
@@ -38,9 +43,9 @@ namespace ViewModel.Pages.Warehouses
 
             foreach (var order in Orders)
             {
-                // Get the tracking orders for the current order
+                //  Get the tracking orders for the current order
                 var trackingOrders = _context.TrackingOrders
-                    .Where(trackingOrder => trackingOrder.OrderId == order.OrderId)
+                  .Where(trackingOrder => trackingOrder.OrderId == order.OrderId)
                     .ToList();
 
                 for (int i = 0; i < trackingOrders.Count; i++)
@@ -50,6 +55,9 @@ namespace ViewModel.Pages.Warehouses
 
                 order.TrackingOrders = trackingOrders;
             }
+            orderInWarehouses = _trackingFormat.orderInWarehouses(int.Parse(HttpContext.Session.GetString("WarehouseID")));
+
+
         }
 
         public IActionResult OnPostMarkAsDelivered(int trackingOrderId)

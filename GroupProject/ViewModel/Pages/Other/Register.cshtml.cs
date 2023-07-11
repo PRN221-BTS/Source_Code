@@ -42,7 +42,7 @@ namespace ViewModel.Pages.Other
             }
             Customer customer = new Customer
             {
-                CustomerId = _customerRepo.GetLastID(),
+                CustomerId = _customerRepo.GetLastID()+1,
                 CustomerName = register.CustomerName,
                 Email = register.CustomerEmail,
                 Password = register.Password,

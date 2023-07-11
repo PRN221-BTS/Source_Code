@@ -22,31 +22,33 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var order in Model.Orders)
+        @foreach (var item in Model.orderInWarehouses)
         {
-            foreach (var trackingOrder in order.TrackingOrders)
-            {
-                <tr>
-                    <td>@order.OrderId</td>
-                    <td>@order.ReceivingAddress</td>
-                    <td>@order.SendingAddress</td>
-                    <td>@trackingOrder.SequenceNumber</td>
-                    <td>@order.Note</td>
-                    <td>
-                        @if (trackingOrder.TrackingStatus == "Delivery")
-                        {
-                            <form method="post" asp-page-handler="MarkAsDelivered">
-                                <input type="hidden" name="trackingOrderId" value="@trackingOrder.TrackingOrderId" />
-                                <button type="submit">Mark as Delivered</button>
-                            </form>
-                        }
-                        else
-                        {
-                            <span>Done</span>
-                        }
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.receivingAddress</td>
+                <td>@item.sendingAddress</td>
+                <td>@item.sequenceNumber</td>
+                <td>@item.Note</td>
+                <td>
+                    @if (item.TrackingStatus == "Delivery" || item.TrackingStatus == "Coming")
+                    {
+                        <form method="post" asp-page-handler="MarkAsDelivered">
+                            <input type="hidden" name="trackingOrderId" value="@item.TrackingOrderId" />
+                            <button type="submit">Mark as Delivered</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span>Done</span>
+                    }
+                    @if (item.TrackingStatus == "InRoute")
+                    {
+                        <span>In Route</span>
+                    }
+                </td>
+            </tr>
+        }
         }
     </tbody>
 </table>
