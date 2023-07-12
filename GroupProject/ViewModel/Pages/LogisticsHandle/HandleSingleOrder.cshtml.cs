@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
 using ModelsV5.DAOs;
 using ModelsV5.DTOs;
+using ModelsV5.DTOs.State;
 using Repositories.HandleViewFormat;
 using Repositories.IRepository;
 using Route = ModelsV5.DAOs.Route;
@@ -240,6 +241,10 @@ namespace ViewModel.Pages.LogisticsHandle
             }
 
             _orderRepository.UpdatetoProcessingState(int.Parse(TempData["id"].ToString()));
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "SendingShippers", null);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "ReceivingShippers", null);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "ListWarehouseinRoute", null);
+
             return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
         }
         private  void CallObjectFromJson()

@@ -1,5 +1,6 @@
 ﻿using ModelsV5.DAOs;
 using ModelsV5.DTOs;
+using ModelsV5.DTOs.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +34,37 @@ namespace Repositories.HandleViewFormat
                               sequenceNumber = (int)trackingorder.SequenceNumber,
                               TrackingStatus = trackingorder.TrackingStatus,
                               TrackingOrderId = trackingorder.TrackingOrderId
+                             
                           }).ToList();
+
+
+
             return result;
         }
+
+
+        public  OrderInRoute getOrderInRouteByTrackingOrderID(int trackingOrderID,string orderType,string orderinrouteStatus)
+        {
+           OrderInRoute result = (from trackingorder in _context.TrackingOrders
+                         join order in _context.Orders on trackingorder.OrderId equals order.OrderId
+                         join orderinroute in _context.OrderInRoutes on order.OrderId equals orderinroute.OrderId
+                         join warehouse in _context.Warehouses on trackingorder.WarehouseId equals warehouse.WarehouseId
+                         join shipper in _context.Shippers on warehouse.WarehouseId equals shipper.WarehouseId
+                         join route in _context.Routes on shipper.ShipperId equals route.ShipperId
+                         where trackingorder.TrackingOrderId == trackingOrderID && orderinroute.Status == orderinrouteStatus && route.Type == orderType
+                         select new OrderInRoute
+                         {
+                             OrderInRouteId = orderinroute.OrderInRouteId,
+                             OrderId = orderinroute.OrderId,
+                             RouteId = orderinroute.RouteId,
+                             Status = orderinroute.Status,
+                         }).FirstOrDefault();
+
+            return result;
+        }
+
+  
+
+        
     }
 }

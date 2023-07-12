@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelsV5.DTOs
+namespace ModelsV5.DTOs.State
 {
-    public   enum RouteState
+    public enum OrderInRouteState
     {
-        Receiving,
-        Sending,
+        Pending,
+        Done,
         Coming
     }
 }

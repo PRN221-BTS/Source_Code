@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<ITrackingOrderRepository, TrackingOrderRepository>();    
 builder.Services.AddTransient<WarehouseTrackingFormat>();
 builder.Services.AddTransient<OrderTrackingFormat>();
 builder.Services.AddTransient<IOrderDetailRepository, OrderDetailRepository>();

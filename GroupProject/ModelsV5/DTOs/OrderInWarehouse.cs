@@ -19,6 +19,8 @@ namespace ModelsV5.DTOs
         public string Note { get; set; }
         public string TrackingStatus { get; set; }
         public int TrackingOrderId { get; set; }
+
+        public bool LastWarehouse { get ; set; } = false;
      
     }
 }

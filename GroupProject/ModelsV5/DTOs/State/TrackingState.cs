@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelsV5.DTOs
+namespace ModelsV5.DTOs.State
 {
     public enum TrackingState
     {
@@ -17,12 +17,12 @@ namespace ModelsV5.DTOs
         UnProcessing,
         Pending,
         Canceling,
-//đã chuyển qua kho khác
+        //đã chuyển qua kho khác
         Shipped,
         Coming,
         Processing
 
-        
+
 
 
     }

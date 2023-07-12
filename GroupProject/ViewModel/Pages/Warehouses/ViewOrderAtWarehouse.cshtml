@@ -31,14 +31,36 @@
                 <td>@item.sequenceNumber</td>
                 <td>@item.Note</td>
                 <td>
-                    @if (item.TrackingStatus == "Delivery" || item.TrackingStatus == "Coming")
+                    @if ( item.TrackingStatus == "Coming")
                     {
                         <form method="post" asp-page-handler="MarkAsDelivered">
                             <input type="hidden" name="trackingOrderId" value="@item.TrackingOrderId" />
                             <button type="submit">Mark as Delivered</button>
                         </form>
                     }
-                    else
+                    @if (item.TrackingStatus == "Delivery")
+                    {
+                        <form method="post" asp-page-handler="AddToWarehouse">
+                            <input type="hidden" name="trackingOrderId" value="@item.TrackingOrderId" />
+                            <button type="submit">Receive Order</button>
+                        </form>
+                    }
+                    @if (item.TrackingStatus == "InWarehouse" && item.LastWarehouse == true)
+                    {
+                        <form method="post" asp-page-handler="SendOrderToCustomer">
+                            <input type="hidden" name="trackingOrderId" value="@item.TrackingOrderId" />
+                            <button type="submit">Send  Order To Customer</button>
+                        </form>
+                    }
+                    @if (item.TrackingStatus == "InWarehouse" && item.LastWarehouse == false)
+                    {
+                        <form method="post" asp-page-handler="SendWarehouseToNextWarehouse">
+                            <input type="hidden" name="trackingOrderId" value="@item.TrackingOrderId" />
+                            <button type="submit">Transfer Order</button>
+                        </form>
+                    }
+                  
+                    @if(item.TrackingStatus == "Shipped")
                     {
                         <span>Done</span>
                     }

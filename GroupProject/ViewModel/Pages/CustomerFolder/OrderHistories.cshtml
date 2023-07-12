@@ -43,9 +43,17 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                     <td>
-                        <a asp-page="./CancelOrder" asp-route-id="@item.OrderId">Cancel Order</a> |
-                        <a asp-page="./OrderDetailHistories" asp-route-id="@item.OrderId">Details</a> |
+                    @if(item.Status == "Processing")
+                    {
                         <a asp-page="./TrackingOrders" asp-route-id="@item.OrderId">Tracking Order</a>
+                    }
+                    @if(item.Status == "UnProcessing")
+                    {
+                        <a asp-page="./CancelOrder" asp-route-id="@item.OrderId">Cancel Order</a> 
+ 
+                    }
+                        <a asp-page="./OrderDetailHistories" asp-route-id="@item.OrderId">Details</a> |
+                     
                     </td>
             </tr>   
         }

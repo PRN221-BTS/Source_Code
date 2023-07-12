@@ -11,8 +11,18 @@ namespace Repositories.IRepository
     {
         Task<bool> AddAsync(TrackingOrder trackingOrder);
         Task<IEnumerable<TrackingOrder>> GetAllAsync();
-        Task<TrackingOrder?> GetByIdAsync(int id);
+        public TrackingOrder GetByIdAsync(int id);
         bool Remove(int id);
         bool Update(TrackingOrder trackingOrder);
+
+         bool UpdateSuccessStateInOrderInBatch(int trackingOrderId);
+
+        bool UpdateInWarehouseStateInTrackingOrderWithDeliveryState(int trackingOrderId);
+
+        bool UpdateComingStateInTrackingOrder(int trackingOrderId);
+
+         bool UpdateShippedStateInTrackingOrderToInWarehouseState(int trackingOrderId);
+
+         bool SendOrderToCustomer(int trackingOrderId);
     }
 }

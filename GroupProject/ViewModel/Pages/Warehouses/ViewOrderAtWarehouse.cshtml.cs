@@ -13,12 +13,13 @@ namespace ViewModel.Pages.Warehouses
         private readonly ModelsV5.DAOs.BirdTransportationSystemContext _context;
         private IWarehouseRepository _warehouseRepository;
         private static WarehouseTrackingFormat _trackingFormat;
-
-        public ViewOrderAtWarehouseModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseRepository warehouseRepository, WarehouseTrackingFormat trackingFormat)
+        private static ITrackingOrderRepository _trackingOrderRepo;
+        public ViewOrderAtWarehouseModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseRepository warehouseRepository, WarehouseTrackingFormat trackingFormat, ITrackingOrderRepository trackingOrderRepo)
         {
             _context = context;
             _warehouseRepository = warehouseRepository;
             _trackingFormat = trackingFormat;
+            _trackingOrderRepo = trackingOrderRepo;
         }
         public IList<Warehouse> Warehouses { get; set; }
         public IList<TrackingOrder> TrackingOrders { get; set; }
@@ -55,22 +56,57 @@ namespace ViewModel.Pages.Warehouses
 
                 order.TrackingOrders = trackingOrders;
             }
+            
             orderInWarehouses = _trackingFormat.orderInWarehouses(int.Parse(HttpContext.Session.GetString("WarehouseID")));
-
+            for (int i = 0; i < orderInWarehouses.Count(); i++)
+            {
+                if (CheckSequenceNumber(orderInWarehouses[i].OrderId, orderInWarehouses[i].sequenceNumber))
+                {
+                    orderInWarehouses[i].LastWarehouse = true;
+                }
+                else
+                {
+                    orderInWarehouses[i].LastWarehouse = false;
+                }
+            }
 
         }
 
         public IActionResult OnPostMarkAsDelivered(int trackingOrderId)
         {
-            var trackingOrder = _context.TrackingOrders.Find(trackingOrderId);
+            _trackingOrderRepo.UpdateShippedStateInTrackingOrderToInWarehouseState(trackingOrderId);
+            return RedirectToPage();
+        }
 
-            if (trackingOrder != null && trackingOrder.TrackingStatus == "Delivery")
+
+        public IActionResult OnPostSendOrderToCustomer(int trackingOrderId)
+        {
+            _trackingOrderRepo.SendOrderToCustomer(trackingOrderId);    
+            return RedirectToPage();
+        }
+
+        public ActionResult OnPostAddToWarehouse(int trackingOrderId)
+        {
+
+            _trackingOrderRepo.UpdateInWarehouseStateInTrackingOrderWithDeliveryState(trackingOrderId);
+            return RedirectToPage();
+        }
+
+        public ActionResult OnPostSendWarehouseToNextWarehouse(int trackingOrderId)
+        {
+            _trackingOrderRepo.UpdateComingStateInTrackingOrder(trackingOrderId);
+            return RedirectToPage();
+        }
+
+        public bool CheckSequenceNumber(int orderId, int sequencenumber)
+        {
+            var listTrackingOrder = _context.TrackingOrders.OrderByDescending(x => x.SequenceNumber).FirstOrDefault(x => x.OrderId == orderId);
+            if (listTrackingOrder.SequenceNumber == sequencenumber)
             {
-                trackingOrder.TrackingStatus = "Shipped";
-                _context.SaveChanges();
+                return true;
             }
 
-            return RedirectToPage();
+            return false;
         }
     }
 }

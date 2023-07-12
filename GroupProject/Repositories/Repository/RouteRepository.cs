@@ -1,5 +1,5 @@
 ﻿using ModelsV5.DAOs;
-using ModelsV5.DTOs;
+using ModelsV5.DTOs.State;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
