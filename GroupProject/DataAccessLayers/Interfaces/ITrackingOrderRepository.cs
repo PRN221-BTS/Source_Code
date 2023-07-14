@@ -24,5 +24,6 @@ namespace DataAccessLayers.Interfaces
          bool UpdateShippedStateInTrackingOrderToInWarehouseState(int trackingOrderId);
 
          bool SendOrderToCustomer(int trackingOrderId);
+        TrackingOrder getNextTrackingOrder(TrackingOrder trackingOrder);
     }
 }

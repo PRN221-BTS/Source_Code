@@ -16,59 +16,26 @@ namespace Services
         {
             _repository = repository;
         }
-        public Task<bool> AddAsync(TrackingOrder trackingOrder)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddAsync(TrackingOrder trackingOrder) => _repository.AddAsync(trackingOrder);
 
-        public Task<IEnumerable<TrackingOrder>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<TrackingOrder>> GetAllAsync() => _repository.GetAllAsync();
 
-        public TrackingOrder GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public TrackingOrder GetByIdAsync(int id) => _repository.GetByIdAsync(id);
 
-        public TrackingOrder getNextTrackingOrder(TrackingOrder trackingOrder)
-        {
-            throw new NotImplementedException();
-        }
+        public TrackingOrder getNextTrackingOrder(TrackingOrder trackingOrder) => _repository.getNextTrackingOrder(trackingOrder);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _repository.Remove(id);
 
-        public bool SendOrderToCustomer(int trackingOrderId)
-        {
-            throw new NotImplementedException();
-        }
+        public bool SendOrderToCustomer(int trackingOrderId) => _repository.SendOrderToCustomer(trackingOrderId);
 
-        public bool Update(TrackingOrder trackingOrder)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(TrackingOrder trackingOrder) => _repository.Update(trackingOrder);
 
-        public bool UpdateComingStateInTrackingOrder(int trackingOrderId)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdateComingStateInTrackingOrder(int trackingOrderId) => _repository.UpdateComingStateInTrackingOrder(trackingOrderId);
 
-        public bool UpdateInWarehouseStateInTrackingOrderWithDeliveryState(int trackingOrderId)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdateInWarehouseStateInTrackingOrderWithDeliveryState(int trackingOrderId) => _repository.UpdateInWarehouseStateInTrackingOrderWithDeliveryState(trackingOrderId);
 
-        public bool UpdateShippedStateInTrackingOrderToInWarehouseState(int trackingOrderId)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdateShippedStateInTrackingOrderToInWarehouseState(int trackingOrderId) => _repository.UpdateShippedStateInTrackingOrderToInWarehouseState(trackingOrderId);
 
-        public bool UpdateSuccessStateInOrderInBatch(int trackingOrderId)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdateSuccessStateInOrderInBatch(int trackingOrderId) => _repository.UpdateSuccessStateInOrderInBatch(trackingOrderId);
     }
 }

@@ -19,5 +19,6 @@ namespace DataAccessLayers.Interfaces
         public int GetLastValueObject();
 
         public bool UpdateRouteStatusToDoneById(int id);
+        OrderInRoute GetOrderInRouteById(int id);
     }
 }

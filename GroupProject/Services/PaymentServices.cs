@@ -16,29 +16,14 @@ namespace Services
         {
             _paymentRepository = paymentRepository;
         }
-        public Task<bool> AddAsync(Payment payment)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddAsync(Payment payment) => _paymentRepository.AddAsync(payment);
 
-        public Task<IEnumerable<Payment>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<Payment>> GetAllAsync() => _paymentRepository.GetAllAsync();
 
-        public Task<Payment> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Payment> GetByIdAsync(int id) => _paymentRepository.GetByIdAsync(id);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _paymentRepository.Remove(id);
 
-        public bool Update(Payment payment)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(Payment payment) => _paymentRepository.Update(payment);
     }
 }

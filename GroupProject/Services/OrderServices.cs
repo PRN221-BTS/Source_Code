@@ -16,49 +16,22 @@ namespace Services
         {
             _orderRepository = orderRepository;
         }
-        public bool AddAsync(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        public bool AddAsync(Order order) => _orderRepository.AddAsync(order);
 
-        public Task<bool> AddOrderInRoute(OrderInRoute orderInRoute)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddOrderInRoute(OrderInRoute orderInRoute) => _orderRepository.AddOrderInRoute(orderInRoute);
 
-        public Task<IEnumerable<Order>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<Order>> GetAllAsync() => _orderRepository.GetAllAsync();
 
-        public Order GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Order GetByIdAsync(int id) => _orderRepository.GetByIdAsync(id);
 
-        public int GetLastIDinOrderInRoutes()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLastIDinOrderInRoutes() => _orderRepository.GetLastIDinOrderInRoutes();
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _orderRepository.Remove(id);
 
-        public List<Order> UnProcessingOrder()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Order> UnProcessingOrder() => _orderRepository.UnProcessingOrder();
 
-        public bool Update(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(Order order) => _orderRepository.Update(order);
 
-        public bool UpdatetoProcessingState(int orderID)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdatetoProcessingState(int orderID) => _orderRepository.UpdatetoProcessingState(orderID);
     }
 }

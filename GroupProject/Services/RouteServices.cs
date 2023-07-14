@@ -16,49 +16,22 @@ namespace Services
         {
             _routeRepository = routeRepository;
         }
-        public Task<bool> AddAsync(Payment payment)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddAsync(Payment payment) => _routeRepository.AddAsync(payment);
 
-        public Task<bool> AddNewRoute(Route route)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddNewRoute(Route route) => _routeRepository.AddNewRoute(route);
 
-        public Task<IEnumerable<Payment>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<Payment>> GetAllAsync() => _routeRepository.GetAllAsync();
 
-        public Task<Payment?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Payment?> GetByIdAsync(int id) => _routeRepository.GetByIdAsync(id);
 
-        public int GetLastValueObject()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLastValueObject() => _routeRepository.GetLastValueObject();
 
-        public OrderInRoute GetOrderInRouteById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public OrderInRoute GetOrderInRouteById(int id) => _routeRepository.GetOrderInRouteById(id);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _routeRepository.Remove(id);
 
-        public bool Update(Payment payment)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(Payment payment) => _routeRepository.Update(payment);
 
-        public bool UpdateRouteStatusToDoneById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdateRouteStatusToDoneById(int id) => _routeRepository.UpdateRouteStatusToDoneById(id);
     }
 }

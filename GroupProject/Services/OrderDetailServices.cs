@@ -16,54 +16,24 @@ namespace Services
         {
             _orderDetailRepository = orderDetailRepository;
         }
-        public bool AddNewOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        public bool AddNewOrder(Order order) => _orderDetailRepository.AddNewOrder(order);
 
-        public Task<bool> AddNewOrderDetail(OrderDetail orderDetail)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddNewOrderDetail(OrderDetail orderDetail) => _orderDetailRepository.AddNewOrderDetail(orderDetail);
 
-        public bool CancelOrderbyOrderID(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool CancelOrderbyOrderID(int id) => _orderDetailRepository.CancelOrderbyOrderID(id);
 
-        public List<Order> GetAllOrderByCusotmetID(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Order> GetAllOrderByCusotmetID(int id) => _orderDetailRepository.GetAllOrderByCusotmetID(id);
 
-        public int GetLastOrder()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLastOrder() => _orderDetailRepository.GetLastOrder();
 
-        public int GetLastOrderDetailId()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLastOrderDetailId() => _orderDetailRepository.GetLastOrderDetailId();
 
-        public Order GetOrderById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Order GetOrderById(int id) => _orderDetailRepository.GetOrderById(id);
 
-        public List<OrderDetail> GetOrderDetailByOrderId(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public List<OrderDetail> GetOrderDetailByOrderId(int id) => _orderDetailRepository.GetOrderDetailByOrderId(id);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _orderDetailRepository.Remove(id);
 
-        public bool UpdateOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        public bool UpdateOrder(Order order) => _orderDetailRepository.UpdateOrder(order);
     }
 }

@@ -17,44 +17,20 @@ namespace Services
             _repository = repository;
         }
 
-        public Task<bool> AddAsync(Warehouse customer)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddAsync(Warehouse customer) => _repository.AddAsync(customer);
 
-        public Task<bool> AddTrackingOrder(TrackingOrder order)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddTrackingOrder(TrackingOrder order) => _repository.AddTrackingOrder(order);
 
-        public List<Warehouse> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Warehouse> GetAllAsync() => _repository.GetAllAsync();
 
-        public Warehouse? GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Warehouse? GetByIdAsync(int id) => _repository.GetByIdAsync(id);
 
-        public int GetLastObjectInTrackingOrder()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLastObjectInTrackingOrder() => _repository.GetLastObjectInTrackingOrder();
 
-        public Warehouse getWarehouseInfoByWarehouseManagerID(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Warehouse getWarehouseInfoByWarehouseManagerID(int id) => _repository.getWarehouseInfoByWarehouseManagerID(id);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _repository.Remove(id);
 
-        public bool Update(Warehouse customer)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(Warehouse customer) => _repository.Update(customer);
     }
 }

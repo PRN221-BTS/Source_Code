@@ -16,39 +16,18 @@ namespace Services
         {
             _warehouseManagerRepository = warehouseManagerRepository;
         }
-        public Task<IEnumerable<WarehouseManager>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<WarehouseManager>> GetAllAsync() => _warehouseManagerRepository.GetAllAsync();
 
-        public WarehouseManager GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public WarehouseManager GetByIdAsync(int id) => _warehouseManagerRepository.GetByIdAsync(id);
 
-        public WarehouseManager getWarehouseManagementByWarehouseID(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public WarehouseManager getWarehouseManagementByWarehouseID(int id) => _warehouseManagerRepository.getWarehouseManagementByWarehouseID(id);
 
-        public WarehouseManager Login(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
+        public WarehouseManager Login(string email, string password) => _warehouseManagerRepository.Login(email, password);
 
-        public bool LoginWithRoleWarehouseManager(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
+        public bool LoginWithRoleWarehouseManager(string email, string password) => _warehouseManagerRepository.LoginWithRoleWarehouseManager(email, password);
+;
+        public bool Remove(int id) => _warehouseManagerRepository.Remove(id);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(WarehouseManager customer)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(WarehouseManager customer) => _warehouseManagerRepository.Update(customer);
     }
 }

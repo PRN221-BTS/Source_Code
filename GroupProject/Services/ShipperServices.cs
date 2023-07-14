@@ -16,59 +16,26 @@ namespace Services
         {
             _shipperRepository = shipperRepository;
         }
-        public Task<bool> AddAsync(Shipper shipper)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> AddAsync(Shipper shipper) => _shipperRepository.AddAsync(shipper);
 
-        public Task<IEnumerable<Shipper>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<IEnumerable<Shipper>> GetAllAsync() => _shipperRepository.GetAllAsync();
 
-        public Task<Shipper?> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Shipper?> GetByIdAsync(int id) => _shipperRepository.GetByIdAsync(id);
 
-        public Shipper GetShipperById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Shipper GetShipperById(int id) => _shipperRepository.GetShipperById(id);
 
-        public List<Shipper> GetShippersByWarehouseID(int WarehouseID)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Shipper> GetShippersByWarehouseID(int WarehouseID) => _shipperRepository.GetShippersByWarehouseID(WarehouseID);
 
-        public List<Shipper> GetShippersByWarehouseName(string WarehouseName)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Shipper> GetShippersByWarehouseName(string WarehouseName) => _shipperRepository.GetShippersByWarehouseName(WarehouseName);
 
-        public Warehouse GetWarehouseById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Warehouse GetWarehouseById(int id) => _shipperRepository.GetWarehouseById(id);
 
-        public Shipper Login(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
+        public Shipper Login(string email, string password) => _shipperRepository.Login(email, password);
 
-        public bool Register(Shipper shipper)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Register(Shipper shipper) => _shipperRepository.Register(shipper);
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _shipperRepository.Remove(id);
 
-        public bool Update(Shipper shipper)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(Shipper shipper) => _shipperRepository.Update(shipper);
     }
 }

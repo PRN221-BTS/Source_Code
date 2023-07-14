@@ -16,44 +16,20 @@ namespace Services
         {
             _birdRepository = birdRepository;
         }
-        public bool AddAsync(Bird bird)
-        {
-            throw new NotImplementedException();
-        }
+        public bool AddAsync(Bird bird) => _birdRepository.AddAsync(bird);
 
-        public Bird FindById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Bird FindById(int id) => _birdRepository.FindById(id);
 
-        public List<Bird> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Bird> GetAllAsync() => _birdRepository.GetAllAsync();
 
-        public List<Bird> GetByCustomerID(int CustomerID)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Bird> GetByCustomerID(int CustomerID) => _birdRepository.GetByCustomerID(CustomerID);
 
-        public Bird? GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Bird? GetByIdAsync(int id) => _birdRepository?.GetByIdAsync(id);
 
-        public int GetLastID()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLastID() => _birdRepository.GetLastID();
 
-        public bool Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(int id) => _birdRepository.Remove(id);
 
-        public bool Update(Bird bird)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(Bird bird) => _birdRepository.Update(bird);
     }
 }
