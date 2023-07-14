@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj" />
     <ProjectReference Include="..\DataAccessLayers\DataAccessLayers.csproj" />
-    <ProjectReference Include="..\ModelsV5\ModelsV5.csproj" />
   </ItemGroup>
 
 </Project>
