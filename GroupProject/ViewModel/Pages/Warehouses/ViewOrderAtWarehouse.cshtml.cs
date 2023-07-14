@@ -57,7 +57,7 @@ namespace ViewModel.Pages.Warehouses
                 order.TrackingOrders = trackingOrders;
             }
             
-            orderInWarehouses = _trackingFormat.orderInWarehouses(int.Parse(HttpContext.Session.GetString("WarehouseID")));
+            orderInWarehouses= _trackingFormat.orderInWarehouses(int.Parse(HttpContext.Session.GetString("WarehouseID")));
             for (int i = 0; i < orderInWarehouses.Count(); i++)
             {
                 if (CheckSequenceNumber(orderInWarehouses[i].OrderId, orderInWarehouses[i].sequenceNumber))

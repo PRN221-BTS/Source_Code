@@ -35,7 +35,7 @@ namespace Repositories.HandleViewFormat
                               TrackingStatus = trackingorder.TrackingStatus,
                               TrackingOrderId = trackingorder.TrackingOrderId
                              
-                          }).ToList();
+                          }).OrderByDescending(x => x.OrderId).ToList();
 
 
 
