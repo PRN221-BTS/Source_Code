@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ModelsV5.DAOs;
-using ModelsV5.DTOs;
+using ModelsV6.DAOs;
+using ModelsV6.DTOs;
 using Repositories.HandleViewFormat;
 using Repositories.IRepository;
 
@@ -10,11 +10,11 @@ namespace ViewModel.Pages.Warehouses
 {
     public class ViewOrderAtWarehouseModel : PageModel
     {
-        private readonly ModelsV5.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV6.DAOs.BirdTransportationSystemContext _context;
         private IWarehouseRepository _warehouseRepository;
         private static WarehouseTrackingFormat _trackingFormat;
         private static ITrackingOrderRepository _trackingOrderRepo;
-        public ViewOrderAtWarehouseModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseRepository warehouseRepository, WarehouseTrackingFormat trackingFormat, ITrackingOrderRepository trackingOrderRepo)
+        public ViewOrderAtWarehouseModel(ModelsV6.DAOs.BirdTransportationSystemContext context, IWarehouseRepository warehouseRepository, WarehouseTrackingFormat trackingFormat, ITrackingOrderRepository trackingOrderRepo)
         {
             _context = context;
             _warehouseRepository = warehouseRepository;

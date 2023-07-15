@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ModelsV5.DTOs.State;
-using ModelsV5.DTOs.TrackingOrderObject;
+using ModelsV6.DTOs.State;
+using ModelsV6.DTOs.TrackingOrderObject;
 using Repositories.HandleViewFormat;
 
 namespace ViewModel.Pages

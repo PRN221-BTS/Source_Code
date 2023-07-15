@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
-using ModelsV5.DAOs;
-using ModelsV5.DTOs;
-using ModelsV5.DTOs.State;
+using ModelsV6.DAOs;
+using ModelsV6.DTOs;
+using ModelsV6.DTOs.State;
 using Repositories.HandleViewFormat;
 using Repositories.IRepository;
-using Route = ModelsV5.DAOs.Route;
+using Route = ModelsV6.DAOs.Route;
 
 namespace ViewModel.Pages.LogisticsHandle
 {

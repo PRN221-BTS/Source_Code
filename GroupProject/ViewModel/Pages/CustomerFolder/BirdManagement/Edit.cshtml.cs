@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ModelsV5.DAOs;
+using ModelsV6.DAOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.CustomerFolder.BirdManagement

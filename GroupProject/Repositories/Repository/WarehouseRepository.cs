@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ModelsV5.DAOs;
+using ModelsV6.DAOs;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;

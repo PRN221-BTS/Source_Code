@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using ModelsV5.DAOs;
-using ModelsV5.DTOs;
+using ModelsV6.DAOs;
+using ModelsV6.DTOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Other

@@ -6,19 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ModelsV5.DAOs;
+using ModelsV6.DAOs;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Manager.WarehouseManagers
 {
     public class CreateModel : PageModel
     {
-        private readonly ModelsV5.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV6.DAOs.BirdTransportationSystemContext _context;
         private static IWarehouseManagerRepository _warehouseManager;
 
         [BindProperty]
         public WarehouseManager warehouseManager { get; set; } = new WarehouseManager();
-        public CreateModel(ModelsV5.DAOs.BirdTransportationSystemContext context, IWarehouseManagerRepository warehouseManager)
+        public CreateModel(ModelsV6.DAOs.BirdTransportationSystemContext context, IWarehouseManagerRepository warehouseManager)
         {
             _context = context;
             _warehouseManager = warehouseManager;

@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ModelsV5.DAOs;
+using ModelsV6.DAOs;
 
 namespace ViewModel.Pages.Manager.ShipperManager
 {
     public class CreateModel : PageModel
     {
-        private readonly ModelsV5.DAOs.BirdTransportationSystemContext _context;
+        private readonly ModelsV6.DAOs.BirdTransportationSystemContext _context;
 
-        public CreateModel(ModelsV5.DAOs.BirdTransportationSystemContext context)
+        public CreateModel(ModelsV6.DAOs.BirdTransportationSystemContext context)
         {
             _context = context;
         }

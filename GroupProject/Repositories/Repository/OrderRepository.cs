@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ModelsV5.DAOs;
-using ModelsV5.DTOs.State;
+using ModelsV6.DAOs;
+using ModelsV6.DTOs.State;
 using Repositories.IRepository;
 using System;
 using System.Collections.Generic;
