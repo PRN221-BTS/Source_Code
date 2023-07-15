@@ -25,7 +25,7 @@ namespace Services
         public WarehouseManager Login(string email, string password) => _warehouseManagerRepository.Login(email, password);
 
         public bool LoginWithRoleWarehouseManager(string email, string password) => _warehouseManagerRepository.LoginWithRoleWarehouseManager(email, password);
-;
+
         public bool Remove(int id) => _warehouseManagerRepository.Remove(id);
 
         public bool Update(WarehouseManager customer) => _warehouseManagerRepository.Update(customer);

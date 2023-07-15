@@ -187,7 +187,7 @@ namespace ViewModel.Pages.LogisticsHandle
                 Distance = 500,
                 Price = 500,
                 RouteId = _routeRepository.GetLastValueObject(),
-                ShipperId = receivingShipperList.FirstOrDefault().ShipperId,
+                ShipperId = sendingShipperList.FirstOrDefault().ShipperId,
                 Type = RouteState.Sending.ToString()
                
 
