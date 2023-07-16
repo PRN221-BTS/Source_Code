@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelsV6.DAOs;
 using Repositories.IRepository;
 
-namespace ViewModel.Pages.CustomerFolder
+namespace ViewModel.Pages.CustomerFolder.OrderHandle
 {
     public class OrderHistoriesModel : PageModel
     {

@@ -4,7 +4,7 @@ using ModelsV6.DTOs.State;
 using ModelsV6.DTOs.TrackingOrderObject;
 using Repositories.HandleViewFormat;
 
-namespace ViewModel.Pages
+namespace ViewModel.Pages.CustomerFolder.OrderHandle
 {
     public class TrackingOrdersModel : PageModel
     {
