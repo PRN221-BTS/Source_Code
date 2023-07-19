@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelsV6.DTOs;
-using Repositories.HandleViewFormat;
+using Repositories.HelperRepository.HandleViewFormat;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Shippers

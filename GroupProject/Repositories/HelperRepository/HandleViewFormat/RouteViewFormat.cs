@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositories.HandleViewFormat
+namespace Repositories.HelperRepository.HandleViewFormat
 {
     public class RouteViewFormat
     {
@@ -22,21 +22,23 @@ namespace Repositories.HandleViewFormat
 
 
             var result = (from order in _context.Orders
-                         join orderRoute in _context.OrderInRoutes on order.OrderId equals orderRoute.OrderId
-                         join route in _context.Routes on orderRoute.RouteId equals route.RouteId
-                         where route.ShipperId == id &&  route.Type ==  "Receiving"
-                         select new ReceivingOrder {
+                          join orderRoute in _context.OrderInRoutes on order.OrderId equals orderRoute.OrderId
+                          join route in _context.Routes on orderRoute.RouteId equals route.RouteId
+                          where route.ShipperId == id && route.Type == "Receiving"
+                          select new ReceivingOrder
+                          {
 
-                             Distance = (decimal)route.Distance,
-                             Note = order.Note,
-                             Price = (decimal)route.Price,
-                             ReceivingAddress = order.ReceivingAddress,
-                             Type = route.Type,
-                             RouteID = route.RouteId
-                             ,OrderInRoutes = orderRoute.OrderInRouteId
+                              Distance = (decimal)route.Distance,
+                              Note = order.Note,
+                              Price = (decimal)route.Price,
+                              ReceivingAddress = order.ReceivingAddress,
+                              Type = route.Type,
+                              RouteID = route.RouteId
+                              ,
+                              OrderInRoutes = orderRoute.OrderInRouteId
 
-                         }).ToList();
-       
+                          }).ToList();
+
 
             return result;
 

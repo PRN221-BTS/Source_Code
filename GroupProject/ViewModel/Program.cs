@@ -1,5 +1,5 @@
 using ModelsV6.DAOs;
-using Repositories.HandleViewFormat;
+using Repositories.HelperRepository.HandleViewFormat;
 using Repositories.IRepository;
 using Repositories.Repoository;
 using System.Text.Json.Serialization;
@@ -22,6 +22,7 @@ builder.Services.AddScoped<IBirdRepository, BirdRepository>();
 builder.Services.AddScoped<IShipperRepository,ShipperRepository>();
 builder.Services.AddScoped<IOrderRepository,OrderRepository>();
 builder.Services.AddScoped<BirdTransportationSystemContext, BirdTransportationSystemContext>();
+builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });

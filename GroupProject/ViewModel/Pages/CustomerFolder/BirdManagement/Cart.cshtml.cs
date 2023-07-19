@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ModelsV6.DAOs;
 using ModelsV6.DTOs;
 using ModelsV6.DTOs.State;
@@ -14,16 +15,23 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
         private static IOrderRepository _orderRepo;
         private static IBirdRepository _birdRepo;
         private static IOrderDetailRepository _orderDetailRepo;
+        private static IPaymentRepository _paymentRepo;
+
+        [BindProperty]
+        public IFormFile[] file { get; set; }
         [BindProperty]
         public Order order { get;set; }
         public List<Item> cart { get; set; }
+        [BindProperty]
+        public Payment payment { get; set; }
 
         public decimal Total { get; set; }
-        public CartModel(IOrderRepository orderRepository,IBirdRepository birdRepo,IOrderDetailRepository orderDetailRepo)
+        public CartModel(IOrderRepository orderRepository,IBirdRepository birdRepo,IOrderDetailRepository orderDetailRepo,IPaymentRepository paymentRepo)
         {
             _orderRepo = orderRepository;
             _birdRepo = birdRepo;
             _orderDetailRepo = orderDetailRepo;
+            _paymentRepo = paymentRepo;
         }
         public void OnGet()
         {
@@ -48,16 +56,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             }
             else
             {
-                int index = Exists(cart, id);
-                if (index == -1)
-                {
                     cart.Add(new Item { bird = _birdRepo.FindById(int.Parse(id)), Quantity = 1 });
-
-                }
-                else
-                {
-                    cart[index].Quantity++;
-                }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             return RedirectToPage("./Cart");
@@ -86,6 +85,12 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             return RedirectToPage("./Cart");
         }
 
+        public IActionResult OnPostSave(string[] selectCage, string[] chooseOrderItems,  int[] quantities, IFormFile[] file)
+        {
+
+            return RedirectToPage("./Cart");
+        }
+
         private int Exists(List<Item> cart, string id)
         {
             for (var i = 0; i < cart.Count; i++)
@@ -111,16 +116,21 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             {
                 return Page();
             }
+            Payment newPayment = new Payment
+            {
+                PaymentType = payment.PaymentType,
+                PaymentId = _paymentRepo.getLastIDinPayment() + 1,
+            };
             Order newOrder = new Order
             {
                 OrderId = _orderDetailRepo.GetLastOrder() + 1,
                 CustomerId = int.Parse(HttpContext.Session.GetString("UserID") ?? "0"),
                 Note = order.Note,
-                PaymentId = 1,
+                PaymentId = newPayment.PaymentId,
                 ReceivingAddress = order.ReceivingAddress,
                 SendingAddress = order.SendingAddress,
                 Status = TrackingState.UnProcessing.ToString(),
-
+                OrderType = order.OrderType,
             };
             _orderRepo.AddAsync(newOrder);
 

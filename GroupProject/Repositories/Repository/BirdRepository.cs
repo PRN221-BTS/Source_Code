@@ -34,7 +34,7 @@ namespace Repositories.Repoository
 
         public bool Remove(int id)
         {
-            _transportationSystemContext.Remove(FindById(id));
+            _transportationSystemContext.Birds.Remove(FindById(id));
             _transportationSystemContext.SaveChanges();
             return true;
         }
@@ -42,7 +42,8 @@ namespace Repositories.Repoository
         public bool Update(Bird bird)
         {
             _transportationSystemContext = new BirdTransportationSystemContext();
-            _transportationSystemContext.Update(bird);
+            _transportationSystemContext.Birds.Update(bird);
+            _transportationSystemContext.SaveChanges();
             return true;
         }
     }

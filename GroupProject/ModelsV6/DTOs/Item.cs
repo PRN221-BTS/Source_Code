@@ -12,5 +12,15 @@ namespace ModelsV6.DTOs
         public Bird bird { get; set; }
 
         public int Quantity { get; set; }
+
+
+        public string certificateBird { get; set; }
+
+        public string BirdCage { get; set; }
+
+        public string OtherItems { get; set; }
+
+
+
     }
 }

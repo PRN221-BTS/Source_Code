@@ -24,7 +24,7 @@
 
 <div class=" col-6">
 <table border="1">
-<form method="post" asp-page="cart" asp-page-handler="update">
+<form method="post" asp-page="cart" asp-page-handler="save" enctype="multipart/form-data">
     <table class="table">
         <thead>
             <tr>
@@ -36,7 +36,6 @@
                 <th class="header">Bird Cage</th>
                 <th class="header">OrderItems</th>
                 <th class="header">Certificate</th>
-                <th class="header">Sub Total</th>
                 <th></th>
             </tr>
         </thead>
@@ -52,38 +51,41 @@
                         <td>@item.bird.BirdId</td>
                         <td>@item.bird.BirdName</td>
                         <td>@item.bird.BirdType</td>
-                                <td>
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Certificate input</label>
-                                        <input class="form-control" type="file" id="formFile">
-                                    </div>
-                                </td>
                                 <td style="text-align: center">
                                     <input type="text" name="ordrItems" value="@item.Quantity" min="1" style="width: 75px; text-align: center" class="form-control" />
                                 </td>
-                       <td></td>
-                       <td></td>
-                        <td style="text-align: center">
-                            <input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 75px; text-align: center" class="form-control" />
-                        </td>
-                        <td>$@(item.Quantity)</td>
+                     
+                       <td>
+                                    <div style="width:200px">
+                                        <select class="form-select" aria-label="Default select example" name="selectCage">
+                                            <option selected >Choose Type Cage</option>
+                                            <option value="SmallCage">Small Cage</option>
+                                            <option value="MediumCage">Medium Cage</option>
+                                            <option value="BigCage">Big Cage</option>
+                                        </select>
+                                    </div>
+                       </td>
+                                <td style="text-align: center">
+                                    <input type="text" name="chooseOrderItems" value="@item.Quantity"  style="width: 75px; text-align: center" class="form-control" />
+                                </td>
+                                <td>
+                                    <div class="mb-3" style="width:200px">
+                                        <label for="formFile" class="form-label">Certificate input</label>
+                                        <input class="form-control" type="file"  name="file">
+                                    </div>
+                                </td>
                     </tr>
                 }
             }
-            <tr>
-                <td colspan="6" align="right">Total</td>
-                <td align="center">@Model.Total</td>
-            </tr>
         </tbody>
     </table>
-
-    <div class="text-right">
-        <input type="submit" value="Update" class="btn btn-primary" />
-    </div>
+            <div class="text-right">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
 </form>
 </table>
 </div>
-</br>
+<br/>
 <div class=" col-6">
     <form asp-page="cart" method="post" >
         <div>
@@ -93,6 +95,7 @@
             <br />
             <span asp-validation-for="order.ReceivingAddress" class="text-danger"></span>
         </div>
+        <br />
         <div>
             <label asp-for="order.SendingAddress"></label>
             <br />
@@ -100,6 +103,7 @@
             <br />
             <span asp-validation-for="order.SendingAddress" class="text-danger"></span>
         </div>
+        <br />
         <div>
             <label asp-for="order.Note"></label>
             <br />
@@ -107,15 +111,30 @@
             <br />
             <span asp-validation-for="order.Note" class="text-danger"></span>
         </div>
+        <br />
         <div>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value=""></option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <label>Choose Type to Delivery</label>
+            <br />
+            <select class="form-select" aria-label="Default select example" asp-for="order.OrderType">
+                <option selected>Choose</option>
+                <option value="Normal">Normal</option>
+                <option value="InCare">Take care</option>
+                
             </select>
         </div>
+        <br />
+        <div>
+            <label>Choose Type to Paid</label>
+            <br />
+            <select class="form-select" aria-label="Default select example" asp-for="payment.PaymentType">
+                <option selected>Choose</option>
+                <option value="Postpaid">Post paid</option>
+                <option value="Prepaid">Pre paid</option>
+
+            </select>
+        </div>
+        <br/>
     <button type="submit" asp-page-handler="AddOrder">Create Order</button>
     </form>
 </div>
-<a asp-page="/CustomerFolder/BirdManagement">Order</a>
+<a asp-page="/CustomerFolder/BirdManagement/Index">Continue</a>

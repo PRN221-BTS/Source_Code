@@ -62,6 +62,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             //        throw;
             //    }
             //}
+            Bird.CustomerId = int.Parse(HttpContext.Session.GetString("UserID"));
             _birdRepo.Update(Bird);
 
             return RedirectToPage("./Index");

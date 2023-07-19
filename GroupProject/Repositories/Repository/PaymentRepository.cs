@@ -10,9 +10,12 @@ namespace Repositories.Repoository
 {
     public class PaymentRepository : IPaymentRepository
     {
-        public Task<bool> AddAsync(Payment payment)
+        BirdTransportationSystemContext _context = new BirdTransportationSystemContext();
+        public bool AddAsync(Payment payment)
         {
-            throw new NotImplementedException();
+            _context.Payments.Add(payment);
+            _context.SaveChanges(); 
+            return true;
         }
 
         public Task<IEnumerable<Payment>> GetAllAsync()
@@ -25,6 +28,9 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
+        public int getLastIDinPayment() => _context.Payments.OrderByDescending(x => x.PaymentId).FirstOrDefault().PaymentId;
+        
+
         public bool Remove(int id)
         {
             throw new NotImplementedException();
@@ -32,7 +38,10 @@ namespace Repositories.Repoository
 
         public bool Update(Payment payment)
         {
-            throw new NotImplementedException();
+            _context = new BirdTransportationSystemContext();
+           _context.Payments.Update(payment);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

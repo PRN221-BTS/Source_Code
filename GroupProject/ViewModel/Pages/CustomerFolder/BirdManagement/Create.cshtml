@@ -14,28 +14,23 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Bird.BirdId" class="control-label"></label>
-                <input asp-for="Bird.BirdId" class="form-control" disabled />
-                <span asp-validation-for="Bird.BirdId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Bird.BirdName" class="control-label"></label>
-                <input asp-for="Bird.BirdName" class="form-control" />
+                <input asp-for="Bird.BirdName" class="form-control" required/>
                 <span asp-validation-for="Bird.BirdName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bird.BirdType" class="control-label"></label>
-                <input asp-for="Bird.BirdType" class="form-control" />
+                <input asp-for="Bird.BirdType" class="form-control" required />
                 <span asp-validation-for="Bird.BirdType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bird.Weight" class="control-label"></label>
-                <input asp-for="Bird.Weight" class="form-control" />
+                <input asp-for="Bird.Weight" class="form-control" required />
                 <span asp-validation-for="Bird.Weight" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bird.BirdQuantity" class="control-label"></label>
-                <input asp-for="Bird.BirdQuantity" class="form-control" />
+                <input asp-for="Bird.BirdQuantity" class="form-control" required />
                 <span asp-validation-for="Bird.BirdQuantity" class="text-danger"></span>
             </div>
             <div class="form-group">

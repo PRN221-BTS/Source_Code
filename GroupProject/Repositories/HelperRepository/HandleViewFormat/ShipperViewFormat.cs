@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositories.HandleViewFormat
+namespace Repositories.HelperRepository.HandleViewFormat
 {
     public class ShipperViewFormat
     {
@@ -34,6 +34,6 @@ namespace Repositories.HandleViewFormat
             return result;
         }
 
-       
+
     }
 }

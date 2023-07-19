@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ModelsV6.DTOs.State;
 using ModelsV6.DTOs.TrackingOrderObject;
-using Repositories.HandleViewFormat;
+using Repositories.HelperRepository.HandleViewFormat;
 
 namespace ViewModel.Pages.CustomerFolder.OrderHandle
 {

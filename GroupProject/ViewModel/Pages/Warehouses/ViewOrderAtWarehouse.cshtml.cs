@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ModelsV6.DAOs;
 using ModelsV6.DTOs;
-using Repositories.HandleViewFormat;
+using Repositories.HelperRepository.HandleViewFormat;
 using Repositories.IRepository;
 
 namespace ViewModel.Pages.Warehouses

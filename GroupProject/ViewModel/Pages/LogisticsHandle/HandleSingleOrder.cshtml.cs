@@ -4,7 +4,7 @@ using Microsoft.DotNet.Scaffolding.Shared.Project;
 using ModelsV6.DAOs;
 using ModelsV6.DTOs;
 using ModelsV6.DTOs.State;
-using Repositories.HandleViewFormat;
+using Repositories.HelperRepository.HandleViewFormat;
 using Repositories.IRepository;
 using Route = ModelsV6.DAOs.Route;
 
