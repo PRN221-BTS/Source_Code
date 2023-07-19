@@ -1,11 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Storage;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace Repositories.HelperRepository
 {
     public record FireBaseFile
@@ -71,3 +67,4 @@ namespace Repositories.HelperRepository
 
         }
     }
+}
