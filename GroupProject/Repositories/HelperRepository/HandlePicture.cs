@@ -16,10 +16,10 @@ namespace Repositories.HelperRepository
     public static class FireBaseUtility
     {
         // Vulnurable Data
-        private static string API_KEY = "AIzaSyDE0cOWUFDx5molFzragosxB9gg2YKmscU";
-        private static string Bucket = "demofirebasestorage-2312e.appspot.com";
+        private static string API_KEY = "AIzaSyD1q_xUeRm6hLCBMWrP9ho9nncmxqo8o68";
+        private static string Bucket = "https://console.firebase.google.com/project/prn221-save-image/storage/prn221-save-image.appspot.com/files";
         private static string AuthEmail = "comsuonhocmon@example";
-        private static string AuthPassword = "A";
+        private static string AuthPassword = "bunbohue";
         public static async Task<FireBaseFile> UploadFileAsync(this IFormFile fileUpload)
         {
             if (fileUpload.Length > 0)
