@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ModelsV6.DAOs;
 using ModelsV6.DTOs;
 using ModelsV6.DTOs.State;
+using Repositories.HelperRepository;
 using Repositories.IRepository;
 using ViewModel.Pages.Other;
 
@@ -20,13 +21,13 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
         [BindProperty]
         public IFormFile[] file { get; set; }
         [BindProperty]
-        public Order order { get;set; }
+        public Order order { get; set; }
         public List<Item> cart { get; set; }
         [BindProperty]
         public Payment payment { get; set; }
 
         public decimal Total { get; set; }
-        public CartModel(IOrderRepository orderRepository,IBirdRepository birdRepo,IOrderDetailRepository orderDetailRepo,IPaymentRepository paymentRepo)
+        public CartModel(IOrderRepository orderRepository, IBirdRepository birdRepo, IOrderDetailRepository orderDetailRepo, IPaymentRepository paymentRepo)
         {
             _orderRepo = orderRepository;
             _birdRepo = birdRepo;
@@ -56,7 +57,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             }
             else
             {
-                    cart.Add(new Item { bird = _birdRepo.FindById(int.Parse(id)), Quantity = 1 });
+                cart.Add(new Item { bird = _birdRepo.FindById(int.Parse(id)), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             return RedirectToPage("./Cart");
@@ -85,9 +86,20 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             return RedirectToPage("./Cart");
         }
 
-        public IActionResult OnPostSave(string[] selectCage, string[] chooseOrderItems,  int[] quantities, IFormFile[] file)
+        public async Task<IActionResult> OnPostSave(int[] price,string[] selectCage, string[] chooseOrderItems,  IFormFile[] file)
         {
-
+            
+            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            for (var i = 0; i < cart.Count; i++)
+            {
+                FireBaseFile _add = await HandleFile.UploadFileAsync(file[i]);
+                cart[i].price = price[i];
+                cart[i].certificateBird = _add.FileName;
+                cart[i].BirdCage = selectCage[i];
+                cart[i].OtherItems = chooseOrderItems[i];
+               
+            }
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToPage("./Cart");
         }
 
@@ -108,9 +120,10 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
 
             return RedirectToPage("/CustomerFolder/BirdManagement/OrderProcess");
         }
-       
+
         public async Task<IActionResult> OnPostAddOrder()
         {
+           
             ModelState.ClearValidationState(nameof(Order));
             if (!TryValidateModel(order, nameof(Order)))
             {
@@ -120,6 +133,8 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
             {
                 PaymentType = payment.PaymentType,
                 PaymentId = _paymentRepo.getLastIDinPayment() + 1,
+                PaymentDate = DateTime.Now,
+                Status = "NotYet"
             };
             Order newOrder = new Order
             {
@@ -131,33 +146,34 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
                 SendingAddress = order.SendingAddress,
                 Status = TrackingState.UnProcessing.ToString(),
                 OrderType = order.OrderType,
+                Properties = "String",
             };
+            _paymentRepo.AddAsync(newPayment);
             _orderRepo.AddAsync(newOrder);
 
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            for(int i = 0; i < cart.Count(); i++)
+            for (int i = 0; i < cart.Count(); i++)
             {
-               
+             await   _birdRepo.UpdateQuantity(cart[i].bird.BirdId);
                 OrderDetail newOrderDetails = new OrderDetail
                 {
-                    BirdCage = "Big Bird Cage",
+                    BirdCage = cart[i].BirdCage,
                     BirdId = cart[i].bird.BirdId,
-                    Certificate = "Not have",
+                    Certificate = cart[i].certificateBird.ToString(),
                     OrderId = newOrder.OrderId,
                     DeliveryStatus = TrackingState.UnProcessing.ToString(),
-                    Price = 10000,
-                    OrderDetailId = _orderDetailRepo.GetLastOrderDetailId() +1,
-                    OtherItems = "None"
+                    Price = cart[i].price,
+                    OrderDetailId = _orderDetailRepo.GetLastOrderDetailId() + 1,
+                    OtherItems = cart[i].OtherItems
 
                 };
-           await     _orderDetailRepo.AddNewOrderDetail(newOrderDetails);
-                
+                await _orderDetailRepo.AddNewOrderDetail(newOrderDetails);
+
             }
 
-            return RedirectToPage("/CustomerFolder/OrderHistories");
+            return RedirectToPage("/CustomerFolder/OrderHandle/OrderHistories");
         }
 
-
-
+     
     }
 }

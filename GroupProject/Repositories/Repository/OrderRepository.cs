@@ -40,7 +40,7 @@ namespace Repositories.Repoository
 
         public bool AddAsync(Order order)
         {
-            _context.Add(order);
+            _context.Orders.Add(order);
             _context.SaveChanges();
             return true;
         }

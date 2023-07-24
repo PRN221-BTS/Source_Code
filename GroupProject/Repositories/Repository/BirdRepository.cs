@@ -46,5 +46,21 @@ namespace Repositories.Repoository
             _transportationSystemContext.SaveChanges();
             return true;
         }
+
+        public async Task<bool> UpdateQuantity(int birdID)
+        {
+          
+            var birdFinding = GetByIdAsync(birdID);
+            if (birdFinding != null)
+            {
+                _transportationSystemContext = new BirdTransportationSystemContext();
+                birdFinding.BirdQuantity -= 1;
+                _transportationSystemContext.Birds.Update(birdFinding);
+                 await _transportationSystemContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

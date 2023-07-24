@@ -20,5 +20,8 @@ namespace Repositories.IRepository
         List<Bird> GetByCustomerID(int CustomerID);
 
         public int GetLastID();
+
+        public  Task<bool> UpdateQuantity(int birdID);
+
     }
 }

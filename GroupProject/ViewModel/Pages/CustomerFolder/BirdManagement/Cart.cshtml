@@ -33,6 +33,7 @@
                 <th class="header">Name</th>
                 <th class="header">Type</th>
                 <th class="header">Quantity</th>
+                 <th class="header">Price</th>
                 <th class="header">Bird Cage</th>
                 <th class="header">OrderItems</th>
                 <th class="header">Certificate</th>
@@ -52,9 +53,11 @@
                         <td>@item.bird.BirdName</td>
                         <td>@item.bird.BirdType</td>
                                 <td style="text-align: center">
-                                    <input type="text" name="ordrItems" value="@item.Quantity" min="1" style="width: 75px; text-align: center" class="form-control" />
+                                   @item.Quantity
                                 </td>
-                     
+                                <td style="text-align: center">
+                                    <input type="text" name="price" value="@item.price" style="width: 75px; text-align: center" class="form-control" />
+                                </td>
                        <td>
                                     <div style="width:200px">
                                         <select class="form-select" aria-label="Default select example" name="selectCage">
@@ -65,13 +68,14 @@
                                         </select>
                                     </div>
                        </td>
+                             
                                 <td style="text-align: center">
-                                    <input type="text" name="chooseOrderItems" value="@item.Quantity"  style="width: 75px; text-align: center" class="form-control" />
+                                    <input type="text" name="chooseOrderItems" value="@item.OtherItems" style="width: 75px; text-align: center" class="form-control" />
                                 </td>
                                 <td>
                                     <div class="mb-3" style="width:200px">
                                         <label for="formFile" class="form-label">Certificate input</label>
-                                        <input class="form-control" type="file"  name="file">
+                                        <input class="form-control" type="file"  name="file" required>
                                     </div>
                                 </td>
                     </tr>
@@ -84,6 +88,7 @@
             </div>
 </form>
 </table>
+ 
 </div>
 <br/>
 <div class=" col-6">
@@ -118,7 +123,7 @@
             <select class="form-select" aria-label="Default select example" asp-for="order.OrderType">
                 <option selected>Choose</option>
                 <option value="Normal">Normal</option>
-                <option value="InCare">Take care</option>
+                <option value="Business">Business</option>
                 
             </select>
         </div>
