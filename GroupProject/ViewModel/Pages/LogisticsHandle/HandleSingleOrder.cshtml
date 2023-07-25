@@ -23,15 +23,7 @@
 
         <h4> Add Shipper to Route</h4>
         <form method="post" >
-            @*<label for="exampleDataList" class="form-label">Datalist example</label>*@
             <input class="form-control" list="datalistOptions" id="exampleDataList11" name="warehouseKeyWord" placeholder="Type Shipper ID" required/>
-
-@*        <datalist id="datalistOptions">
-                @foreach (var item in Model.warehouse)
-                {
-                    <option value="@item.WarehouseId" title="@item.Location"/>
-                }
-            </datalist>*@
             <br />
             <button asp-page-handler="InfoShipper" type="submit" class="btn btn-outline-info" title="Info">Accept</button>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">View Shipper below Warehouse</button>
@@ -166,14 +158,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <p>Try scrolling the rest of the page to see this option in action.</p>
-                @foreach (var item in Model.warehouse)
-                {
-                    @item.WarehouseId 
-                    
-                    @item.WarehouseName
-                    <br/>
-                }
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Warehouse Name</th>
+                            <th scope="col">Warehouse Location</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var item in Model.warehouse)
+                        {
+                            <tr>
+                                <th scope="row">@item.WarehouseId</th>
+                                <td>@item.WarehouseName</td>
+                                <td>@item.Location</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
        
@@ -189,8 +192,8 @@
             <div class="col-auto">
                 <span>@TempData["ErrorInSequenceNumber"]</span>
                 <button type="submit" class=" bi bi-check btn btn-outline-info" asp-page-handler="AddWarehouseToRoute">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                     </svg>
                 </button>
             </div>

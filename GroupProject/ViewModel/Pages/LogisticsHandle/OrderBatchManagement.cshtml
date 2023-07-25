@@ -25,6 +25,9 @@
                 <td>
                 <a asp-page="/LogisticsHandle/HandleSingleOrder" asp-route-id="@item.OrderId">Add Batch</a>
                 </td>
+                <td>
+                    <a asp-page="/LogisticsHandle/HandleInformationOrder" asp-route-id="@item.OrderId">Check Information</a>
+                </td>
             </tr>
         }
 </tbody>

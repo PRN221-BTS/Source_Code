@@ -24,5 +24,7 @@ namespace Repositories.IRepository
         public bool CancelOrderbyOrderID(int id);
 
         public Task<bool> AddNewOrderDetail(OrderDetail orderDetail);
+
+        public Task<bool> UpdateOrderDetailStatus(int orderID, string OrderDetailStatus);
     }
 }

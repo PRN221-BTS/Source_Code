@@ -9,7 +9,9 @@ namespace ModelsV6.DTOs.State
      public enum  OrderType
     {
         NormalTransfer
-        ,SpecialTransfer
+        ,SpecialTransfer,
+        Accepted,
+        Rejected
 
     }
 }

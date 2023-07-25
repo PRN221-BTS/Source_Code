@@ -2,6 +2,7 @@
 @model ViewModel.Pages.CustomerFolder.OrderHandle.OrderDetailHistoriesModel
 @{
 }
+
 <table class="table">
     <thead>
         <tr>
@@ -37,8 +38,7 @@
                     @Html.DisplayFor(modelItem => item.BirdCage)
                 </td>
                 <td>
-                    <p><a href="https://firebasestorage.googleapis.com/v0/b/prn221-save-image.appspot.com/o/assets%2Fdocument.pdf?alt=media&token=262d01ca-6340-46be-86dd-7f8fdc04fbe7">Certificate</a></p>
-                
+                    <p><a target="_blank" href="https://firebasestorage.googleapis.com/v0/b/prn221-save-image.appspot.com/o/assets%2F@(item.Certificate)?alt=media&token=262d01ca-6340-46be-86dd-7f8fdc04fbe7">Certificate</a></p>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DeliveryStatus)

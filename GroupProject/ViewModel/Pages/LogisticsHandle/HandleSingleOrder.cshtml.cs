@@ -249,7 +249,7 @@ namespace ViewModel.Pages.LogisticsHandle
         }
         private  void CallObjectFromJson()
         {
- 
+            
             receivingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "ReceivingShippers");
             sendingShipperList = SessionHelper.GetObjectFromJson<List<Shipper>>(HttpContext.Session, "SendingShippers");
             warehouseCartList = SessionHelper.GetObjectFromJson<List<WarehouseCart>>(HttpContext.Session, "ListWarehouseinRoute");

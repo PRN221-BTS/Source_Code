@@ -33,7 +33,15 @@ namespace Repositories.Repoository
             throw new NotImplementedException();
         }
 
-        public Customer? Login(string email, string password) => _context.Customers.FirstOrDefault(x => x.Password == password && x.Email == email);
+        public Customer? Login(string email, string password) {
+
+            Customer? customet = _context.Customers.FirstOrDefault(x => x.Password == password && x.Email == email);
+            if (customet is null)
+            {
+                return null;
+            }
+            return customet;
+        }
         
             
         

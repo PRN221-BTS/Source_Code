@@ -76,5 +76,16 @@ namespace Repositories.Repoository
              await _context.SaveChangesAsync();
             return true;
         }
+
+        public  async Task<bool> UpdateOrderDetailStatus(int orderID, string OrderDetailStatus)
+        {
+           
+            OrderDetail orderDetail =  _context.OrderDetails.FirstOrDefault(x => x.OrderDetailId == orderID);
+            orderDetail.DeliveryStatus = OrderDetailStatus;
+            _context = new BirdTransportationSystemContext();
+            _context.OrderDetails.Update(orderDetail);
+            await _context.SaveChangesAsync(); 
+            return true;
+        }
     }
 }

@@ -1,0 +1,56 @@
+﻿@page
+@model ViewModel.Pages.LogisticsHandle.HandleInformationOrderModel
+@{
+}
+<table class="table">
+    <form method="post" asp-page-handler="UpdateInformation" enctype="multipart/form-data">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].OrderDetailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].BirdCage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].Certificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].DeliveryStatus)
+            </th>
+            <th>
+                Check Information
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Details)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDetailId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirdCage)
+                </td>
+                <td>
+                    <p><a target="_blank" href="https://firebasestorage.googleapis.com/v0/b/prn221-save-image.appspot.com/o/assets%2F@(item.Certificate)?alt=media&token=262d01ca-6340-46be-86dd-7f8fdc04fbe7">Certificate</a></p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryStatus)
+                </td>
+                <td>
+                    <input type="radio" class="btn-check" name="optionsoutlined" id="success-outlined" autocomplete="off" value="Accepted" checked>
+                    <label class="btn btn-outline-success" for="success-outlined">Accept</label>
+
+                    <input type="radio" class="btn-check" name="optionsoutlined" id="danger-outlined" autocomplete="off" value="Rejected">
+                    <label class="btn btn-outline-danger" for="danger-outlined">Reject</label>
+                </td>
+            </tr>
+            <input type="hidden" name="Idcheck" value="@item.OrderDetailId"/>
+        }
+      
+    </tbody>
+      <button type="submit" class="btn btn-outline-success">Submit</button>
+        </form>
+</table>
