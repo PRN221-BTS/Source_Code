@@ -85,6 +85,14 @@ namespace Repositories.Repoository
             return false;
         }
 
-        public int GetLastID()=> (int)_context.Customers.OrderByDescending(x => x.CustomerId).FirstOrDefault()?.CustomerId;  
+        public int GetLastID()=> (int)_context.Customers.OrderByDescending(x => x.CustomerId).FirstOrDefault()?.CustomerId;
+
+
+       
+
+
+        public bool CheckValidationEmail(string email) => !_context.Customers.Any(x => x.Email == email);
+
+
     }
 }

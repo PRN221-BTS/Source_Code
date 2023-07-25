@@ -62,5 +62,8 @@ namespace Repositories.Repoository
 
             return false;
         }
+
+
+        public bool CheckValidationBird(string birdName,int customerID) => !_transportationSystemContext.Birds.Any(x => x.BirdName == birdName && x.CustomerId == customerID);
     }
 }

@@ -28,18 +28,30 @@ namespace ViewModel.Pages.Other
 
         public IActionResult OnPostCustomerRegister()
         {
-          
+            bool CheckValidation = true;
             if(register.Password != register.ConfirmPassword)
             {
-                TempData["CheckPassword"] = " your Password and Confirm Password are not match";
-                return Page();
+                ViewData["CheckPassword"] = " your Password and Confirm Password are not match";
+                CheckValidation = false;
+                
 
             }
-            ModelState.ClearValidationState(nameof(RegisterCustomerForm));
+            if(!_customerRepo.CheckValidationEmail(register.CustomerEmail))
+            {
+                ViewData["CheckValidationEmail"] = "The Email have been registered before";
+                CheckValidation = false;
+             
+            }
+           // ModelState.ClearValidationState(nameof(RegisterCustomerForm));
             if (!TryValidateModel(register, nameof(RegisterCustomerForm)))
+            {
+                CheckValidation = false;
+            }
+            if (!CheckValidation)
             {
                 return Page();
             }
+
             Customer customer = new Customer
             {
                 CustomerId = _customerRepo.GetLastID()+1,

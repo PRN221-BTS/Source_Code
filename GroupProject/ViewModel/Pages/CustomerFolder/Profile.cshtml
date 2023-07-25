@@ -20,18 +20,19 @@
     <div class="col-3">
         <label asp-for="customer.Email"></label>
         <br />
-        <input type="text" asp-for="customer.Email" placeholder="@Model.customer.Email">
+        <input type="text" asp-for="customer.Email" placeholder="@Model.customer.Email" width="auto">
     </div>
     <div class="col-3">
         <label asp-for="customer.Password"></label>
         <br />
-        <input type="text" asp-for="customer.Password" placeholder="@Model.customer.Password" width="auto" >
+        <input type="password" asp-for="customer.Password" value="@Model.customer.Password" width="auto" >
     </div>
     <div class="col-3">
         <label asp-for="customer.Phone"></label>
         <br />
         <input type="text" asp-for="customer.Phone" placeholder="@Model.customer.Phone">
     </div>
+    <br/>
     <div class="col-3">
         <input type="submit" class="btn btn-primary" value="UpdateUser" />
     </div>

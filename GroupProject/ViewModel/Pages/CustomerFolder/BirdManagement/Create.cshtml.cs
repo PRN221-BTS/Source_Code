@@ -31,6 +31,11 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            if(!_birdRepo.CheckValidationBird(Bird.BirdName, int.Parse(HttpContext.Session.GetString("UserID"))))
+            {
+                ViewData["CheckBirdName"] = "Bird have existed in your list";
+                return Page();
+            }
           if (!ModelState.IsValid || Bird == null)
             {
                 return Page();

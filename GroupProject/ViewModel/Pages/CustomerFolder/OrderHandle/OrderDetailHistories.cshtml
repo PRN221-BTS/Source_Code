@@ -9,7 +9,7 @@
                 @Html.DisplayNameFor(model => model.orderDetail[0].OrderDetailId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.orderDetail[0].Bird.BirdName)
+                @Html.DisplayNameFor(model => model.orderDetail[0].BirdId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.orderDetail[0].BirdCage)
@@ -31,13 +31,14 @@
                     @Html.DisplayFor(modelItem => item.OrderDetailId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Bird.BirdName)
+                    @Html.DisplayFor(modelItem => item.BirdId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BirdCage)
                 </td>
                 <td>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/prn221-save-image.appspot.com/o/assets%2FBingWallpaper%20(58).jpg?alt=media&token=19d61638-3089-49e4-9224-cbfd21083bb7" />
+                    <p><a href="https://firebasestorage.googleapis.com/v0/b/prn221-save-image.appspot.com/o/assets%2Fdocument.pdf?alt=media&token=262d01ca-6340-46be-86dd-7f8fdc04fbe7">Certificate</a></p>
+                
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DeliveryStatus)

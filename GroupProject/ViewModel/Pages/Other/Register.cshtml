@@ -43,6 +43,8 @@
         <br />
         <span asp-validation-for="register.Phone" class="text-danger"></span>
     </div>
+    <div style="color :red">@ViewData["CheckPassword"]</div>
+    <div style="color :red">@ViewData["CheckValidationEmail"]</div>
     <div>
         <input type="submit"  asp-page-handler="CustomerRegister"/>
     </div>

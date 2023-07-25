@@ -33,6 +33,10 @@
                 <input asp-for="Bird.BirdQuantity" class="form-control" required />
                 <span asp-validation-for="Bird.BirdQuantity" class="text-danger"></span>
             </div>
+            <div style="color : red">
+
+                @ViewData["CheckBirdName"]
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

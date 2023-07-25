@@ -1,4 +1,5 @@
-﻿using ModelsV6.DAOs;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelsV6.DAOs;
 using ModelsV6.DTOs.State;
 using Repositories.IRepository;
 using System;
@@ -40,9 +41,16 @@ namespace Repositories.Repoository
         }
         public Order GetOrderById(int id) => _context.Orders.FirstOrDefault(x => x.OrderId == id);
         public int GetLastOrder() => _context.Orders.OrderByDescending(x => x.OrderId).FirstOrDefault().OrderId;
-   
 
-        public List<OrderDetail> GetOrderDetailByOrderId(int id) => _context.OrderDetails.Where(x => x.OrderId == id).ToList();
+
+        public List<OrderDetail> GetOrderDetailByOrderId(int id) {
+            
+            var listOrderDetail = (from orderDetail  in _context.OrderDetails
+                                  join bird in _context.Birds on  orderDetail.BirdId equals bird.BirdId
+                                  where orderDetail.OrderId == id
+                                  select orderDetail).ToList();
+            return listOrderDetail;
+          }
     
 
         public bool Remove(int id)

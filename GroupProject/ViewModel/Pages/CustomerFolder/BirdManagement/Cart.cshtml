@@ -61,7 +61,7 @@
                        <td>
                                     <div style="width:200px">
                                         <select class="form-select" aria-label="Default select example" name="selectCage">
-                                            <option selected >Choose Type Cage</option>
+                                            <option selected value="@item.BirdCage">Choose Type Cage</option>
                                             <option value="SmallCage">Small Cage</option>
                                             <option value="MediumCage">Medium Cage</option>
                                             <option value="BigCage">Big Cage</option>
@@ -75,7 +75,7 @@
                                 <td>
                                     <div class="mb-3" style="width:200px">
                                         <label for="formFile" class="form-label">Certificate input</label>
-                                        <input class="form-control" type="file"  name="file" required>
+                                        <input class="form-control" type="file"  name="file"  value="@item.certificateBird" required>
                                     </div>
                                 </td>
                     </tr>

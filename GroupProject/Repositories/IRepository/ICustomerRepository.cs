@@ -24,5 +24,8 @@ namespace Repositories.IRepository
         public bool LoginByLogicticsAccount(string email, string password);
         public int GetLastID();
 
+
+        public bool CheckValidationEmail(string email);
+
     }
 }

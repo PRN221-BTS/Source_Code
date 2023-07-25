@@ -11,6 +11,7 @@ namespace ModelsV6.DTOs
 {
     public class RegisterCustomerForm
     {
+
         public int Id { get; set; } 
         [Required]
         [StringLength(50)]
@@ -18,7 +19,7 @@ namespace ModelsV6.DTOs
 
         [Required]
         [StringLength(50)]
-        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")]
+        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",ErrorMessage ="Correct format email")]
         public string CustomerEmail { get; set; }
 
         [Required]
@@ -28,7 +29,7 @@ namespace ModelsV6.DTOs
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [RegularExpression(@"^0\d{9}$")]
+        [RegularExpression(@"^0\d{9}$",ErrorMessage ="InCorrect PhoneNumber Format")]
         public string Phone { get ; set; }
     }
 }

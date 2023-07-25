@@ -23,5 +23,8 @@ namespace Repositories.IRepository
 
         public  Task<bool> UpdateQuantity(int birdID);
 
+        public bool CheckValidationBird(string birdName, int customerID);
+
+
     }
 }
