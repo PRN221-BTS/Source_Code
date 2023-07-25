@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using ModelsV6.DAOs;
 using Repositories.IRepository;
 using System;
@@ -101,6 +102,9 @@ namespace Repositories.Repoository
 
         public bool CheckValidationEmail(string email) => !_context.Customers.Any(x => x.Email == email);
 
-
+        public async Task<bool> EmailExists(int customerId, string email)
+        {
+            return await _context.Customers.AnyAsync(c => c.CustomerId != customerId && c.Email == email);
+        }
     }
 }

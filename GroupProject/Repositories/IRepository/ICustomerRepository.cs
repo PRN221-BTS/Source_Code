@@ -26,6 +26,6 @@ namespace Repositories.IRepository
 
 
         public bool CheckValidationEmail(string email);
-
+        Task<bool> EmailExists(int customerId, string email);
     }
 }

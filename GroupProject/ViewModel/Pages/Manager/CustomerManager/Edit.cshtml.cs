@@ -36,7 +36,16 @@ namespace ViewModel.Pages.Manager.CustomerManager
             {
                 return NotFound();
             }
+
             Customer = customer;
+
+            //bool emailExists = await _customerRepo.EmailExists(Customer.CustomerId, Customer.Email);
+            //if (emailExists)
+            //{
+            //    ModelState.AddModelError(string.Empty, "Email already exists.");
+            //    return Page();
+            //}
+
             return Page();
         }
 
@@ -53,9 +62,18 @@ namespace ViewModel.Pages.Manager.CustomerManager
 
             try
             {
-             //   await _context.SaveChangesAsync();
-            _customerRepo.Update(Customer);
-            
+                bool emailExists = await _customerRepo.EmailExists(Customer.CustomerId, Customer.Email);
+                if (emailExists)
+                {
+                    ModelState.AddModelError(string.Empty, "Email already exists.");
+                    return Page();
+                } 
+                else
+                {
+                    _customerRepo.Update(Customer);
+                }
+                //   await _context.SaveChangesAsync();
+
             }
             catch (DbUpdateConcurrencyException)
             {

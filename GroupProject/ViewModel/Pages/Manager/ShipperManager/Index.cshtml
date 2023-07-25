@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Shipper Management</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
+<p style="text-align: right;">
+    <a asp-page="Create" style="background-color: #1919ff; color: white; padding: 10px 20px; text-decoration: none;">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -47,7 +47,8 @@
                     @Html.DisplayFor(modelItem => item.IncomeWallet)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                @*@Html.DisplayFor(modelItem => item.Password)*@
+                *****
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VehicleType)

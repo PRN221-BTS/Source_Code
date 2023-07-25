@@ -2,11 +2,49 @@
 @model ViewModel.Pages.Manager.MainScreenModel
 @{
 }
+<style>
+.btn-cta {
+    background-color: #1919ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: 4px auto;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-cta a {
+    color: white;
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn {
+    text-align: center;
+}
+
+.btn-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>
+
 <h1>Admin page</h1>
-
-
-
-
-<button type="button" class="btn btn-cta"><a asp-page="/Manager/WarehouseManagers/Index">Manage Warehose</a></button>
-<button type="button" class="btn btn-cta"><a asp-page="/Manager/ShipperManager/Index">Manage Shipper</a></button>
-<button type="button" class="btn btn-cta"><a asp-page="/Manager/CustomerManager/Index">Manage Customer</a></button>
+<span class="btn">
+    <button type="button" class="btn-cta"><a asp-page="/Manager/WarehouseManagers/Index">Manage Warehouse</a></button>
+</span>
+<span class="btn">
+    <button type="button" class="btn-cta"><a asp-page="/Manager/ShipperManager/Index">Manage Shipper</a></button>
+</span>
+<span class="btn">
+    <button type="button" class="btn-cta"><a asp-page="/Manager/CustomerManager/Index">Manage Customer</a></button>
+</span>

@@ -2,29 +2,41 @@
 @model ViewModel.Pages.Manager.WarehouseManagers.WarehouseManagementModel
 @{
 }
-<form>
+<style>
+    h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
 
-    <div class="col-3">
-        <label asp-for="warehouseManager.WarehouseManagerId"></label>
-        <br />
-        <input type="text" asp-for="warehouseManager.WarehouseManagerId" placeholder="@Model.warehouseManager.WarehouseManagerId" width="auto" height="auto">
+    .col-3 {
+        margin-bottom: 10px;
+    }
 
-    </div>
-    <div class="col-3">
-        <label asp-for="warehouseManager.WarehouseManagerName"></label>
-        <br />
-        <input type="text" asp-for="warehouseManager.WarehouseManagerName" placeholder="@Model.warehouseManager.WarehouseManagerName" width="auto" height="auto">
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+</style>
 
-    </div>
-    <div class="col-3">
-        <label asp-for="warehouseManager.Email"></label>
-        <br />
-        <input type="text" asp-for="warehouseManager.Email" placeholder="@Model.warehouseManager.Email" width="auto" height="auto">
-
-    </div>
-    <div class="col-3">
-        <label asp-for="warehouseManager.PhoneNumber"></label>
-        <br />
-        <input type="text" asp-for="warehouseManager.PhoneNumber" placeholder="@Model.warehouseManager.PhoneNumber" width="auto" height="auto">
-    </div>
-</form>
+<h1>Warehouse Manager's Information</h1>
+<div class="col-3">
+    <label asp-for="warehouseManager.WarehouseManagerId"></label>
+    @Model.warehouseManager.WarehouseManagerId
+</div>
+<div class="col-3">
+    <label asp-for="warehouseManager.WarehouseManagerName"></label>
+    @Model.warehouseManager.WarehouseManagerName
+</div>
+<div class="col-3">
+    <label asp-for="warehouseManager.Email"></label>
+    @Model.warehouseManager.Email
+</div>
+<div class="col-3">
+    <label asp-for="warehouseManager.PhoneNumber"></label>
+    @Model.warehouseManager.PhoneNumber
+</div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -48,6 +48,14 @@ namespace ViewModel.Pages.Manager.ShipperManager
                 return Page();
             }
 
+            bool emailExists = await _context.Shippers.AnyAsync(s => s.Email == Shipper.Email && s.ShipperId != Shipper.ShipperId);
+            if (emailExists)
+            {
+                ModelState.AddModelError(string.Empty, "Email already exists.");
+                ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseId");
+                return Page();
+            }
+
             _context.Attach(Shipper).State = EntityState.Modified;
 
             try

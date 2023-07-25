@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Warehouse Management</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
+<p style="text-align: right;">
+    <a asp-page="Create" style="background-color: #1919ff; color: white; padding: 10px 20px; text-decoration: none;">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -20,7 +20,8 @@
                 @Html.DisplayNameFor(model => model.Warehouse[0].Location)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Warehouse[0].WarehouseManager)
+                @*@Html.DisplayNameFor(model => model.Warehouse[0].WarehouseManager)*@
+                Warehouse
             </th>
             <th></th>
         </tr>
@@ -41,7 +42,7 @@
                 <a asp-page="./Edit" asp-route-id="@item.WarehouseId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.WarehouseId">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.WarehouseId">Delete</a> |
-                <a asp-page="./WarehouseManagement" asp-route-id="@item.WarehouseId">Management</a>
+                <a asp-page="./WarehouseManagement" asp-route-id="@item.WarehouseId">Warehouse Manager</a>
             </td>
         </tr>
 }
