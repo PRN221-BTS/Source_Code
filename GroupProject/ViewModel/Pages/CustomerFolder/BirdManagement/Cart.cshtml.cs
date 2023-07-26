@@ -170,7 +170,7 @@ namespace ViewModel.Pages.CustomerFolder.BirdManagement
                 await _orderDetailRepo.AddNewOrderDetail(newOrderDetails);
 
             }
-
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", null);
             return RedirectToPage("/CustomerFolder/OrderHandle/OrderHistories");
         }
 

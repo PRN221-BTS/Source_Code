@@ -21,12 +21,13 @@ namespace ViewModel.Pages.LogisticsHandle
         public void OnGet(int id)
         {
             Details = _orderDetailRepo.GetOrderDetailByOrderId(id);
+            TempData["orderID"] = id;
         }
 
         public  async Task<IActionResult> OnPostUpdateInformation(string[] optionsoutlined, int[] Idcheck)
         {
             bool check = true;
-            return RedirectToPage("/LogisticsHandle/HandleSingleOrder", new { id = 17 });
+          
             for (int i = 0; i < Idcheck.Count(); i++)
             {
                 if (optionsoutlined[i] == OrderType.Rejected.ToString())
@@ -38,12 +39,12 @@ namespace ViewModel.Pages.LogisticsHandle
             }
             if (!check)
             {
-                var order = _orderRepo.GetByIdAsync((int)Details.First().OrderId);
+                var order = _orderRepo.GetByIdAsync(int.Parse(TempData["orderID"].ToString()));
                 order.Status = OrderType.Rejected.ToString();
                 _orderDetailRepo.UpdateOrder(order);
                 return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
             }
-            return RedirectToPage("/LogisticsHandle/HandleSingleOrder", new {id = (int)Details.First().OrderId });
+            return RedirectToPage("/LogisticsHandle/OrderBatchManagement");
           
         }
 

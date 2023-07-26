@@ -108,6 +108,7 @@ namespace ViewModel.Pages.LogisticsHandle
 
         public IActionResult OnPostAddWarehouseToRoute(int WarehouseId,int sequenceNumberWarehouse)
         {
+           
 
              var warehouseFinding = _warehouseRepo.GetByIdAsync(WarehouseId);
            
