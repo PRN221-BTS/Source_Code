@@ -51,7 +51,7 @@ namespace ViewModel.Pages.Other
                 Customer customer = _customerRepository.Login(loginForm.Email, loginForm.Password);
                 HttpContext.Session.SetString("UserID", customer.CustomerId.ToString());
                 HttpContext.Session.SetString("Role", "Customer");
-                return RedirectToPage("/CustomerFolder/Profile");
+                return RedirectToPage("/CustomerFolder/MainPage");
             }
 
             if (_shipperRepository.Login(loginForm.Email, loginForm.Password) is not null)

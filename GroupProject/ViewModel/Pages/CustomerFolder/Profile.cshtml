@@ -2,38 +2,38 @@
 @model ViewModel.Pages.CustomerFolder.ProfileModel
 @{
 }
-<h1>Customer Page</h1>
+
 <h1>My Profile</h1>
-<a asp-page="/CustomerFolder/BirdManagement/Index" asp-route-id="@Model.customer.CustomerId">Bird Management</a>
-<a asp-page="/CustomerFolder/OrderHandle/OrderHistories">Order Management</a>
-<form>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form method="post" asp-page-handler="UpdateUser">
     <div class="col-3 ">
-        <label asp-for="customer.CustomerId"></label>
+        <label asp-for="Customer.CustomerId"></label>
         <br />
-        <input type="text" asp-for="customer.CustomerId" placeholder="@Model.customer.CustomerId" width="auto" height="auto" disabled>
+        <input type="text" asp-for="Customer.CustomerId" readonly>
     </div>
     <div class="col-3 ">
-        <label asp-for="customer.CustomerName"></label>
+        <label asp-for="Customer.CustomerName"></label>
         <br />
-        <input type="text" asp-for="customer.CustomerName" placeholder="@Model.customer.CustomerName" width="auto" height="auto">
+        <input type="text" asp-for="Customer.CustomerName">
     </div>
     <div class="col-3">
-        <label asp-for="customer.Email"></label>
+        <label asp-for="Customer.Email"></label>
         <br />
-        <input type="text" asp-for="customer.Email" placeholder="@Model.customer.Email" width="auto">
+        <input type="text" asp-for="Customer.Email">
+        <span asp-validation-for="Customer.Email" class="text-danger"></span>
     </div>
     <div class="col-3">
-        <label asp-for="customer.Password"></label>
+        <label asp-for="Customer.Password"></label>
         <br />
-        <input type="password" asp-for="customer.Password" value="@Model.customer.Password" width="auto" >
+        <input type="password" asp-for="Customer.Password">
     </div>
     <div class="col-3">
-        <label asp-for="customer.Phone"></label>
+        <label asp-for="Customer.Phone"></label>
         <br />
-        <input type="text" asp-for="customer.Phone" placeholder="@Model.customer.Phone">
+        <input type="text" asp-for="Customer.Phone">
     </div>
-    <br/>
+    <br />
     <div class="col-3">
-        <input type="submit" class="btn btn-primary" value="UpdateUser" />
+        <button type="submit" class="btn btn-primary">Update User</button>
     </div>
 </form>

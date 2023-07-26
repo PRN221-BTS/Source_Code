@@ -1,0 +1,44 @@
+﻿@page
+@model ViewModel.Pages.CustomerFolder.MainPageModel
+@{
+}
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    .btn-container {
+        display: flex;
+        margin-bottom: 10px;
+        margin-left: 25%;
+    }
+
+    .btn {
+        font-size: 18px;
+        text-decoration: none;
+        color: white;
+        background-color: #1919ff;
+        border-radius: 4px;
+        margin-left: 30px;
+        padding: 10px 20px;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 60%;
+        height: auto;
+    }
+</style>
+
+<h1>Customer page</h1>
+</br>
+<div class="btn-container">
+    <a class="btn" asp-page="/CustomerFolder/BirdManagement/Index" asp-route-id="@Model.customer.CustomerId">Bird Management</a>
+    <a class="btn" asp-page="/CustomerFolder/OrderHandle/OrderHistories">Order Management</a>
+    <a class="btn" asp-page="/CustomerFolder/Profile">Update Profile</a>
+</div>
+</br>
+<div>
+    <img src="https://www.salesforce.com/content/dam/blogs/ca/Blog%20Posts/Every-Task-a-Customer-Service-Rep-Must-Do-opengraph.png" />
+</div>
